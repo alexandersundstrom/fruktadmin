@@ -1,0 +1,74 @@
+.spar-mobile-8 {
+    float: left !important;
+    font-family: arial, sans-serif;
+    font-size: 116%;
+    font-style: normal;
+    font-weight: normal;
+    height: 0;
+    text-align: left !important;
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 569px) {
+
+    .menuwrapper nav nav .spar-searchform-portlet img {
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .cookies .inner p {
+        font-size: 12px;
+        font-weight: normal;
+        margin-bottom: 10px;
+        padding: 0;
+        width: auto;
+    }
+
+    .cookies .inner p:before {
+        display: none;
+    }
+
+    #buttons input {
+        margin-bottom: 1em;
+        width: 50%;
+    }
+
+    .menu-container .nav li {
+        display: block;
+        padding-left: 15px;
+    }
+
+    li.active {
+        border-bottom: none;
+    }
+
+    li.active:before {
+        content: url("/img/active.png");
+        position: absolute;
+        top: 15px;
+        left: 15px;
+    }
+
+    .menu-container .toggle-menu {
+        display: block;
+    }
+
+    .start-alternativ a {
+        display: inline-block; /* FÃ¶r de browsers som inte stÃ¶djer display: flex; (exempelvis Safari i Iphone4 och Ã¤ldre) */
+    }
+
+    .toggle-menu {
+        padding-left: 15px !important;
+    }
+
+    ul.nav {
+        display: none !important;
+    }
+
+    ul.nav.show {
+        display: block !important;
+    }
+}
