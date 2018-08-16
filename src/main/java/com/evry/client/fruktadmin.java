@@ -1,10 +1,12 @@
 package com.evry.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -36,25 +38,27 @@ public class fruktadmin implements EntryPoint {
         Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
         uploadReportAnchorNav.addClickHandler(uploadXML);
 
+        fruktadminServiceAsync messageThing = GWT.create(fruktadminService.class);
+        messageThing.getMessage("Forkster", new MyAsyncCallback(contentDiv));
+
 //        RootPanel.get("slot1").add(button);
 //        RootPanel.get("slot2").add(label);
     }
 
-//    private static class MyAsyncCallback implements AsyncCallback<String> {
-//        private Label label;
-//
-//        public MyAsyncCallback(Label label) {
-//            this.label = label;
-//        }
-//
-//        public void onSuccess(String result) {
-//            label.getElement().setInnerHTML(result);
-//        }
-//
-//        public void onFailure(Throwable throwable) {
-//            label.setText("Failed to receive answer from server!");
-//        }
-//    }
+    private static class MyAsyncCallback implements AsyncCallback<String> {
+        private DivElement div;
+
+        MyAsyncCallback(DivElement div) {
+            this.div = div;
+        }
+
+        public void onSuccess(String result) {
+            div.setInnerHTML(result);
+        }
+
+        public void onFailure(Throwable throwable) {
+        }
+    }
 
     private ClickHandler getReport = event -> {
         contentDiv.setInnerHTML(Resources.INSTANCE.getReport().getText());
