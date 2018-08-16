@@ -3,6 +3,7 @@ package com.evry.fruktadmin.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Anchor;
 
@@ -10,7 +11,12 @@ import com.google.gwt.user.client.ui.Anchor;
  * Entry point classes define <code>onModuleLoad()</code>
  */
 public class fruktadmin implements EntryPoint {
-    DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
+    private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
+    private LIElement downloadLi = LIElement.as(Document.get().getElementById("menu_load"));
+    private LIElement uploadLi = LIElement.as(Document.get().getElementById("menu_upload"));
+    private static final String DOWNLOAD = "download";
+    private static final String UPLOAD = "uppload";
+    private Glass glass = new Glass();
 
     /**
      * This is the entry point method.
@@ -51,9 +57,25 @@ public class fruktadmin implements EntryPoint {
 
     private ClickHandler getReport = event -> {
         contentDiv.setInnerHTML(Resources.INSTANCE.getReport().getText());
+        switchContent(DOWNLOAD);
     };
 
     private ClickHandler uploadXML = event -> {
         contentDiv.setInnerHTML(Resources.INSTANCE.uploadXML().getText());
+        switchContent(UPLOAD);
     };
+
+    private void switchContent(String page) {
+        switch (page) {
+            case DOWNLOAD:
+                downloadLi.setClassName("active");
+                uploadLi.removeClassName("active");
+                break;
+            case UPLOAD:
+                uploadLi.setClassName("active");
+                downloadLi.removeClassName("active");
+                break;
+
+        }
+    }
 }
