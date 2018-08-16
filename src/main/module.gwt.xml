@@ -3,7 +3,7 @@
   <inherits name='com.google.gwt.user.User'/>
 
   <entry-point class='com.evry.client.fruktadmin' />
-  <!--<source path='' />-->
+  <source path='client' />
   <resource path='resources'/>
 
   <servlet path='/fruktadminService' class='com.evry.fruktadmin.server.fruktadminServiceImpl'/>
