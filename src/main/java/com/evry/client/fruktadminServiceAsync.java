@@ -1,4 +1,4 @@
-package com.evry.fruktadmin.client;
+package com.evry.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

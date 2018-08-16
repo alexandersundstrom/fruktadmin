@@ -1,4 +1,4 @@
-package com.evry.fruktadmin.client;
+package com.evry.client;
 
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;

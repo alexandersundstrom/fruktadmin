@@ -30,3 +30,5 @@ deploy/
 *.cache.*
 compilation-mappings.txt
 fruktadmin.devmode.js
+target/
+

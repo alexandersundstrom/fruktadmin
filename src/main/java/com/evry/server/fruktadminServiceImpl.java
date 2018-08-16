@@ -1,6 +1,7 @@
-package com.evry.fruktadmin.server;
+package com.evry.server;
+
+import com.evry.client.fruktadminService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.evry.fruktadmin.client.fruktadminService;
 
 public class fruktadminServiceImpl extends RemoteServiceServlet implements fruktadminService {
     // Implementation of sample interface method
