@@ -8,9 +8,9 @@ import com.google.gwt.resources.client.TextResource;
 public interface Resources extends ClientBundle{
     Resources INSTANCE = GWT.create(Resources.class);
 
-    @Source("hamtaRapport.html")
+    @Source("downloadReport.html")
     TextResource getReport();
 
-    @Source("laddaUpp.html")
+    @Source("upploadXML.html")
     TextResource uploadXML();
 }

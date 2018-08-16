@@ -12,27 +12,29 @@ import com.google.gwt.user.client.ui.RootPanel;
  * Entry point classes define <code>onModuleLoad()</code>
  */
 public class fruktadmin implements EntryPoint {
-    private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
     private static final String DOWNLOAD = "download";
     private static final String UPLOAD = "uppload";
+
     private Glass glass = new Glass();
+    private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
+    private LIElement downloadLi = LIElement.as(Document.get().getElementById("menu_load"));
+    private LIElement uploadLi = LIElement.as(Document.get().getElementById("menu_upload"));
 
     /**
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
-        Anchor downloadreportAnchor = Anchor.wrap(Document.get().getElementById("getReport"));
-        Anchor downloadreportAnchorNav = Anchor.wrap(Document.get().getElementById("getReportNav"));
-        Anchor uploadReportAnchor = Anchor.wrap(Document.get().getElementById("uploadReport"));
-        Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
-
+        Anchor downloadreportAnchor = Anchor.wrap(Document.get().getElementById("downloadReport"));
         downloadreportAnchor.addClickHandler(getReport);
+
+        Anchor downloadreportAnchorNav = Anchor.wrap(Document.get().getElementById("downloadReportNav"));
         downloadreportAnchorNav.addClickHandler(getReport);
 
+        Anchor uploadReportAnchor = Anchor.wrap(Document.get().getElementById("uploadReport"));
         uploadReportAnchor.addClickHandler(uploadXML);
-        uploadReportAnchorNav.addClickHandler(uploadXML);
 
+        Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
+        uploadReportAnchorNav.addClickHandler(uploadXML);
 
 //        RootPanel.get("slot1").add(button);
 //        RootPanel.get("slot2").add(label);
