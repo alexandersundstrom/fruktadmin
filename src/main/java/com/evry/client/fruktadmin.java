@@ -1,5 +1,6 @@
 package com.evry.client;
 
+import com.evry.fruktkorgservice.model.ImmutableReport;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
@@ -9,6 +10,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
+
+import java.util.List;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
@@ -39,21 +42,21 @@ public class fruktadmin implements EntryPoint {
         uploadReportAnchorNav.addClickHandler(uploadXML);
 
         fruktadminServiceAsync messageThing = GWT.create(fruktadminService.class);
-        messageThing.getMessage("Forkster", new MyAsyncCallback(contentDiv));
+        messageThing.getReports(new MyAsyncCallback(contentDiv));
 
 //        RootPanel.get("slot1").add(button);
 //        RootPanel.get("slot2").add(label);
     }
 
-    private static class MyAsyncCallback implements AsyncCallback<String> {
+    private static class MyAsyncCallback implements AsyncCallback<List<ImmutableReport>> {
         private DivElement div;
 
         MyAsyncCallback(DivElement div) {
             this.div = div;
         }
 
-        public void onSuccess(String result) {
-            div.setInnerHTML(result);
+        public void onSuccess(List<ImmutableReport> result) {
+//            div.setInnerHTML(result);
         }
 
         public void onFailure(Throwable throwable) {
