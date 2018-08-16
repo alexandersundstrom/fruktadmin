@@ -6,14 +6,13 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
  */
 public class fruktadmin implements EntryPoint {
     private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
-    private LIElement downloadLi = LIElement.as(Document.get().getElementById("menu_load"));
-    private LIElement uploadLi = LIElement.as(Document.get().getElementById("menu_upload"));
     private static final String DOWNLOAD = "download";
     private static final String UPLOAD = "uppload";
     private Glass glass = new Glass();
@@ -68,12 +67,12 @@ public class fruktadmin implements EntryPoint {
     private void switchContent(String page) {
         switch (page) {
             case DOWNLOAD:
-                downloadLi.setClassName("active");
-                uploadLi.removeClassName("active");
+                RootPanel.get("menu_load").addStyleName("active");
+                RootPanel.get("menu_upload").removeStyleName("active");
                 break;
             case UPLOAD:
-                uploadLi.setClassName("active");
-                downloadLi.removeClassName("active");
+                RootPanel.get("menu_upload").addStyleName("active");
+                RootPanel.get("menu_load").removeStyleName("active");
                 break;
 
         }
