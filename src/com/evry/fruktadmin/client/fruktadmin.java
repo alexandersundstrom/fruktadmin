@@ -1,55 +1,59 @@
 package com.evry.fruktadmin.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.dom.builder.shared.TableRowBuilder;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Anchor;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
  */
 public class fruktadmin implements EntryPoint {
+    DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
 
     /**
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        final Button button = new Button("Click me");
-        final Label label = new Label();
+        DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
+        Anchor downloadreportAnchor = Anchor.wrap(Document.get().getElementById("getReport"));
+        Anchor downloadreportAnchorNav = Anchor.wrap(Document.get().getElementById("getReportNav"));
+        Anchor uploadReportAnchor = Anchor.wrap(Document.get().getElementById("uploadReport"));
+        Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
+
+        downloadreportAnchor.addClickHandler(getReport);
+        downloadreportAnchorNav.addClickHandler(getReport);
+
+        uploadReportAnchor.addClickHandler(uploadXML);
+        uploadReportAnchorNav.addClickHandler(uploadXML);
 
 
-        button.addClickHandler(event -> {
-            if (label.getText().equals("")) {
-                fruktadminService.App.getInstance().getMessage("Hello, World!", new MyAsyncCallback(label));
-            } else {
-                label.setText("");
-            }
-        });
-
-        // Assume that the host HTML has elements defined whose
-        // IDs are "slot1", "slot2".  In a real app, you probably would not want
-        // to hard-code IDs.  Instead, you could, for example, search for all
-        // elements with a particular CSS class and replace them with widgets.
-        //
 //        RootPanel.get("slot1").add(button);
 //        RootPanel.get("slot2").add(label);
     }
 
-    private static class MyAsyncCallback implements AsyncCallback<String> {
-        private Label label;
+//    private static class MyAsyncCallback implements AsyncCallback<String> {
+//        private Label label;
+//
+//        public MyAsyncCallback(Label label) {
+//            this.label = label;
+//        }
+//
+//        public void onSuccess(String result) {
+//            label.getElement().setInnerHTML(result);
+//        }
+//
+//        public void onFailure(Throwable throwable) {
+//            label.setText("Failed to receive answer from server!");
+//        }
+//    }
 
-        public MyAsyncCallback(Label label) {
-            this.label = label;
-        }
+    private ClickHandler getReport = event -> {
+        contentDiv.setInnerHTML(Resources.INSTANCE.getReport().getText());
+    };
 
-        public void onSuccess(String result) {
-            label.getElement().setInnerHTML(result);
-        }
-
-        public void onFailure(Throwable throwable) {
-            label.setText("Failed to receive answer from server!");
-        }
-    }
+    private ClickHandler uploadXML = event -> {
+        contentDiv.setInnerHTML(Resources.INSTANCE.uploadXML().getText());
+    };
 }

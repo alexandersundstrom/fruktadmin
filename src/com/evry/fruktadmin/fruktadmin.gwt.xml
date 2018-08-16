@@ -8,6 +8,8 @@
     <!-- Specify the app entry point class.                   -->
     <entry-point class='com.evry.fruktadmin.client.fruktadmin'/>
 
+    <resource path='resources'/>
+
 
     <!-- Specify the app servlets.                   -->
     <servlet path='/fruktadminService' class='com.evry.fruktadmin.server.fruktadminServiceImpl'/>

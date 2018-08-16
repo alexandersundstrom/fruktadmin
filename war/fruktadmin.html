@@ -1,6 +1,6 @@
 <html>
 <head>
-
+  <title>Fruktkorg Admin</title>
   <!--                                           -->
   <!-- Any title is fine                         -->
   <!--                                           -->
@@ -36,10 +36,10 @@
           <div class="menu-container">
             <ul class="nav">
               <li id="menu_searchfrukt">
-                <a href="#searchFrukt" title="">Hämta Fruktkorg rapport</a>
+                <a href="#load" id="getReportNav" title="">Ladda ner rapport</a>
               </li>
               <li id="menu_listfruktkorgar">
-                <a href="#listFruktkorgar" title="">Uppdatera Fruktkorgar</a>
+                <a href="#upload" id="uploadReportNav" title="">Uppdatera Fruktkorgar</a>
               </li>
             </ul>
           </div>
@@ -61,14 +61,14 @@
               <div class="spar-text-portlet spar-use-margins">
                 <div class="spar-text-portlet-content">
                   <h2>Välkommen</h2>
-                  <h3>Här kan du söka efter frukter, samt se ett utdrag på samtliga fruktkorgar</h3>
+                  <h3>Här kan du ladda ner en sammanställning av alla fruktkorgar, eller uppdatera fruktkorgarna.</h3>
                 </div>
               </div>
 
               <div class="spar-text-portlet-content" id="spar-inner-content">
                 <div class="start-alternativ">
-                  <a id="button_dr" class="button-link" href="#fruktSearch" title="">Hämta Fruktkorg rapport</a>
-                  <a id="button_registerutdrag" class="button-link" href="#listFruktkorgar" title="">Uppdatera Fruktkorgar</a>
+                  <a id="getReport" class="button-link" href="#load" title="">Ladda ner rapport</a>
+                  <a id="uploadReport" class="button-link" href="#upload" title="">Uppdatera Fruktkorgar</a>
                 </div>
               </div>
             </div>
