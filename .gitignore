@@ -26,3 +26,7 @@ hs_err_pid*
 *.iml
 gwt-unitCache/
 
+deploy/
+*.cache.*
+compilation-mappings.txt
+fruktadmin.devmode.js
