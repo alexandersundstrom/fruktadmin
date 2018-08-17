@@ -14,16 +14,17 @@ public class fruktadmin implements EntryPoint {
      * This is the entry point method.
      */
     public void onModuleLoad() {
+        ClickHandlerUtil handler = new ClickHandlerUtil();
         Anchor downloadreportAnchor = Anchor.wrap(Document.get().getElementById("downloadReport"));
-        downloadreportAnchor.addClickHandler(ClickHandlerUtil.getReport);
+        downloadreportAnchor.addClickHandler(handler.getReport);
 
         Anchor downloadreportAnchorNav = Anchor.wrap(Document.get().getElementById("downloadReportNav"));
-        downloadreportAnchorNav.addClickHandler(ClickHandlerUtil.getReport);
+        downloadreportAnchorNav.addClickHandler(handler.getReport);
 
         Anchor uploadReportAnchor = Anchor.wrap(Document.get().getElementById("uploadReport"));
-        uploadReportAnchor.addClickHandler(ClickHandlerUtil.uploadXML);
+        uploadReportAnchor.addClickHandler(handler.uploadXML);
 
         Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
-        uploadReportAnchorNav.addClickHandler(ClickHandlerUtil.uploadXML);
+        uploadReportAnchorNav.addClickHandler(handler.uploadXML);
     }
 }

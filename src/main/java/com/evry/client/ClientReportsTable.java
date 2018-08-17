@@ -25,7 +25,9 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
 
     public void onSuccess(List<ClientReport> result) {
         CellTable<ClientReport> table = createReportsTable(result);
-        RootPanel.get(id).add(table);
+        RootPanel content = RootPanel.get(id);
+        content.getElement().setInnerHTML("");
+        content.add(table);
         Glass.off();
     }
 
