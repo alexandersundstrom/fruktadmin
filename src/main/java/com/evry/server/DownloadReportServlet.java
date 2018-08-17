@@ -76,7 +76,7 @@ public class DownloadReportServlet extends HttpServlet {
         }
 
         byte[] bytes = getBytesFromFile(reportFile);
-        sendXML(resp, bytes, name, fileType.getContentType());
+        sendReport(resp, bytes, name, fileType.getContentType());
     }
 
     private File getPdfFile(ImmutableReport immutableReport) throws IOException, DocumentException, ReportMissingException {
@@ -123,7 +123,7 @@ public class DownloadReportServlet extends HttpServlet {
         return bytes;
     }
 
-    private void sendXML(HttpServletResponse resp, byte[] bytes, String name, String content) throws IOException {
+    private void sendReport(HttpServletResponse resp, byte[] bytes, String name, String content) throws IOException {
         ServletOutputStream servletOutputStream = null;
 
         servletOutputStream = resp.getOutputStream();
