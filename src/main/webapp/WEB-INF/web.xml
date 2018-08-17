@@ -11,4 +11,13 @@
         <servlet-name>fruktadminServiceImpl</servlet-name>
         <url-pattern>/fruktadmin/fruktadminService</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>downloadReport</servlet-name>
+        <servlet-class>com.evry.server.DownloadXMLServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>downloadReport</servlet-name>
+        <url-pattern>/fruktadmin/downloadReport</url-pattern>
+    </servlet-mapping>
 </web-app>

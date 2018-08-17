@@ -9,6 +9,8 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -42,9 +44,6 @@ public class fruktadmin implements EntryPoint {
 
         Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
         uploadReportAnchorNav.addClickHandler(uploadXML);
-
-//        RootPanel.get("slot1").add(button);
-//        RootPanel.get("slot2").add(label);
     }
 
     private static class MyAsyncCallback implements AsyncCallback<List<ClientReport>> {
@@ -69,9 +68,8 @@ public class fruktadmin implements EntryPoint {
                 @Override
                 public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
                     event.preventDefault();
-                    String location = clientReport.getLocation();
-                    location = location.substring(location.lastIndexOf("t") + 2);
-                    Glass.on("Laddar ner...");
+                    Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
+                    Window.open(GWT.getModuleBaseURL() + "downloadReport", "_self", "enabled");
                 }
             };
 
