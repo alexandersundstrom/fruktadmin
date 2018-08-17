@@ -14,7 +14,7 @@
     
     <servlet>
         <servlet-name>downloadReport</servlet-name>
-        <servlet-class>com.evry.server.DownloadXMLServlet</servlet-class>
+        <servlet-class>com.evry.server.DownloadReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>downloadReport</servlet-name>
