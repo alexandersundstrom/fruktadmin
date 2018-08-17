@@ -57,12 +57,29 @@ public class fruktadmin implements EntryPoint {
         public void onSuccess(List<ClientReport> result) {
             CellTable<ClientReport> table = new CellTable<>();
 
-            Column<ClientReport, String> uploadReport = new Column<ClientReport, String>(new ButtonCell()) {
+            TextColumn<ClientReport> nameColumn = new TextColumn<ClientReport>() {
                 @Override
                 public String getValue(ClientReport clientReport) {
                     String location = clientReport.getLocation();
-                    location = location.substring(location.lastIndexOf("t") + 2);
-                    return location;
+                    return location.substring(location.lastIndexOf("t") + 2);
+                }
+            };
+
+            table.addColumn(nameColumn, "Namn");
+
+            TextColumn<ClientReport> createdColumn = new TextColumn<ClientReport>() {
+                @Override
+                public String getValue(ClientReport clientReport) {
+                    return clientReport.getCreated();
+                }
+            };
+
+            table.addColumn(createdColumn, "Skapad");
+
+            Column<ClientReport, String> downloadReportXML = new Column<ClientReport, String>(new ButtonCell()) {
+                @Override
+                public String getValue(ClientReport clientReport) {
+                    return "PDF";
                 }
 
                 @Override
@@ -73,16 +90,24 @@ public class fruktadmin implements EntryPoint {
                 }
             };
 
-            table.addColumn(uploadReport, "Fil");
+            table.addColumn(downloadReportXML, "PDF");
 
-            TextColumn<ClientReport> createdColumn = new TextColumn<ClientReport>() {
+            Column<ClientReport, String> downloadReportPDF = new Column<ClientReport, String>(new ButtonCell()) {
                 @Override
                 public String getValue(ClientReport clientReport) {
-                    return clientReport.getCreated();
+                    return "XML";
+                }
+
+                @Override
+                public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
+                    event.preventDefault();
+                    Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
+                    Window.open(GWT.getModuleBaseURL() + "downloadReport", "_self", "enabled");
                 }
             };
 
-            table.addColumn(createdColumn, "Skapad");
+            table.addColumn(downloadReportPDF, "XML");
+
             ListDataProvider<ClientReport> dataProvider = new ListDataProvider<>();
             dataProvider.addDataDisplay(table);
 
