@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 public class fruktadminServiceImpl extends RemoteServiceServlet implements fruktadminService {
 
     @Override
-    public List<ClientReport> getReports() {
+    public List<ClientReport> getReports(int limit, int offset) {
         ReportService reportService = (ReportService) Beans.getBean("reportService");
-        List<ImmutableReport> immutableReports = reportService.listReports();
+        List<ImmutableReport> immutableReports = reportService.listReports(limit, offset);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM HH:mm").withLocale(Locale.forLanguageTag("sv-SE")).withZone(ZoneId.systemDefault());
 
         return immutableReports
