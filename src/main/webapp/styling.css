@@ -426,9 +426,20 @@ img#image_logo {
 }
 
 .fruktkorg-div {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .limit-container {
 	margin-bottom: 10px;
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+
+.page {
+	font-size: 16px;
 }

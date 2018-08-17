@@ -92,6 +92,8 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
         List<ClientReport> list = dataProvider.getList();
         list.addAll(clientReports);
 
+        table.addStyleName("fruktTable");
+
         return table;
     }
 }
