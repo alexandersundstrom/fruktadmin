@@ -6,6 +6,7 @@ import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.SelectElement;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -18,30 +19,58 @@ public class ClickHandlerUtil {
     private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
     private fruktadminServiceAsync fruktkorgServiceRPC = GWT.create(fruktadminService.class);
     private ClientReportsTable reportTable;
+    private Anchor backAnchor;
+    private Anchor nextAnchor;
+    private HandlerRegistration backHandler;
+    private HandlerRegistration nextHandler;
 
-    private ClickHandler next = event -> {
-        limit = Integer.valueOf(limitElement.getValue());
-        offset = offset + limit;
-        reportTable.updateTable(limit, offset);
-    };
+    private ClickHandler back;
+    private ClickHandler next;
 
-    private ClickHandler back = event -> {
-        limit = Integer.valueOf(limitElement.getValue());
-        if (offset != 0) {
-            offset = Math.max(0, offset - limit);
-            reportTable.updateTable(limit, offset);
-        }
-    };
+
 
     public ClickHandler getReport = event -> {
+
+        back = backEvent -> {
+            if (reportTable.showsLast()) {
+                nextHandler = nextAnchor.addClickHandler(next);
+                nextAnchor.removeStyleName("disabled");
+            }
+            limit = Integer.valueOf(limitElement.getValue());
+            if (offset != 0) {
+                offset = Math.max(0, offset - limit);
+                reportTable.updateTable(limit, offset);
+            }
+            if (reportTable.showsFirst()) {
+                backHandler.removeHandler();
+                backAnchor.addStyleName("disabled");
+            }
+        };
+
+        next  = nextEvent -> {
+            if (reportTable.showsFirst()) {
+                backHandler = backAnchor.addClickHandler(back);
+                backAnchor.removeStyleName("disabled");
+            }
+            limit = Integer.valueOf(limitElement.getValue());
+            offset = offset + limit;
+            reportTable.updateTable(limit, offset);
+
+
+            if (reportTable.showsLast()) {
+                nextHandler.removeHandler();
+                nextAnchor.addStyleName("disabled");
+            }
+        };
+
         contentDiv.setInnerHTML(Resources.INSTANCE.getReport().getText());
         limitElement = SelectElement.as(Document.get().getElementById("limit"));
 
-        Anchor backAnchor = Anchor.wrap(Document.get().getElementById("back"));
-        backAnchor.addClickHandler(back);
+        backAnchor = Anchor.wrap(Document.get().getElementById("back"));
 
-        Anchor nextAnchor = Anchor.wrap(Document.get().getElementById("next"));
-        nextAnchor.addClickHandler(next);
+
+        nextAnchor = Anchor.wrap(Document.get().getElementById("next"));
+        nextHandler = nextAnchor.addClickHandler(next);
 
         switchNavbar(DOWNLOAD);
         Glass.on("Laddar...");

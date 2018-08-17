@@ -3,6 +3,7 @@ package com.evry.client;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -11,6 +12,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
@@ -108,9 +110,20 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
     }
 
     public void updateTable(int limit, int offset) {
-        CellTable<ClientReport> table = createReportsTable(clientReports.subList(offset, Math.min(clientReports.size(), offset + limit)));
+        this.limit = limit;
+        this.offset = offset;
+        CellTable<ClientReport> table = createReportsTable(clientReports.subList(this.offset, Math.min(clientReports.size(), this.offset + this.limit)));
         RootPanel content = RootPanel.get(id);
         content.getElement().setInnerHTML("");
         content.add(table);
+
+    }
+
+    public boolean showsFirst() {
+       return offset == 0;
+    }
+
+    public boolean showsLast() {
+        return offset + limit >= clientReports.size();
     }
 }
