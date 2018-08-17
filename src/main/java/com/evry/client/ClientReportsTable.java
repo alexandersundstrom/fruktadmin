@@ -54,7 +54,7 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
 
         table.addColumn(createdColumn, "Skapad");
 
-        Column<ClientReport, String> downloadReportXML = new Column<ClientReport, String>(new ButtonCell()) {
+        Column<ClientReport, String> downloadReportPDF = new Column<ClientReport, String>(new ButtonCell()) {
             @Override
             public String getValue(ClientReport clientReport) {
                 return "PDF";
@@ -64,13 +64,14 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
             public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
                 event.preventDefault();
                 Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
+                Cookies.setCookie("REPORT_FILE_TYPE", "PDF");
                 Window.open(GWT.getModuleBaseURL() + "downloadReport", "_self", "enabled");
             }
         };
 
-        table.addColumn(downloadReportXML, "PDF");
+        table.addColumn(downloadReportPDF, "PDF");
 
-        Column<ClientReport, String> downloadReportPDF = new Column<ClientReport, String>(new ButtonCell()) {
+        Column<ClientReport, String> downloadReportXML = new Column<ClientReport, String>(new ButtonCell()) {
             @Override
             public String getValue(ClientReport clientReport) {
                 return "XML";
@@ -80,11 +81,12 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
             public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
                 event.preventDefault();
                 Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
+                Cookies.setCookie("REPORT_FILE_TYPE", "XML");
                 Window.open(GWT.getModuleBaseURL() + "downloadReport", "_self", "enabled");
             }
         };
 
-        table.addColumn(downloadReportPDF, "XML");
+        table.addColumn(downloadReportXML, "XML");
 
         ListDataProvider<ClientReport> dataProvider = new ListDataProvider<>();
         dataProvider.addDataDisplay(table);
