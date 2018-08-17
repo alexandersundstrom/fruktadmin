@@ -10,7 +10,7 @@ import java.util.List;
 @RemoteServiceRelativePath("fruktadminService")
 public interface fruktadminService extends RemoteService {
     // Sample interface method of remote interface
-    List<ClientReport> getReports();
+    List<ClientReport> getReports(int limit, int offset);
 
     /**
      * Utility/Convenience class.
