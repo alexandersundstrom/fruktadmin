@@ -14,23 +14,22 @@ public class ClickHandlerUtil {
     private int offset = 0;
     private int limit = 10;
     private final String DOWNLOAD = "download";
-    private final String UPLOAD = "uppload";
+    private final String UPLOAD = "upload";
     private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
     private fruktadminServiceAsync fruktkorgServiceRPC = GWT.create(fruktadminService.class);
+    private ClientReportsTable reportTable;
 
     private ClickHandler next = event -> {
         limit = Integer.valueOf(limitElement.getValue());
         offset = offset + limit;
-        Glass.on("Laddar...");
-        fruktkorgServiceRPC.getReports(limit, offset, new ClientReportsTable("reportTable"));
+        reportTable.updateTable(limit, offset);
     };
 
     private ClickHandler back = event -> {
         limit = Integer.valueOf(limitElement.getValue());
         if (offset != 0) {
             offset = Math.max(0, offset - limit);
-            Glass.on("Laddar...");
-            fruktkorgServiceRPC.getReports(limit, offset, new ClientReportsTable("reportTable"));
+            reportTable.updateTable(limit, offset);
         }
     };
 
@@ -46,7 +45,8 @@ public class ClickHandlerUtil {
 
         switchNavbar(DOWNLOAD);
         Glass.on("Laddar...");
-        fruktkorgServiceRPC.getReports(10, 0, new ClientReportsTable("reportTable"));
+        reportTable = new ClientReportsTable("reportTable", limit, offset);
+        fruktkorgServiceRPC.getReports(reportTable);
     };
 
     public ClickHandler uploadXML = event -> {

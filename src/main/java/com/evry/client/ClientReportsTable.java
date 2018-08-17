@@ -18,13 +18,19 @@ import java.util.List;
 
 public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
     private String id;
+    private int limit;
+    private int offset;
+    private List<ClientReport> clientReports;
 
-    public ClientReportsTable(String id) {
+    public ClientReportsTable(String id,int limit, int offset) {
         this.id = id;
+        this.limit = limit;
+        this.offset = offset;
     }
 
     public void onSuccess(List<ClientReport> result) {
-        CellTable<ClientReport> table = createReportsTable(result);
+        clientReports = result;
+        CellTable<ClientReport> table = createReportsTable(clientReports.subList(offset, Math.min(clientReports.size(), offset + limit)));
         RootPanel content = RootPanel.get(id);
         content.getElement().setInnerHTML("");
         content.add(table);
@@ -99,5 +105,12 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
         table.addStyleName("fruktTable");
 
         return table;
+    }
+
+    public void updateTable(int limit, int offset) {
+        CellTable<ClientReport> table = createReportsTable(clientReports.subList(offset, Math.min(clientReports.size(), offset + limit)));
+        RootPanel content = RootPanel.get(id);
+        content.getElement().setInnerHTML("");
+        content.add(table);
     }
 }
