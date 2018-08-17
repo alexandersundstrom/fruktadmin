@@ -1,12 +1,13 @@
 package com.evry.client;
 
+import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.LIElement;
+import com.google.gwt.dom.client.*;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
@@ -56,12 +57,25 @@ public class fruktadmin implements EntryPoint {
 
         public void onSuccess(List<ClientReport> result) {
             CellTable<ClientReport> table = new CellTable<>();
-            TextColumn<ClientReport> nameColumn = new TextColumn<ClientReport>() {
+
+            Column<ClientReport, String> uploadReport = new Column<ClientReport, String>(new ButtonCell()) {
                 @Override
                 public String getValue(ClientReport clientReport) {
-                    return clientReport.getLocation();
+                    String location = clientReport.getLocation();
+                    location = location.substring(location.lastIndexOf("t") + 2);
+                    return location;
+                }
+
+                @Override
+                public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
+                    event.preventDefault();
+                    String location = clientReport.getLocation();
+                    location = location.substring(location.lastIndexOf("t") + 2);
+                    Glass.on("Laddar ner...");
                 }
             };
+
+            table.addColumn(uploadReport, "Fil");
 
             TextColumn<ClientReport> createdColumn = new TextColumn<ClientReport>() {
                 @Override
@@ -70,15 +84,14 @@ public class fruktadmin implements EntryPoint {
                 }
             };
 
-            table.addColumn(nameColumn);
-            table.addColumn(createdColumn);
+            table.addColumn(createdColumn, "Skapad");
             ListDataProvider<ClientReport> dataProvider = new ListDataProvider<>();
             dataProvider.addDataDisplay(table);
 
             List<ClientReport> list = dataProvider.getList();
             list.addAll(result);
 
-            RootPanel.get().add(table);
+            RootPanel.get("reportTable").add(table);
             Glass.off();
         }
 
