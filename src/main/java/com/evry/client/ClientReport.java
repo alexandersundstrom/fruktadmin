@@ -1,7 +1,6 @@
 package com.evry.client;
 
 import java.io.Serializable;
-import java.util.Comparator;
 
 public class ClientReport implements Serializable, Comparable<ClientReport> {
 
