@@ -1,8 +1,9 @@
 package com.evry.client;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class ClientReport implements Serializable {
+public class ClientReport implements Serializable, Comparable<ClientReport> {
 
     private static final long serialVersionUID = 12357889687575343L;
     private long id;
@@ -45,5 +46,11 @@ public class ClientReport implements Serializable {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+
+    @Override
+    public int compareTo(ClientReport o) {
+        return this.location.compareTo(o.getLocation());
     }
 }

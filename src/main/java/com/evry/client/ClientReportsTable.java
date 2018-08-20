@@ -8,6 +8,7 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
+import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
@@ -16,6 +17,8 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
@@ -32,6 +35,7 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
 
     public void onSuccess(List<ClientReport> result) {
         clientReports = result;
+        Collections.sort(result);
         CellTable<ClientReport> table = createReportsTable(clientReports.subList(offset, Math.min(clientReports.size(), offset + limit)));
         RootPanel content = RootPanel.get(id);
         content.getElement().setInnerHTML("");
@@ -52,6 +56,8 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
                 return location.substring(location.lastIndexOf("t") + 2);
             }
         };
+
+        nameColumn.setSortable(true);
 
         table.addColumn(nameColumn, "Namn");
 
@@ -106,6 +112,10 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
 
         table.addStyleName("fruktTable");
         table.setVisibleRange(0, limit);
+
+        ColumnSortEvent.ListHandler<ClientReport> nameSortHandler = new ColumnSortEvent.ListHandler<>(list);
+        table.addColumnSortHandler(nameSortHandler);
+        nameSortHandler.setComparator(nameColumn, Comparator.comparing(ClientReport::getLocation));
 
         return table;
     }
