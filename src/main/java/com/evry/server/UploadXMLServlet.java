@@ -1,6 +1,5 @@
 package com.evry.server;
 
-import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
 import com.evry.fruktkorgservice.service.ReportService;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
-import java.util.List;
 
 public class UploadXMLServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
@@ -28,7 +26,7 @@ public class UploadXMLServlet extends HttpServlet {
                 }
                 InputStream stream = item.openStream();
                 byte[] buffer = IOUtils.toByteArray(stream);
-                List<ImmutableFruktkorg> immutableFruktkorgs = reportService.readFromByteArrayAndUpdateFruktkorgar(buffer);
+                reportService.readFromByteArrayAndUpdateFruktkorgar(buffer);
                 stream.close();
             }
         } catch (Exception e) {
