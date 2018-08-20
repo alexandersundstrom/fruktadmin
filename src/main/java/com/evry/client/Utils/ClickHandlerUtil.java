@@ -7,9 +7,8 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.*;
 
 public class ClickHandlerUtil {
     private ListBox limitElement;
@@ -55,6 +54,47 @@ public class ClickHandlerUtil {
         contentDiv.setInnerHTML(Resources.INSTANCE.uploadXML().getText());
         switchNavbar(UPLOAD);
 
+        // Create a FormPanel and point it at a service.
+        final FormPanel form = new FormPanel();
+        form.setAction("/fruktadmin/upploadXML");
+
+        // Because we're going to add a FileUpload widget, we'll need to set the
+        // form to use the POST method, and multipart MIME encoding.
+        form.setEncoding(FormPanel.ENCODING_MULTIPART);
+        form.setMethod(FormPanel.METHOD_POST);
+
+        // Create a panel to hold all of the form widgets.
+        VerticalPanel panel = new VerticalPanel();
+        form.setWidget(panel);
+
+        // Create a FileUpload widget.
+        FileUpload upload = new FileUpload();
+        upload.setName("uploadFormElement");
+        upload.getElement().setAttribute("accept", ".xml");
+        upload.setStyleName("margin-bottom");
+        panel.add(upload);
+
+        // Add a 'submit' button.
+        panel.add(new Button("Submit", (ClickHandler) event1 -> {
+            upload.getFilename();
+            form.submit();
+        }));
+
+        // Add an event handler to the form.
+        form.addSubmitHandler(event12 -> {
+            // This event is fired just before the form is submitted. We can take
+            // this opportunity to perform validation.
+
+        });
+        form.addSubmitCompleteHandler(event13 -> {
+            // When the form submission is successfully completed, this event is
+            // fired. Assuming the service returned a response of type text/html,
+            // we can get the result text here (see the FormPanel documentation for
+            // further explanation).
+            Window.alert(event13.getResults());
+        });
+
+        RootPanel.get("spar-inner-content").add(form);
     };
 
     private void enableBackNavigation() {
@@ -93,7 +133,7 @@ public class ClickHandlerUtil {
             }
         };
 
-        next  = nextEvent -> {
+        next = nextEvent -> {
             if (reportTable.showsFirst()) {
                 enableBackNavigation();
             }

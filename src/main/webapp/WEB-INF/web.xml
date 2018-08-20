@@ -20,4 +20,14 @@
         <servlet-name>downloadReport</servlet-name>
         <url-pattern>/fruktadmin/downloadReport</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>uploadXML</servlet-name>
+        <servlet-class>com.evry.server.UploadXMLServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>uploadXML</servlet-name>
+        <url-pattern>/fruktadmin/upploadXML</url-pattern>
+    </servlet-mapping>
 </web-app>
