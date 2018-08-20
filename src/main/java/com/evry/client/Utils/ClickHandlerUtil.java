@@ -111,6 +111,10 @@ public class ClickHandlerUtil {
 
         limitChangeHandler = limitChange -> {
             limit = Integer.valueOf(limitElement.getSelectedValue());
+            if (limit == 0) {
+                offset = 0;
+                limit = reportTable.count();
+            }
             reportTable.updateTable(limit, offset);
             updatePageDisplay();
 

@@ -116,6 +116,7 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
         ColumnSortEvent.ListHandler<ClientReport> nameSortHandler = new ColumnSortEvent.ListHandler<>(list);
         table.addColumnSortHandler(nameSortHandler);
         nameSortHandler.setComparator(nameColumn, Comparator.comparing(ClientReport::getLocation));
+        table.getColumnSortList().push(nameColumn);
 
         return table;
     }
