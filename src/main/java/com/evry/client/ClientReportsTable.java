@@ -118,6 +118,8 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
         nameSortHandler.setComparator(nameColumn, Comparator.comparing(ClientReport::getLocation));
         table.getColumnSortList().push(nameColumn);
 
+
+
         return table;
     }
 
