@@ -457,3 +457,7 @@ a.disabled:hover {
 	display: flex;
 	align-items: center;
 }
+
+.page-info {
+	text-align: center;
+}

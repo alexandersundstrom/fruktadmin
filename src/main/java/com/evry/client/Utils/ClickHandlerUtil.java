@@ -18,6 +18,7 @@ public class ClickHandlerUtil {
     private final String DOWNLOAD = "download";
     private final String UPLOAD = "upload";
     private DivElement contentDiv = DivElement.as(Document.get().getElementById("spar-content"));
+    private DivElement pageInfo;
     private fruktadminServiceAsync fruktkorgServiceRPC = GWT.create(fruktadminService.class);
     private ClientReportsTable reportTable;
     private Anchor backAnchor;
@@ -37,6 +38,8 @@ public class ClickHandlerUtil {
         contentDiv.setInnerHTML(Resources.INSTANCE.getReport().getText());
         limitElement = ListBox.wrap(Document.get().getElementById("limit"));
         limitElement.addChangeHandler(limitChangeHandler);
+
+        pageInfo = DivElement.as(Document.get().getElementById("page-info"));
 
         backAnchor = Anchor.wrap(Document.get().getElementById("back"));
         nextAnchor = Anchor.wrap(Document.get().getElementById("next"));
@@ -80,6 +83,7 @@ public class ClickHandlerUtil {
             if (offset != 0) {
                 offset = Math.max(0, offset - limit);
                 reportTable.updateTable(limit, offset);
+                updatePageDisplay();
             }
             if (reportTable.showsFirst()) {
                 disableBackNavigation();
@@ -93,9 +97,12 @@ public class ClickHandlerUtil {
             if (reportTable.showsFirst()) {
                 enableBackNavigation();
             }
-            limit = Integer.valueOf(limitElement.getSelectedValue());
-            offset = offset + limit;
-            reportTable.updateTable(limit, offset);
+            if (!reportTable.showsLast()) {
+                limit = Integer.valueOf(limitElement.getSelectedValue());
+                offset = offset + limit;
+                reportTable.updateTable(limit, offset);
+                updatePageDisplay();
+            }
 
             if (reportTable.showsLast()) {
                 disableNextNavigation();
@@ -105,11 +112,18 @@ public class ClickHandlerUtil {
         limitChangeHandler = limitChange -> {
             limit = Integer.valueOf(limitElement.getSelectedValue());
             reportTable.updateTable(limit, offset);
+            updatePageDisplay();
 
             if (reportTable.showsLast()) {
                 disableNextNavigation();
+            } else {
+                enableNextNavigation();
             }
         };
+    }
+
+    private void updatePageDisplay() {
+        pageInfo.setInnerHTML("Rapporter " + (offset + 1) + "-" + (Math.min(offset + limit, reportTable.count()) + " av " + reportTable.count()));
     }
 
     private void switchNavbar(String page) {

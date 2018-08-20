@@ -43,7 +43,6 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
     }
 
     private CellTable<ClientReport> createReportsTable(List<ClientReport> clientReports) {
-        GWT.log("Amount of reports " + clientReports.size());
         CellTable<ClientReport> table = new CellTable<>();
 
         TextColumn<ClientReport> nameColumn = new TextColumn<ClientReport>() {
@@ -104,7 +103,6 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
 
         List<ClientReport> list = dataProvider.getList();
         list.addAll(clientReports);
-        GWT.log("List of clients " + list.size());
 
         table.addStyleName("fruktTable");
         table.setVisibleRange(0, limit);
@@ -128,5 +126,9 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
 
     public boolean showsLast() {
         return offset + limit >= clientReports.size();
+    }
+
+    public int count() {
+        return clientReports.size();
     }
 }
