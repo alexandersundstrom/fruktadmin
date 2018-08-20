@@ -4,14 +4,15 @@ import com.evry.client.*;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.SelectElement;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class ClickHandlerUtil {
-    private SelectElement limitElement;
+    private ListBox limitElement;
     private int offset = 0;
     private int limit = 10;
     private final String DOWNLOAD = "download";
@@ -23,52 +24,21 @@ public class ClickHandlerUtil {
     private Anchor nextAnchor;
     private HandlerRegistration backHandler;
     private HandlerRegistration nextHandler;
+    ChangeHandler limitChangeHandler;
 
     private ClickHandler back;
     private ClickHandler next;
 
 
-
     public ClickHandler getReport = event -> {
 
-        back = backEvent -> {
-            if (reportTable.showsLast()) {
-                nextHandler = nextAnchor.addClickHandler(next);
-                nextAnchor.removeStyleName("disabled");
-            }
-            limit = Integer.valueOf(limitElement.getValue());
-            if (offset != 0) {
-                offset = Math.max(0, offset - limit);
-                reportTable.updateTable(limit, offset);
-            }
-            if (reportTable.showsFirst()) {
-                backHandler.removeHandler();
-                backAnchor.addStyleName("disabled");
-            }
-        };
-
-        next  = nextEvent -> {
-            if (reportTable.showsFirst()) {
-                backHandler = backAnchor.addClickHandler(back);
-                backAnchor.removeStyleName("disabled");
-            }
-            limit = Integer.valueOf(limitElement.getValue());
-            offset = offset + limit;
-            reportTable.updateTable(limit, offset);
-
-
-            if (reportTable.showsLast()) {
-                nextHandler.removeHandler();
-                nextAnchor.addStyleName("disabled");
-            }
-        };
+        initNavigationHandlers();
 
         contentDiv.setInnerHTML(Resources.INSTANCE.getReport().getText());
-        limitElement = SelectElement.as(Document.get().getElementById("limit"));
+        limitElement = ListBox.wrap(Document.get().getElementById("limit"));
+        limitElement.addChangeHandler(limitChangeHandler);
 
         backAnchor = Anchor.wrap(Document.get().getElementById("back"));
-
-
         nextAnchor = Anchor.wrap(Document.get().getElementById("next"));
         nextHandler = nextAnchor.addClickHandler(next);
 
@@ -83,6 +53,64 @@ public class ClickHandlerUtil {
         switchNavbar(UPLOAD);
 
     };
+
+    private void enableBackNavigation() {
+        backHandler = backAnchor.addClickHandler(back);
+        backAnchor.removeStyleName("disabled");
+    }
+
+    private void disableBackNavigation() {
+        backHandler.removeHandler();
+        backAnchor.addStyleName("disabled");
+    }
+
+    private void enableNextNavigation() {
+        nextHandler = nextAnchor.addClickHandler(next);
+        nextAnchor.removeStyleName("disabled");
+    }
+
+    private void disableNextNavigation() {
+        nextHandler.removeHandler();
+        nextAnchor.addStyleName("disabled");
+    }
+
+    private void initNavigationHandlers() {
+        back = backEvent -> {
+            limit = Integer.valueOf(limitElement.getSelectedValue());
+            if (offset != 0) {
+                offset = Math.max(0, offset - limit);
+                reportTable.updateTable(limit, offset);
+            }
+            if (reportTable.showsFirst()) {
+                disableBackNavigation();
+            }
+            if (!reportTable.showsLast()) {
+                enableNextNavigation();
+            }
+        };
+
+        next  = nextEvent -> {
+            if (reportTable.showsFirst()) {
+                enableBackNavigation();
+            }
+            limit = Integer.valueOf(limitElement.getSelectedValue());
+            offset = offset + limit;
+            reportTable.updateTable(limit, offset);
+
+            if (reportTable.showsLast()) {
+                disableNextNavigation();
+            }
+        };
+
+        limitChangeHandler = limitChange -> {
+            limit = Integer.valueOf(limitElement.getSelectedValue());
+            reportTable.updateTable(limit, offset);
+
+            if (reportTable.showsLast()) {
+                disableNextNavigation();
+            }
+        };
+    }
 
     private void switchNavbar(String page) {
         switch (page) {
