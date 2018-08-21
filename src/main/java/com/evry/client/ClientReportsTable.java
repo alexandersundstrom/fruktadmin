@@ -3,22 +3,16 @@ package com.evry.client;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NativeEvent;
-import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.Column;
-import com.google.gwt.user.cellview.client.ColumnSortEvent;
-import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.ListDataProvider;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
@@ -26,16 +20,18 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
     private int limit;
     private int offset;
     private List<ClientReport> clientReports;
+    private boolean sortAscending;
 
-    public ClientReportsTable(String id,int limit, int offset) {
+    public ClientReportsTable(String id,int limit, int offset, boolean sortAscending) {
         this.id = id;
         this.limit = limit;
         this.offset = offset;
+        this.sortAscending = sortAscending;
     }
 
     public void onSuccess(List<ClientReport> result) {
         clientReports = result;
-        Collections.sort(result);
+        sortReports();
         CellTable<ClientReport> table = createReportsTable(clientReports.subList(offset, Math.min(clientReports.size(), offset + limit)));
         RootPanel content = RootPanel.get(id);
         content.getElement().setInnerHTML("");
@@ -57,10 +53,23 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
             }
         };
 
-        nameColumn.setSortable(true);
+        ClickableArrowHeaderCell clickableNameSortingCell = new ClickableArrowHeaderCell(sortAscending);
+        Header<String> nameHeader = new Header<String>(clickableNameSortingCell) {
 
-        table.addColumn(nameColumn, "Namn");
+            @Override
+            public String getValue() {
+                return "Namn";
+            }
+        };
+        nameHeader.setUpdater(value -> {
+            clickableNameSortingCell.toggleSorting();
+            sortAscending = clickableNameSortingCell.isAscending();
+            sortReports();
+            updateTable(limit,offset);
+            table.redrawHeaders();
+        });
 
+        table.addColumn(nameColumn, nameHeader);
         TextColumn<ClientReport> createdColumn = new TextColumn<ClientReport>() {
             @Override
             public String getValue(ClientReport clientReport) {
@@ -113,13 +122,6 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
         table.addStyleName("fruktTable");
         table.setVisibleRange(0, limit);
 
-        ColumnSortEvent.ListHandler<ClientReport> nameSortHandler = new ColumnSortEvent.ListHandler<>(list);
-        table.addColumnSortHandler(nameSortHandler);
-        nameSortHandler.setComparator(nameColumn, Comparator.comparing(ClientReport::getLocation));
-        table.getColumnSortList().push(nameColumn);
-
-
-
         return table;
     }
 
@@ -131,6 +133,14 @@ public class ClientReportsTable implements AsyncCallback<List<ClientReport>> {
         content.getElement().setInnerHTML("");
         content.add(table);
 
+    }
+
+    public void sortReports() {
+        if (sortAscending) {
+            Collections.sort(clientReports);
+        } else {
+            Collections.sort(clientReports, Collections.reverseOrder());
+        }
     }
 
     public boolean showsFirst() {
