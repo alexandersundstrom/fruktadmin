@@ -21,8 +21,8 @@ public class UploadXMLServlet extends HttpServlet {
             while (itr.hasNext()) {
                 FileItemStream item = itr.next();
 
-                if (!item.getContentType().equals("text/xml") || !item.getContentType().equals("application/xml")) {
-                    throw new RuntimeException("File must be of typ XML");
+                if (!item.getContentType().equals("text/xml") && !item.getContentType().equals("application/xml")) {
+                    throw new RuntimeException("File must be of typ XML, but was: " + item.getContentType());
                 }
 
                 InputStream stream = item.openStream();
@@ -35,5 +35,12 @@ public class UploadXMLServlet extends HttpServlet {
             // do something else
         }
 
+        response.setStatus(200);
+        try {
+            response.setHeader("Content-Type", "application/json");
+            response.getWriter().print("{\"success\": true, \"message\": \"File uploaded\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -24,7 +24,7 @@ public class ClickHandlerUtil {
     private Anchor nextAnchor;
     private HandlerRegistration backHandler;
     private HandlerRegistration nextHandler;
-    ChangeHandler limitChangeHandler;
+    private ChangeHandler limitChangeHandler;
 
     private ClickHandler back;
     private ClickHandler next;
@@ -75,23 +75,24 @@ public class ClickHandlerUtil {
         panel.add(upload);
 
         // Add a 'submit' button.
-        panel.add(new Button("Submit", (ClickHandler) event1 -> {
-            upload.getFilename();
+        panel.add(new Button("Submit", (ClickHandler) clickEvent -> {
             form.submit();
         }));
 
         // Add an event handler to the form.
-        form.addSubmitHandler(event12 -> {
+        form.addSubmitHandler(submitEvent -> {
             // This event is fired just before the form is submitted. We can take
             // this opportunity to perform validation.
+            Glass.on("Laddar Upp...");
 
         });
-        form.addSubmitCompleteHandler(event13 -> {
+        form.addSubmitCompleteHandler(completeEvent -> {
             // When the form submission is successfully completed, this event is
             // fired. Assuming the service returned a response of type text/html,
             // we can get the result text here (see the FormPanel documentation for
             // further explanation).
-            Window.alert(event13.getResults());
+            Glass.off();
+            Window.alert(completeEvent.getResults());
         });
 
         RootPanel.get("spar-inner-content").add(form);
