@@ -443,6 +443,7 @@ img#image_logo {
 
 .page {
 	font-size: 16px;
+	margin-left: 10px;
 }
 
 a.disabled {
