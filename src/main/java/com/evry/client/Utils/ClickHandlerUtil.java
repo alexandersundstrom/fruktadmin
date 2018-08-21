@@ -46,7 +46,7 @@ public class ClickHandlerUtil {
 
         switchNavbar(DOWNLOAD);
         Glass.on("Laddar...");
-        reportTable = new ClientReportsTable("reportTable", limit, offset);
+        reportTable = new ClientReportsTable("reportTable", limit, offset, true);
         fruktkorgServiceRPC.getReports(reportTable);
     };
 

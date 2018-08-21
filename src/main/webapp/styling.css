@@ -465,3 +465,16 @@ a.disabled:hover {
 .margin-bottom {
 	margin-bottom: 10px;
 }
+
+.arrow-header {
+	display: flex;
+	align-items: center;
+}
+
+.arrow-header:hover {
+	cursor: pointer;
+}
+
+.arrow-image {
+	width: 30px;
+}
