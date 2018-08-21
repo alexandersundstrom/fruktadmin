@@ -8,8 +8,11 @@
 
 <div class="spar-text-portlet-content" id="spar-inner-content">
   <div class="pagination">
-    <div class="page"><a id="back" class="disabled"><</a></div>
-    <div class= "limit-div">
+    <div class="pagination">
+      <div class="page"><a id="first" class="disabled"><<</a></div>
+      <div class="page"><a id="back" class="disabled"><</a></div>
+    </div>
+    <div class="limit-div">
       <strong>Antal rapporter per sida</strong>
       <div class="dr_val limit-container">
         <select class="limit-select" id="limit">
@@ -21,7 +24,10 @@
         </select>
       </div>
     </div>
-    <div class="page"><a id="next">></a></div>
+    <div class="pagination">
+      <div class="page"><a id="next">></a></div>
+      <div class="page"><a id="last">>></a></div>
+    </div>
   </div>
   <div id="page-info" class="page-info"></div>
 

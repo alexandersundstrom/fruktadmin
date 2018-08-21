@@ -20,14 +20,24 @@ public class ClickHandlerUtil {
     private DivElement pageInfo;
     private fruktadminServiceAsync fruktkorgServiceRPC = GWT.create(fruktadminService.class);
     private ClientReportsTable reportTable;
+
+    private Anchor firstAnchor;
+    private HandlerRegistration firstHandler;
+    private ClickHandler first;
+
     private Anchor backAnchor;
-    private Anchor nextAnchor;
     private HandlerRegistration backHandler;
+    private ClickHandler back;
+
+    private Anchor nextAnchor;
     private HandlerRegistration nextHandler;
     private ChangeHandler limitChangeHandler;
-
-    private ClickHandler back;
     private ClickHandler next;
+
+    private Anchor lastAnchor;
+    private HandlerRegistration lastHandler;
+    private ClickHandler last;
+
 
 
     public ClickHandler getReport = event -> {
@@ -40,9 +50,14 @@ public class ClickHandlerUtil {
 
         pageInfo = DivElement.as(Document.get().getElementById("page-info"));
 
+        firstAnchor = Anchor.wrap(Document.get().getElementById("first"));
         backAnchor = Anchor.wrap(Document.get().getElementById("back"));
+
         nextAnchor = Anchor.wrap(Document.get().getElementById("next"));
         nextHandler = nextAnchor.addClickHandler(next);
+
+        lastAnchor = Anchor.wrap(Document.get().getElementById("last"));
+        lastHandler = lastAnchor.addClickHandler(last);
 
         switchNavbar(DOWNLOAD);
         Glass.on("Laddar...");
@@ -98,6 +113,16 @@ public class ClickHandlerUtil {
         RootPanel.get("spar-inner-content").add(form);
     };
 
+    private void disableFirstNavigation() {
+        firstHandler.removeHandler();
+        firstAnchor.addStyleName("disabled");
+    }
+
+    private void enableFirstNavigation() {
+        firstAnchor.removeStyleName("disabled");
+        firstHandler = firstAnchor.addClickHandler(first);
+    }
+
     private void enableBackNavigation() {
         backHandler = backAnchor.addClickHandler(back);
         backAnchor.removeStyleName("disabled");
@@ -118,35 +143,88 @@ public class ClickHandlerUtil {
         nextAnchor.addStyleName("disabled");
     }
 
+    private void enableLastNavigation() {
+        lastHandler = lastAnchor.addClickHandler(last);
+        lastAnchor.removeStyleName("disabled");
+    }
+
+    private void disableLastNavigation() {
+        lastHandler.removeHandler();
+        lastAnchor.addStyleName("disabled");
+    }
+
+
     private void initNavigationHandlers() {
+
+        first = firstEvent -> {
+            boolean wasOnLastPageBeforeClick = reportTable.showsLast();
+
+            if (!reportTable.showsFirst()) {
+                offset = 0;
+                reportTable.updateTable(limit, offset);
+                updatePageDisplay();
+                disableBackNavigation();
+                disableFirstNavigation();
+                if (!reportTable.showsLast() && wasOnLastPageBeforeClick) {
+                    enableNextNavigation();
+                    enableLastNavigation();
+                }
+            }
+        };
+
         back = backEvent -> {
+            boolean wasOnLastPageBeforeClick = reportTable.showsLast();
             limit = Integer.valueOf(limitElement.getSelectedValue());
             if (offset != 0) {
                 offset = Math.max(0, offset - limit);
                 reportTable.updateTable(limit, offset);
                 updatePageDisplay();
-            }
-            if (reportTable.showsFirst()) {
-                disableBackNavigation();
-            }
-            if (!reportTable.showsLast()) {
-                enableNextNavigation();
+
+                if (reportTable.showsFirst()) {
+                    disableBackNavigation();
+                    disableFirstNavigation();
+                }
+                if (!reportTable.showsLast() && wasOnLastPageBeforeClick) {
+                    enableNextNavigation();
+                    enableLastNavigation();
+                }
             }
         };
 
         next = nextEvent -> {
-            if (reportTable.showsFirst()) {
-                enableBackNavigation();
-            }
+            boolean wasOnFirstPageBeforeClick = reportTable.showsFirst();
             if (!reportTable.showsLast()) {
                 limit = Integer.valueOf(limitElement.getSelectedValue());
                 offset = offset + limit;
                 reportTable.updateTable(limit, offset);
                 updatePageDisplay();
-            }
 
-            if (reportTable.showsLast()) {
+                if (!reportTable.showsFirst() && wasOnFirstPageBeforeClick) {
+                    enableBackNavigation();
+                    enableFirstNavigation();
+                }
+
+                if (reportTable.showsLast()) {
+                    disableNextNavigation();
+                    disableLastNavigation();
+                }
+            }
+        };
+
+        last = lastEvent -> {
+            if (!reportTable.showsLast()) {
+                boolean wasShowingFirst = reportTable.showsFirst();
+                int reportsOnLastPage = reportTable.count() % limit;
+                offset = reportsOnLastPage == 0 ? limit: reportTable.count() -reportsOnLastPage;
+                reportTable.updateTable(limit, offset);
+                updatePageDisplay();
+
+                if (!reportTable.showsFirst() && wasShowingFirst) {
+                    enableBackNavigation();
+                    enableFirstNavigation();
+                }
                 disableNextNavigation();
+                disableLastNavigation();
             }
         };
 
