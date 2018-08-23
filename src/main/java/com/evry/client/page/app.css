@@ -1,0 +1,209 @@
+form > div {
+    margin-bottom: 1.5em;
+}
+
+form > div > strong {
+    float: left;
+    padding-top: 0.5em;
+    width: 15%;
+}
+
+form div span {
+    display: inline-block;
+}
+
+.dr_val {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+menu.progress li {
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    border-right: 0;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 30px 10px 20px;
+    position: relative;
+}
+
+menu.progress li:last-child {
+    border-right: 1px solid #dddddd;
+}
+
+menu.progress li:before, menu.progress li:after {
+    content: '';
+    position: absolute;
+}
+
+menu.progress li:before {
+    background-color: white;
+    border-right: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    display: inline-block;
+    height: 25px;
+    right: -11px;
+    top: 5px;
+    transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 25px;
+}
+
+menu.progress li:last-child:before {
+    visibility: hidden;
+}
+
+menu.progress li.klar, menu.progress li.klar:before {
+    background-color: #edf3f9;
+}
+
+menu.progress li:nth-child(1) {
+    z-index: 2
+}
+
+menu.progress li:nth-child(2) {
+    z-index: 1
+}
+
+menu.progress li:not(:nth-child(1)) {
+    margin-left: -4px;
+    padding-left: 40px
+}
+
+#buttons {
+    margin-left: 15%;
+}
+
+#loggaut_pc,
+#loggaut_mobil,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.button-link,
+button {
+    background: none repeat scroll 0 0 #168dc5;
+    border: 0 none;
+    border-radius: 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 30px 0 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+#loggaut_pc:hover,
+#loggaut_mobil:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+input[type=reset]:hover,
+.button-link:hover,
+button:hover {
+    background-color: #68c0ea;
+    color: #ffffff;
+}
+
+#loggaut_pc:disabled,
+#loggaut_mobil:disabled,
+input[type=submit]:disabled,
+input[type=button]:disabled,
+input[type=reset]:disabled,
+.button-link:disabled,
+button:disabled {
+    opacity: 0.5;
+}
+
+#loggaut_pc {
+    margin: 0;
+    padding: 2px 20px;
+}
+
+#loggaut_mobil {
+    display: inline-block;
+    margin: 1.5pc 0 0 0;
+}
+
+#response_uppdatera {
+    margin: 1em 0;
+    padding: 1em;
+}
+
+.dr_val {
+    margin-top:5px;
+}
+
+.dr_val div {
+    margin-right:8px;
+}
+
+.dr_val div:last-of-type {
+    margin-right: 20px;
+}
+
+
+.dr_val div,
+.dr_val span {
+    margin-bottom:5px;
+}
+
+.dr_val span {
+    width: 150px
+}
+
+.registerutdrag {
+    display: flex;
+    align-items: center;
+}
+
+.registerutdrag img{
+    padding-right: 10px;
+}
+
+.laddar_bakgrund, .laddar_text {
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.laddar_bakgrund {
+    background-color: black;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+.laddar_text {
+    align-items: center;
+    color: white;
+    display: flex;
+    font-size: 14vw;
+    justify-content: center;
+    line-height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    z-index: 2001;
+}
+
+.viktigtext {
+    background-color: #edf3f9;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    padding-bottom: 1.3pc;
+    padding-left: 1pc;
+    padding-right: 1pc;
+}
+
+.viktigtext table tr td:first-child {
+    padding-right: 10px;
+}

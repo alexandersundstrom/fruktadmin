@@ -1,0 +1,64 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:f='urn:import:com.evry.client.widget'
+             xmlns:u='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:style field="app" src="app.css" />
+    <ui:style field="grund" src="grund.css" />
+    <ui:style field="mobile" src="mobile.css" />
+    <ui:style field="resp" src="responsive-grids.css" />
+    <ui:style field="style" src="styling.css" />
+
+    <u:HTMLPanel>
+        <f:NavBarWidget />
+
+        <div class="ielayoutfix {style.bg_ljusgra}">
+            <div>
+                <div class="ielayoutfix {style.innehall_padding_top_bottom}">
+                    <div class="{resp.spar-fluid-grid} {resp.spar-grid-gridx12xkolumner} ielayoutfix {style.bg_vit}">
+                        <div id="innehall">
+                            <div class="{resp.spar-row} {style.innehall_line_top}" />
+                            <div class="{resp.spar-row} {style.padding_top_line}">
+                                <div id="spar-content">
+                                    <div class="{style.spar-text-portlet} {style.spar-use-margins}">
+                                        <div>
+                                            <h2>Välkommen</h2>
+                                            <h3>Här kan du ladda ner alla fruktkorgar. När en rapport har laddats ner tas den bort följande
+                                                natt.</h3>
+                                        </div>
+                                    </div>
+                                    <div id="spar-inner-content">
+                                        <div class="{style.pagination}">
+                                            <div class="{style.pagination}">
+                                                <div class="{style.page}"><a id="first" class="disabled">&lt;&lt;</a></div>
+                                                <div class="{style.page}"><a id="back" class="disabled">&lt;</a></div>
+                                            </div>
+                                            <div class="{style.limit-div}">
+                                                <strong>Antal rapporter per sida</strong>
+                                                <div class="{app.dr_val} {style.limit-container}">
+                                                    <select class="{style.limit-select}" id="limit">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                        <option value="0">Alla</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="{style.pagination}">
+                                                <div class="{style.page}"><a id="next">&gt;</a></div>
+                                                <div class="{style.page}"><a id="last">&gt;&gt;</a></div>
+                                            </div>
+                                        </div>
+                                        <div id="page-info" class="{style.page-info}" />
+
+                                        <div id="reportTable" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </u:HTMLPanel>
+</ui:UiBinder>
