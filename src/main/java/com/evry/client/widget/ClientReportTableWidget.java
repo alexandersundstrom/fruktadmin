@@ -127,7 +127,7 @@ public class ClientReportTableWidget extends Composite implements Pageable {
         reportTable.addColumn(downloadReportXML, "XML");
     }
 
-    private void createReportsTable(List<ClientReport> clientReports) {
+    private void setRows(List<ClientReport> clientReports) {
         ListDataProvider<ClientReport> dataProvider = new ListDataProvider<>();
         dataProvider.addDataDisplay(reportTable);
 
@@ -139,7 +139,7 @@ public class ClientReportTableWidget extends Composite implements Pageable {
     }
 
     private void refreshTable() {
-        createReportsTable(clientReports.subList((currentPage - 1) * reportsPerPage, Math.min(clientReports.size(), currentPage * reportsPerPage)));
+        setRows(clientReports.subList((currentPage - 1) * reportsPerPage, Math.min(clientReports.size(), currentPage * reportsPerPage)));
     }
 
     private void sortReports() {
