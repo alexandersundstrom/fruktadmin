@@ -1,6 +1,10 @@
-package com.evry.client.Utils;
+package com.evry.client.util;
 
-import com.evry.client.*;
+import com.evry.client.ClientReportsTable;
+import com.evry.client.Glass;
+import com.evry.client.Resources;
+import com.evry.client.rpc.fruktadminService;
+import com.evry.client.rpc.fruktadminServiceAsync;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
@@ -61,8 +65,8 @@ public class ClickHandlerUtil {
 
         switchNavbar(DOWNLOAD);
         Glass.on("Laddar...");
-        reportTable = new ClientReportsTable("reportTable", limit, offset, true);
-        fruktkorgServiceRPC.getReports(reportTable);
+//        reportTable = new ClientReportsTable("reportTable", limit, offset, true);
+//        fruktkorgServiceRPC.getReports(reportTable);
     };
 
     public ClickHandler uploadXML = event -> {
@@ -156,97 +160,97 @@ public class ClickHandlerUtil {
 
     private void initNavigationHandlers() {
 
-        first = firstEvent -> {
-            boolean wasOnLastPageBeforeClick = reportTable.showsLast();
-
-            if (!reportTable.showsFirst()) {
-                offset = 0;
-                reportTable.updateTable(limit, offset);
-                updatePageDisplay();
-                disableBackNavigation();
-                disableFirstNavigation();
-                if (!reportTable.showsLast() && wasOnLastPageBeforeClick) {
-                    enableNextNavigation();
-                    enableLastNavigation();
-                }
-            }
-        };
-
-        back = backEvent -> {
-            boolean wasOnLastPageBeforeClick = reportTable.showsLast();
-            limit = Integer.valueOf(limitElement.getSelectedValue());
-            if (offset != 0) {
-                offset = Math.max(0, offset - limit);
-                reportTable.updateTable(limit, offset);
-                updatePageDisplay();
-
-                if (reportTable.showsFirst()) {
-                    disableBackNavigation();
-                    disableFirstNavigation();
-                }
-                if (!reportTable.showsLast() && wasOnLastPageBeforeClick) {
-                    enableNextNavigation();
-                    enableLastNavigation();
-                }
-            }
-        };
-
-        next = nextEvent -> {
-            boolean wasOnFirstPageBeforeClick = reportTable.showsFirst();
-            if (!reportTable.showsLast()) {
-                limit = Integer.valueOf(limitElement.getSelectedValue());
-                offset = offset + limit;
-                reportTable.updateTable(limit, offset);
-                updatePageDisplay();
-
-                if (!reportTable.showsFirst() && wasOnFirstPageBeforeClick) {
-                    enableBackNavigation();
-                    enableFirstNavigation();
-                }
-
-                if (reportTable.showsLast()) {
-                    disableNextNavigation();
-                    disableLastNavigation();
-                }
-            }
-        };
-
-        last = lastEvent -> {
-            if (!reportTable.showsLast()) {
-                boolean wasShowingFirst = reportTable.showsFirst();
-                int reportsOnLastPage = reportTable.count() % limit;
-                offset = reportsOnLastPage == 0 ? limit: reportTable.count() -reportsOnLastPage;
-                reportTable.updateTable(limit, offset);
-                updatePageDisplay();
-
-                if (!reportTable.showsFirst() && wasShowingFirst) {
-                    enableBackNavigation();
-                    enableFirstNavigation();
-                }
-                disableNextNavigation();
-                disableLastNavigation();
-            }
-        };
-
-        limitChangeHandler = limitChange -> {
-            limit = Integer.valueOf(limitElement.getSelectedValue());
-            if (limit == 0) {
-                offset = 0;
-                limit = reportTable.count();
-            }
-            reportTable.updateTable(limit, offset);
-            updatePageDisplay();
-
-            if (reportTable.showsLast()) {
-                disableNextNavigation();
-            } else {
-                enableNextNavigation();
-            }
-        };
+//        first = firstEvent -> {
+//            boolean wasOnLastPageBeforeClick = reportTable.showsLast();
+//
+//            if (!reportTable.showsFirst()) {
+//                offset = 0;
+//                reportTable.updateTable(limit, offset);
+//                updatePageDisplay();
+//                disableBackNavigation();
+//                disableFirstNavigation();
+//                if (!reportTable.showsLast() && wasOnLastPageBeforeClick) {
+//                    enableNextNavigation();
+//                    enableLastNavigation();
+//                }
+//            }
+//        };
+//
+//        back = backEvent -> {
+//            boolean wasOnLastPageBeforeClick = reportTable.showsLast();
+//            limit = Integer.valueOf(limitElement.getSelectedValue());
+//            if (offset != 0) {
+//                offset = Math.max(0, offset - limit);
+//                reportTable.updateTable(limit, offset);
+//                updatePageDisplay();
+//
+//                if (reportTable.showsFirst()) {
+//                    disableBackNavigation();
+//                    disableFirstNavigation();
+//                }
+//                if (!reportTable.showsLast() && wasOnLastPageBeforeClick) {
+//                    enableNextNavigation();
+//                    enableLastNavigation();
+//                }
+//            }
+//        };
+//
+//        next = nextEvent -> {
+//            boolean wasOnFirstPageBeforeClick = reportTable.showsFirst();
+//            if (!reportTable.showsLast()) {
+//                limit = Integer.valueOf(limitElement.getSelectedValue());
+//                offset = offset + limit;
+//                reportTable.updateTable(limit, offset);
+//                updatePageDisplay();
+//
+//                if (!reportTable.showsFirst() && wasOnFirstPageBeforeClick) {
+//                    enableBackNavigation();
+//                    enableFirstNavigation();
+//                }
+//
+//                if (reportTable.showsLast()) {
+//                    disableNextNavigation();
+//                    disableLastNavigation();
+//                }
+//            }
+//        };
+//
+//        last = lastEvent -> {
+//            if (!reportTable.showsLast()) {
+//                boolean wasShowingFirst = reportTable.showsFirst();
+//                int reportsOnLastPage = reportTable.count() % limit;
+//                offset = reportsOnLastPage == 0 ? limit: reportTable.count() -reportsOnLastPage;
+//                reportTable.updateTable(limit, offset);
+//                updatePageDisplay();
+//
+//                if (!reportTable.showsFirst() && wasShowingFirst) {
+//                    enableBackNavigation();
+//                    enableFirstNavigation();
+//                }
+//                disableNextNavigation();
+//                disableLastNavigation();
+//            }
+//        };
+//
+//        limitChangeHandler = limitChange -> {
+//            limit = Integer.valueOf(limitElement.getSelectedValue());
+//            if (limit == 0) {
+//                offset = 0;
+//                limit = reportTable.count();
+//            }
+//            reportTable.updateTable(limit, offset);
+//            updatePageDisplay();
+//
+//            if (reportTable.showsLast()) {
+//                disableNextNavigation();
+//            } else {
+//                enableNextNavigation();
+//            }
+//        };
     }
 
     private void updatePageDisplay() {
-        pageInfo.setInnerHTML("Rapporter " + (offset + 1) + "-" + (Math.min(offset + limit, reportTable.count()) + " av " + reportTable.count()));
+//        pageInfo.setInnerHTML("Rapporter " + (offset + 1) + "-" + (Math.min(offset + limit, reportTable.count()) + " av " + reportTable.count()));
     }
 
     private void switchNavbar(String page) {

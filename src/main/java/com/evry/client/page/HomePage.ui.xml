@@ -2,48 +2,17 @@
     xmlns:f='urn:import:com.evry.client.widget'
     xmlns:u='urn:import:com.google.gwt.user.client.ui'>
 
-    <ui:style field="app" src="app.css" />
-    <ui:style field="grund" src="grund.css" />
-    <ui:style field="mobile" src="mobile.css" />
-    <ui:style field="resp" src="responsive-grids.css" />
-    <ui:style field="style" src="styling.css" />
+    <ui:style field="app" src="../css/app.css" />
+    <ui:style field="grund" src="../css/grund.css" />
 
-    <u:HTMLPanel>
-        <div id="laddar_bakgrund" class="{app.laddar_bakgrund}" style="visibility: hidden;" />
-        <div id="laddar_text" class="{app.laddar_text}" style="visibility: hidden;">Laddar...</div>
-
-        <f:NavBarWidget />
-
-        <div class="ielayoutfix {style.bg_ljusgra}">
-            <div>
-                <div class="ielayoutfix {style.innehall_padding_top_bottom}">
-                    <div class="{resp.spar-fluid-grid} {resp.spar-grid-gridx12xkolumner} ielayoutfix {style.bg_vit}">
-                        <div id="innehall">
-                            <div class="{resp.spar-row} {style.innehall_line_top}" />
-                            <div class="{resp.spar-row} {style.padding_top_line}">
-
-                                <div id="spar-content">
-                                    <div class="{style.spar-text-portlet} {style.spar-use-margins}">
-                                        <div>
-                                            <h2>Välkommen</h2>
-                                            <h3>Här kan du ladda ner en sammanställning av alla fruktkorgar, eller uppdatera fruktkorgarna.</h3>
-                                        </div>
-                                    </div>
-
-                                    <div id="spar-inner-content">
-                                        <div class="{grund.start-alternativ}">
-                                            <a id="downloadReport" class="{app.button-link}" href="#load" title="">Ladda ner rapport</a>
-                                            <a id="uploadReport" class="{app.button-link}" href="#upload" title="">Uppdatera Fruktkorgar</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+    <f:MainContentWidget ui:field="mainContent">
+        <f:content>
+            <u:HTMLPanel>
+                <div class="{grund.start-alternativ}">
+                    <a id="downloadReport" class="{app.button-link}" href="#load" title="">Ladda ner rapport</a>
+                    <a id="uploadReport" class="{app.button-link}" href="#upload" title="">Uppdatera Fruktkorgar</a>
                 </div>
-            </div>
-            <div class="{resp.spar-row} {grund.contentFooter}" />
-        </div>
-    </u:HTMLPanel>
+            </u:HTMLPanel>
+        </f:content>
+    </f:MainContentWidget>
 </ui:UiBinder>

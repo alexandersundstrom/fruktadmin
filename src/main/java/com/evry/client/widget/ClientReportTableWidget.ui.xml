@@ -1,0 +1,13 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g="urn:import:com.google.gwt.user.cellview.client"
+             xmlns:u="urn:import:com.google.gwt.user.client.ui"
+             xmlns:f="urn:import:com.evry.client.widget">
+
+    <ui:style field="style" src="../css/styling.css" type="com.evry.client.css.StylingCss"/>
+
+    <u:HTMLPanel>
+        <f:PaginationWidget ui:field="pagination" />
+        <g:CellTable ui:field="reportTable" />
+    </u:HTMLPanel>
+
+</ui:UiBinder>

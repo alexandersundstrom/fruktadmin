@@ -1,4 +1,4 @@
-package com.evry.client;
+package com.evry.client.model;
 
 import java.io.Serializable;
 

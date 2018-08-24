@@ -1,5 +1,6 @@
 package com.evry.client;
 
+import com.evry.client.util.Navigator;
 import com.google.gwt.core.client.EntryPoint;
 
 /**
@@ -23,8 +24,6 @@ public class fruktadmin implements EntryPoint {
 //
 //        Anchor uploadReportAnchorNav = Anchor.wrap(Document.get().getElementById("uploadReportNav"));
 //        uploadReportAnchorNav.addClickHandler(handler.uploadXML);
-//        HomePage homePage = new HomePage();
-//        Document.get().getElementById("fruktadmin-app").appendChild(homePage.getElement());
         Navigator.navigate(Navigator.Page.HOME_PAGE);
     }
 }

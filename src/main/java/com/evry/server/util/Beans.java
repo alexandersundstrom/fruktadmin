@@ -1,9 +1,9 @@
-package com.evry.server;
+package com.evry.server.util;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-class Beans {
+public class Beans {
     private static ApplicationContext context;
 
     private Beans() {}
@@ -16,7 +16,7 @@ class Beans {
         return context;
     }
 
-    static Object getBean(String bean) {
-        return getContext().getBean(bean);
+    public static <T> T getBean(String bean) {
+        return (T)getContext().getBean(bean);
     }
 }

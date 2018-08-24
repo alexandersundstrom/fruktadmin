@@ -8,7 +8,6 @@ public class Glass {
     private static int concurrentGlassOnCount = 0;
     private static DivElement loadingBackground = DivElement.as(Document.get().getElementById("laddar_bakgrund"));
     private static DivElement loadingText = DivElement.as(Document.get().getElementById("laddar_text"));
-//
 
     public static void on(String text) {
         concurrentGlassOnCount++;

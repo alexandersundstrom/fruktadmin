@@ -467,15 +467,15 @@ a.disabled:hover {
 	margin-bottom: 10px;
 }
 
-.arrow-header {
+.arrowHeader {
 	display: flex;
 	align-items: center;
 }
 
-.arrow-header:hover {
+.arrowHeader:hover {
 	cursor: pointer;
 }
 
-.arrow-image {
+.arrowImage {
 	width: 30px;
 }

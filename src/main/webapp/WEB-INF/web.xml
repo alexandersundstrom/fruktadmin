@@ -5,7 +5,7 @@
          version="4.0">
     <servlet>
         <servlet-name>fruktadminServiceImpl</servlet-name>
-        <servlet-class>com.evry.server.fruktadminServiceImpl</servlet-class>
+        <servlet-class>com.evry.server.rpc.fruktadminServiceImpl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>fruktadminServiceImpl</servlet-name>
@@ -14,7 +14,7 @@
     
     <servlet>
         <servlet-name>downloadReport</servlet-name>
-        <servlet-class>com.evry.server.DownloadReportServlet</servlet-class>
+        <servlet-class>com.evry.server.servlet.DownloadReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>downloadReport</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>uploadXML</servlet-name>
-        <servlet-class>com.evry.server.UploadXMLServlet</servlet-class>
+        <servlet-class>com.evry.server.servlet.UploadXMLServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

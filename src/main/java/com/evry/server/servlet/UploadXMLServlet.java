@@ -1,6 +1,7 @@
-package com.evry.server;
+package com.evry.server.servlet;
 
 import com.evry.fruktkorgservice.service.FruktkorgService;
+import com.evry.server.util.Beans;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
@@ -15,7 +16,7 @@ import java.io.InputStream;
 public class UploadXMLServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         ServletFileUpload upload = new ServletFileUpload();
-        FruktkorgService fruktkorgService = (FruktkorgService) Beans.getBean("fruktkorgService");
+        FruktkorgService fruktkorgService = Beans.getBean("fruktkorgService");
         try {
             FileItemIterator itr = upload.getItemIterator(request);
             while (itr.hasNext()) {

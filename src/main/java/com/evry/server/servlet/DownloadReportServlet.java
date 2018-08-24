@@ -1,10 +1,11 @@
-package com.evry.server;
+package com.evry.server.servlet;
 
 import com.evry.fruktkorgservice.exception.ReportMissingException;
 import com.evry.fruktkorgservice.model.ImmutableFrukt;
 import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
 import com.evry.fruktkorgservice.model.ImmutableReport;
 import com.evry.fruktkorgservice.service.ReportService;
+import com.evry.server.util.Beans;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -23,7 +24,7 @@ import java.util.List;
 public class DownloadReportServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ReportService reportService = (ReportService) Beans.getBean("reportService");
+        ReportService reportService = Beans.getBean("reportService");
 
         Cookie[] cookies = req.getCookies();
         long reportId = -1;
@@ -83,7 +84,7 @@ public class DownloadReportServlet extends HttpServlet {
         File pdfReport = File.createTempFile("pdfReport-", ".tmp");
         pdfReport.deleteOnExit();
 
-        ReportService reportService = (ReportService) Beans.getBean("reportService");
+        ReportService reportService = Beans.getBean("reportService");
         List<ImmutableFruktkorg> fruktkorgList = reportService.getFruktkorgarFromReport(immutableReport.getId());
 
         Document document = new Document();

@@ -1,9 +1,10 @@
-package com.evry.server;
+package com.evry.server.rpc;
 
-import com.evry.client.ClientReport;
-import com.evry.client.fruktadminService;
+import com.evry.client.model.ClientReport;
+import com.evry.client.rpc.fruktadminService;
 import com.evry.fruktkorgservice.model.ImmutableReport;
 import com.evry.fruktkorgservice.service.ReportService;
+import com.evry.server.util.Beans;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import java.time.ZoneId;
@@ -16,7 +17,7 @@ public class fruktadminServiceImpl extends RemoteServiceServlet implements frukt
 
     @Override
     public List<ClientReport> getReports() {
-        ReportService reportService = (ReportService) Beans.getBean("reportService");
+        ReportService reportService = Beans.getBean("reportService");
         List<ImmutableReport> immutableReports = reportService.listReports();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM HH:mm").withLocale(Locale.forLanguageTag("sv-SE")).withZone(ZoneId.systemDefault());
 

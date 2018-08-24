@@ -1,8 +1,8 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <ui:style field="grund" src="../page/grund.css" />
-    <ui:style field="resp" src="../page/responsive-grids.css" />
-    <ui:style field="style" src="../page/styling.css" />
+    <ui:style field="grund" src="../css/grund.css" />
+    <ui:style field="resp" src="../css/responsive-grids.css" />
+    <ui:style field="style" src="../css/styling.css" />
 
     <g:HTMLPanel>
         <div class="{grund.mainheader} {style.header_blue_line}" />
@@ -15,7 +15,6 @@
                                 <ul class="{grund.nav}">
                                     <li id="menu_load">
                                         <g:Anchor href="#downloadReport" ui:field="downloadReportNav">Ladda ner rapport</g:Anchor>
-                                        <!--<a href="#downloadReport" title="" ui:field="downloadReportNav">Ladda ner rapport</a>-->
                                     </li>
                                     <li id="menu_upload">
                                         <a href="#upload" id="uploadReportNav" title="">Uppdatera Fruktkorgar</a>

@@ -1,4 +1,4 @@
-package com.evry.client;
+package com.evry.client.util;
 
 import com.evry.client.page.DownloadReportPage;
 import com.evry.client.page.HomePage;
@@ -7,21 +7,28 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class Navigator {
 
-    private static Widget currentPage;
+    private static Widget currentPageWidget;
+    private static Page currentPage = null;
 
     public static void navigate(Page page) {
-        if (currentPage != null) {
-            RootPanel.get().remove(currentPage);
+        if(currentPage == page) {
+            return;
         }
 
-        currentPage = getPage(page);
+        if(currentPageWidget != null) {
+            RootPanel.get().remove(currentPageWidget);
+        }
 
-        if(currentPage == null) {
+        currentPageWidget = getPage(page);
+
+        if(currentPageWidget == null) {
             // Do something
             return;
         }
 
-        RootPanel.get().add(currentPage);
+        currentPage = page;
+
+        RootPanel.get().add(currentPageWidget);
     }
 
     private static Widget getPage(Page page) {
