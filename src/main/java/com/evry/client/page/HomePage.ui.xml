@@ -9,8 +9,8 @@
         <f:content>
             <u:HTMLPanel>
                 <div class="{grund.start-alternativ}">
-                    <a id="downloadReport" class="{app.button-link}" href="#load" title="">Ladda ner rapport</a>
-                    <a id="uploadReport" class="{app.button-link}" href="#upload" title="">Uppdatera Fruktkorgar</a>
+                    <a id="downloadReport" class="{app.button-link}" href="#downloadReport" title="">Ladda ner rapport</a>
+                    <a id="uploadReport" class="{app.button-link}" href="#uploadUpdate" title="">Uppdatera Fruktkorgar</a>
                 </div>
             </u:HTMLPanel>
         </f:content>

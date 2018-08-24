@@ -49,7 +49,7 @@ public class PaginationWidget extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    public void setPageable(Pageable pageable) {
+    public void init(Pageable pageable) {
         this.pageable = pageable;
         title.setInnerText("Antal " + pageable.getItemName() + " per sida");
         updatePageInfo();

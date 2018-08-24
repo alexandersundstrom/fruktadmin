@@ -1,7 +1,7 @@
 package com.evry.client.widget;
 
-import com.evry.client.ClickableArrowHeaderCell;
 import com.evry.client.css.StylingCss;
+import com.evry.client.model.ClickableArrowHeaderCell;
 import com.evry.client.model.ClientReport;
 import com.evry.client.model.Pageable;
 import com.google.gwt.cell.client.ButtonCell;
@@ -42,17 +42,19 @@ public class ClientReportTableWidget extends Composite implements Pageable {
     @UiField
     PaginationWidget pagination;
 
-    public ClientReportTableWidget(List<ClientReport> reports) {
+    public ClientReportTableWidget() {
         currentPage = 1;
         reportsPerPage = 10;
-        clientReports = reports;
 
         initWidget(uiBinder.createAndBindUi(this));
+    }
+
+    public void init(List<ClientReport> reports) {
+        clientReports = reports;
 
         initReportTable();
         refreshTable();
-
-        pagination.setPageable(this);
+        pagination.init(this);
     }
 
     private void initReportTable() {

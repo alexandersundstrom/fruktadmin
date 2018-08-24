@@ -12,7 +12,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class DownloadReportPage extends Composite {
     MainContentWidget mainContent;
 
     @UiField
-    SimplePanel reportTable;
+    ClientReportTableWidget reportTable;
 
     @UiField
     GlassWidget glass;
@@ -46,8 +45,7 @@ public class DownloadReportPage extends Composite {
 
             @Override
             public void onSuccess(List<ClientReport> result) {
-                ClientReportTableWidget tableWidget = new ClientReportTableWidget(result);
-                reportTable.add(tableWidget);
+                reportTable.init(result);
                 glass.off();
             }
         });

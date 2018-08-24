@@ -14,10 +14,10 @@
                             <div class="{grund.menu-container}">
                                 <ul class="{grund.nav}">
                                     <li id="menu_load">
-                                        <g:Anchor href="#downloadReport" ui:field="downloadReportNav">Ladda ner rapport</g:Anchor>
+                                        <a href="#downloadReport" id="downloadReportNav">Ladda ner rapport</a>
                                     </li>
                                     <li id="menu_upload">
-                                        <a href="#upload" id="uploadReportNav" title="">Uppdatera Fruktkorgar</a>
+                                        <a href="#uploadUpdate" id="uploadReportNav" title="">Uppdatera Fruktkorgar</a>
                                     </li>
                                 </ul>
                             </div>
@@ -27,5 +27,4 @@
             </header>
         </div>
     </g:HTMLPanel>
-
 </ui:UiBinder>

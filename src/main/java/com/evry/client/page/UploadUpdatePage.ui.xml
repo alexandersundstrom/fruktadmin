@@ -1,0 +1,23 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:f='urn:import:com.evry.client.widget'
+             xmlns:u='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:style field="app" src="../css/app.css" />
+    <ui:style field="grund" src="../css/grund.css" />
+
+    <u:HTMLPanel>
+        <f:GlassWidget ui:field="glass"/>
+        <f:MainContentWidget ui:field="mainContent">
+            <f:content>
+                <u:HTMLPanel>
+                    <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML" encoding="multipart/form-data" method="post">
+                        <u:VerticalPanel>
+                            <u:FileUpload ui:field="fileUploader" name="uploadFormElement" />
+                            <u:SubmitButton>Submit</u:SubmitButton>
+                        </u:VerticalPanel>
+                    </u:FormPanel>
+                </u:HTMLPanel>
+            </f:content>
+        </f:MainContentWidget>
+    </u:HTMLPanel>
+</ui:UiBinder>

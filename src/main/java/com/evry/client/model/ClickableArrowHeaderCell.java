@@ -1,4 +1,4 @@
-package com.evry.client;
+package com.evry.client.model;
 
 import com.google.gwt.cell.client.ClickableTextCell;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -11,7 +11,6 @@ public class ClickableArrowHeaderCell extends ClickableTextCell {
 
     public ClickableArrowHeaderCell(boolean isAscending, String headerStyle, String imageStyle) {
         super();
-//        style = "arrow-header";
         this.headerStyle = headerStyle;
         this.imageStyle = imageStyle;
         this.isAscending = isAscending;

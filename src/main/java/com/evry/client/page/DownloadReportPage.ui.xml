@@ -9,7 +9,7 @@
         <f:GlassWidget ui:field="glass" />
         <f:MainContentWidget ui:field="mainContent">
             <f:content>
-                <g:SimplePanel ui:field="reportTable" />
+                <f:ClientReportTableWidget ui:field="reportTable" />
             </f:content>
         </f:MainContentWidget>
     </g:HTMLPanel>
