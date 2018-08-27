@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:f='urn:import:com.evry.client.widget'
-             xmlns:u='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:u='urn:import:com.google.gwt.user.client.ui' xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <ui:style field="app" src="../css/app.css" />
     <ui:style field="grund" src="../css/grund.css" />
@@ -8,6 +8,14 @@
     <f:MainContentWidget ui:field="mainContent">
         <f:content>
             <u:HTMLPanel>
+                <u:FormPanel ui:field="feedbackForm" action="/feedback/submit" method="post">
+                    <u:VerticalPanel>
+                        <u:ListBox ui:field="feedBackOptions" name="feedbackOptions">
+                            <g:item value="download">Ladda ner rapport</g:item>
+                            <g:item value="upload">Uppdatera Fruktkorgar</g:item>
+                        </u:ListBox>
+                    </u:VerticalPanel>
+                </u:FormPanel>
             </u:HTMLPanel>
         </f:content>
     </f:MainContentWidget>
