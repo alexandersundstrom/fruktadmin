@@ -3,10 +3,7 @@ package com.evry.client.model;
 import com.evry.client.css.CssResources;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.*;
 
 public class FruktDialogBox extends DialogBox {
     private Button okButton;
@@ -27,14 +24,21 @@ public class FruktDialogBox extends DialogBox {
         verticalPanel.add(titleLabel);
         verticalPanel.add(descriptionLabel);
 
+        HorizontalPanel buttonPanel = new HorizontalPanel();
+        buttonPanel.addStyleName(CssResources.INSTANCE.dialogBox().buttonPanel());
+
         okButton = new Button("OK");
         cancelButton = new Button("Cancel");
+
+        buttonPanel.add(okButton);
+        buttonPanel.add(cancelButton);
 
         okRegistration = okButton.addClickHandler(event -> hide());
         cancelRegistration = cancelButton.addClickHandler(event -> hide());
 
-        verticalPanel.add(okButton);
-        verticalPanel.add(cancelButton);
+//        verticalPanel.add(okButton);
+//        verticalPanel.add(cancelButton);
+        verticalPanel.add(buttonPanel);
 
         setWidget(verticalPanel);
 

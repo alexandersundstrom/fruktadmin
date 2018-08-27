@@ -7,4 +7,6 @@ public interface DialogBoxCss extends CssResource {
 
     @ClassName("fruktdialog-title")
     String fruktdialogTitle();
+
+    String buttonPanel();
 }
