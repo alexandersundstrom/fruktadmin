@@ -21,6 +21,7 @@ public class FruktDialogBox extends DialogBox {
         VerticalPanel verticalPanel = new VerticalPanel();
         verticalPanel.addStyleName(CssResources.INSTANCE.dialogBox().fruktdialog());
         Label titleLabel = new Label(title);
+        titleLabel.addStyleName(CssResources.INSTANCE.dialogBox().fruktdialogTitle());
         Label descriptionLabel = new Label(description);
 
         verticalPanel.add(titleLabel);
