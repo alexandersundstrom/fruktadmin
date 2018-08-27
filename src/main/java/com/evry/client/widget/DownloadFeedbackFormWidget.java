@@ -1,6 +1,6 @@
 package com.evry.client.widget;
 
-import com.evry.client.util.Log;
+import com.evry.client.model.FruktDialogBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -37,31 +37,37 @@ public class DownloadFeedbackFormWidget extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         email.getElement().setAttribute("type", "email");
+        email.getElement().setAttribute("placeholder", "Email");
     }
 
     @UiHandler("form")
     public void onSubmitForm(FormPanel.SubmitEvent event) {
         String emailString = email.getValue().trim();
 
-        if (!validateEmail(emailString)) {
-            Log.error("invalid email");
-            event.cancel();
-            return;
-        }
+        FruktDialogBox dialogBox = new FruktDialogBox("fork", "knife");
+        dialogBox.show();
+        event.cancel();
+        return;
 
-        if(!validateRadioButtons()) {
-            Log.error("invalid radio button");
-            event.cancel();
-            return;
-        }
-
-        if(!validateTermsAndConditions()) {
-            Log.error("invalid terms and conditions button");
-            event.cancel();
-            return;
-        }
-
-        Log.info("validation done");
+//        if (!validateEmail(emailString)) {
+//            Window.alert("Du måste ange en korrekt email adress");
+//            event.cancel();
+//            return;
+//        }
+//
+//        if(!validateRadioButtons()) {
+//            Window.alert("Du måste välja en ranking");
+//            event.cancel();
+//            return;
+//        }
+//
+//        if(!validateTermsAndConditions()) {
+//            Window.alert("Du måste acceptera terms and conditions");
+//            event.cancel();
+//            return;
+//        }
+//
+//        Log.info("validation done");
     }
 
     private boolean validateEmail(String emailString) {

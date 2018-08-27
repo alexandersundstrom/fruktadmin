@@ -5,14 +5,17 @@
     <u:HTMLPanel>
         <u:FormPanel ui:field="form">
             <u:VerticalPanel>
+                <u:Label>Email adress</u:Label>
                 <u:TextBox ui:field="email" />
+                <u:Label>Ranking</u:Label>
                 <u:RadioButton name="rating" ui:field="rating1" formValue="1">1</u:RadioButton>
                 <u:RadioButton name="rating" ui:field="rating2" formValue="2">2</u:RadioButton>
                 <u:RadioButton name="rating" ui:field="rating3" formValue="3">3</u:RadioButton>
                 <u:RadioButton name="rating" ui:field="rating4" formValue="4">4</u:RadioButton>
+                <u:Label>Övrigt</u:Label>
                 <u:TextArea />
                 <u:CheckBox formValue="newsletter">newsletter</u:CheckBox>
-                <u:CheckBox formValue="termsAndConditions" ui:field="termAndConditions">term and conditions</u:CheckBox>
+                <u:CheckBox formValue="termsAndConditions" ui:field="termAndConditions">terms and conditions</u:CheckBox>
                 <u:SubmitButton>Lämna in</u:SubmitButton>
             </u:VerticalPanel>
         </u:FormPanel>
