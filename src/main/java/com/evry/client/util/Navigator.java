@@ -1,6 +1,7 @@
 package com.evry.client.util;
 
 import com.evry.client.page.DownloadReportPage;
+import com.evry.client.page.FeedbackPage;
 import com.evry.client.page.HomePage;
 import com.evry.client.page.UploadUpdatePage;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -44,6 +45,8 @@ public class Navigator {
                 return new DownloadReportPage();
             case UPLOAD_UPDATE_PAGE:
                 return new UploadUpdatePage();
+            case FEEDBACK_PAGE:
+                return new FeedbackPage();
         }
 
         return null;
@@ -52,7 +55,8 @@ public class Navigator {
     public enum Page {
         HOME_PAGE(""),
         DOWNLOAD_REPORT_PAGE("downloadReport"),
-        UPLOAD_UPDATE_PAGE("uploadUpdate");
+        UPLOAD_UPDATE_PAGE("uploadUpdate"),
+        FEEDBACK_PAGE("feedback");
 
         private String hash;
 

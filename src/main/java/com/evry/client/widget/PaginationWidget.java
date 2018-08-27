@@ -71,7 +71,9 @@ public class PaginationWidget extends Composite {
         } else {
             pageable.refresh();
         }
+
         updatePageInfo();
+
         if (pageable.getCurrentPage() == pageable.getFirstPage()) {
             firstPageButton.addStyleName(style.disabled());
             previousPageButton.addStyleName(style.disabled());

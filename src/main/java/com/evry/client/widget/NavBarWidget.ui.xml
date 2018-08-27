@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <ui:style field="grund" src="../css/grund.css" />
+    <ui:style field="grund" src="../css/grund.css" type="com.evry.client.css.GrundCss" />
     <ui:style field="resp" src="../css/responsive-grids.css" />
     <ui:style field="style" src="../css/styling.css" />
 
@@ -13,11 +13,14 @@
                         <div class="{grund.mobilemenuinside} spar-jcrmenu-portlet spar-portlet {style.mobile_menu}">
                             <div class="{grund.menu-container}">
                                 <ul class="{grund.nav}">
-                                    <li id="menu_load">
-                                        <a href="#downloadReport" id="downloadReportNav">Ladda ner rapport</a>
+                                    <li ui:field="downloadReport">
+                                        <a href="#downloadReport">Ladda ner rapport</a>
                                     </li>
-                                    <li id="menu_upload">
-                                        <a href="#uploadUpdate" id="uploadReportNav" title="">Uppdatera Fruktkorgar</a>
+                                    <li ui:field="uploadReport">
+                                        <a href="#uploadUpdate" title="">Uppdatera Fruktkorgar</a>
+                                    </li>
+                                    <li ui:field="feedback">
+                                        <a href="#feedback" title="">Lämna feedback</a>
                                     </li>
                                 </ul>
                             </div>

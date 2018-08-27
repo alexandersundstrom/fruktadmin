@@ -11,6 +11,7 @@
                 <div class="{grund.start-alternativ}">
                     <a id="downloadReport" class="{app.button-link}" href="#downloadReport" title="">Ladda ner rapport</a>
                     <a id="uploadReport" class="{app.button-link}" href="#uploadUpdate" title="">Uppdatera Fruktkorgar</a>
+                    <a id="feedback" class="{app.button-link}" href="#feedback" title="">Lämna feedback</a>
                 </div>
             </u:HTMLPanel>
         </f:content>

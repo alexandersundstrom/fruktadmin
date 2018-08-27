@@ -1,0 +1,14 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:f='urn:import:com.evry.client.widget'
+             xmlns:u='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:style field="app" src="../css/app.css" />
+    <ui:style field="grund" src="../css/grund.css" />
+
+    <f:MainContentWidget ui:field="mainContent">
+        <f:content>
+            <u:HTMLPanel>
+            </u:HTMLPanel>
+        </f:content>
+    </f:MainContentWidget>
+</ui:UiBinder>
