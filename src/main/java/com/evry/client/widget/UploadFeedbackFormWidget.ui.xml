@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:u="urn:import:com.google.gwt.user.client.ui">
+    <ui:style field="app" src="../css/app.css" />
+
+    <u:HTMLPanel>
+        <p>hi</p>
+    </u:HTMLPanel>
+
+</ui:UiBinder>

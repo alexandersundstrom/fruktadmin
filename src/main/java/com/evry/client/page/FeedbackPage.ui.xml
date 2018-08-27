@@ -10,12 +10,14 @@
             <u:HTMLPanel>
                 <u:FormPanel ui:field="feedbackForm" action="/feedback/submit" method="post">
                     <u:VerticalPanel>
-                        <u:ListBox ui:field="feedBackOptions" name="feedbackOptions">
+                        <u:ListBox ui:field="feedbackOptions" name="feedbackOptions">
+                            <g:item value="">Välj...</g:item>
                             <g:item value="download">Ladda ner rapport</g:item>
                             <g:item value="upload">Uppdatera Fruktkorgar</g:item>
                         </u:ListBox>
                     </u:VerticalPanel>
                 </u:FormPanel>
+                <u:SimplePanel ui:field="formContent"/>
             </u:HTMLPanel>
         </f:content>
     </f:MainContentWidget>
