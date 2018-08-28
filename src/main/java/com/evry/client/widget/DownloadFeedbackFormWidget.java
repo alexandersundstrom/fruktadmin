@@ -1,10 +1,7 @@
 package com.evry.client.widget;
 
 import com.evry.client.model.FruktDialogBox;
-import com.evry.client.util.Log;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -83,10 +80,10 @@ public class DownloadFeedbackFormWidget extends Composite {
     }
 
     private boolean validateRadioButtons() {
-        return rating1.isChecked() || rating2.isChecked() || rating3.isChecked() || rating4.isChecked();
+        return rating1.getValue() || rating2.getValue() || rating3.getValue() || rating4.getValue();
     }
 
     private boolean validateTermsAndConditions() {
-        return termAndConditions.isChecked();
+        return termAndConditions.getValue();
     }
 }

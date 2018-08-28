@@ -1,5 +1,6 @@
 package com.evry.client.page;
 
+import com.evry.client.activity.FruktActivity;
 import com.evry.client.widget.DownloadFeedbackFormWidget;
 import com.evry.client.widget.MainContentWidget;
 import com.evry.client.widget.UploadFeedbackFormWidget;
@@ -48,5 +49,9 @@ public class FeedbackPage extends Composite {
             currentForm = new UploadFeedbackFormWidget();
             formContent.add(currentForm);
         }
+    }
+
+    public void setFruktActivity(FruktActivity fruktActivity) {
+        mainContent.setFruktActivity(fruktActivity);
     }
 }

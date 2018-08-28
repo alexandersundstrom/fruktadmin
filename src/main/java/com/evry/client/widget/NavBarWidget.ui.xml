@@ -13,14 +13,14 @@
                         <div class="{grund.mobilemenuinside} spar-jcrmenu-portlet spar-portlet {style.mobile_menu}">
                             <div class="{grund.menu-container}">
                                 <ul class="{grund.nav}">
-                                    <li ui:field="downloadReport">
-                                        <a href="#downloadReport">Ladda ner rapport</a>
+                                    <li ui:field="downloadReportLi">
+                                        <g:Anchor ui:field="downloadReport">Ladda ner rapport</g:Anchor>
                                     </li>
-                                    <li ui:field="uploadReport">
-                                        <a href="#uploadUpdate" title="">Uppdatera Fruktkorgar</a>
+                                    <li ui:field="uploadReportLi">
+                                        <g:Anchor ui:field="uploadUpdate" title="">Uppdatera Fruktkorgar</g:Anchor>
                                     </li>
-                                    <li ui:field="feedback">
-                                        <a href="#feedback" title="">Lämna feedback</a>
+                                    <li ui:field="feedbackLi">
+                                        <g:Anchor ui:field="feedback" title="">Lämna feedback</g:Anchor>
                                     </li>
                                 </ul>
                             </div>

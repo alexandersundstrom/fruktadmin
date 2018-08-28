@@ -4,6 +4,8 @@
   <inherits name="com.google.gwt.uibinder.UiBinder" />
   <inherits name="com.google.gwt.logging.Logging"/>
   <inherits name="com.google.gwt.resources.Resources" />
+  <inherits name="com.google.gwt.place.Place" />
+  <inherits name="com.google.gwt.activity.Activity" />
 
   <entry-point class='com.evry.client.fruktadmin' />
   <source path='client' />

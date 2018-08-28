@@ -1,12 +1,19 @@
 package com.evry.client.widget;
 
+import com.evry.client.activity.FruktActivity;
 import com.evry.client.css.GrundCss;
+import com.evry.client.place.DownloadReportPlace;
+import com.evry.client.place.FeedbackPlace;
+import com.evry.client.place.UploadUpdatePlace;
 import com.evry.client.util.Navigator;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.LIElement;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -14,14 +21,25 @@ public class NavBarWidget extends Composite {
     interface MyUiBinder extends UiBinder<Widget, NavBarWidget>{}
     private static final MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
-    @UiField
-    LIElement downloadReport;
+    private FruktActivity fruktActivity;
 
     @UiField
-    LIElement uploadReport;
+    LIElement downloadReportLi;
 
     @UiField
-    LIElement feedback;
+    LIElement uploadReportLi;
+
+    @UiField
+    LIElement feedbackLi;
+
+    @UiField
+    Anchor downloadReport;
+
+    @UiField
+    Anchor uploadUpdate;
+
+    @UiField
+    Anchor feedback;
 
     @UiField
     GrundCss grund;
@@ -37,14 +55,33 @@ public class NavBarWidget extends Composite {
 
         switch(currentPage) {
             case DOWNLOAD_REPORT_PAGE:
-                downloadReport.addClassName(grund.active());
+                downloadReportLi.addClassName(grund.active());
                 break;
             case UPLOAD_UPDATE_PAGE:
-                uploadReport.addClassName(grund.active());
+                uploadReportLi.addClassName(grund.active());
                 break;
             case FEEDBACK_PAGE:
-                feedback.addClassName(grund.active());
+                feedbackLi.addClassName(grund.active());
                 break;
         }
+    }
+
+    public void setFruktActivity(FruktActivity fruktActivity) {
+        this.fruktActivity = fruktActivity;
+    }
+
+    @UiHandler("downloadReport")
+    public void onClickDownloadReport(ClickEvent event) {
+        fruktActivity.goTo(new DownloadReportPlace("1,10"));
+    }
+
+    @UiHandler("uploadUpdate")
+    public void onClickUploadUpdate(ClickEvent event) {
+        fruktActivity.goTo(new UploadUpdatePlace());
+    }
+
+    @UiHandler("feedback")
+    public void onClickFeedback(ClickEvent event) {
+        fruktActivity.goTo(new FeedbackPlace());
     }
 }

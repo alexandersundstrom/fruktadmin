@@ -1,5 +1,6 @@
 package com.evry.client.page;
 
+import com.evry.client.activity.FruktActivity;
 import com.evry.client.model.ClientReport;
 import com.evry.client.rpc.fruktadminService;
 import com.evry.client.rpc.fruktadminServiceAsync;
@@ -49,5 +50,9 @@ public class DownloadReportPage extends Composite {
                 glass.off();
             }
         });
+    }
+
+    public void setFruktActivity(FruktActivity fruktActivity) {
+        mainContent.setFruktActivity(fruktActivity);
     }
 }

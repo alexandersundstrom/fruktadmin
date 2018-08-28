@@ -9,9 +9,9 @@
         <f:content>
             <u:HTMLPanel>
                 <div class="{grund.start-alternativ}">
-                    <a id="downloadReport" class="{app.button-link}" href="#downloadReport" title="">Ladda ner rapport</a>
-                    <a id="uploadReport" class="{app.button-link}" href="#uploadUpdate" title="">Uppdatera Fruktkorgar</a>
-                    <a id="feedback" class="{app.button-link}" href="#feedback" title="">Lämna feedback</a>
+                    <u:Anchor ui:field="downloadReport" styleName="{app.button-link}">Ladda ner rapport</u:Anchor>
+                    <u:Anchor ui:field="uploadReport" styleName="{app.button-link}">Uppdatera Fruktkorgar</u:Anchor>
+                    <u:Anchor ui:field="feedback" styleName="{app.button-link}">Lämna feedback</u:Anchor>
                 </div>
             </u:HTMLPanel>
         </f:content>

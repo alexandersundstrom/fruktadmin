@@ -1,5 +1,6 @@
 package com.evry.client.page;
 
+import com.evry.client.activity.FruktActivity;
 import com.evry.client.widget.GlassWidget;
 import com.evry.client.widget.MainContentWidget;
 import com.google.gwt.core.client.GWT;
@@ -45,5 +46,9 @@ public class UploadUpdatePage extends Composite {
         glass.off();
 
         Window.alert(event.getResults());
+    }
+
+    public void setFruktActivity(FruktActivity fruktActivity) {
+        mainContent.setFruktActivity(fruktActivity);
     }
 }

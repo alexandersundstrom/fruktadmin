@@ -1,5 +1,6 @@
 package com.evry.client.widget;
 
+import com.evry.client.activity.FruktActivity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -22,6 +23,9 @@ public class MainContentWidget extends Composite {
     @UiField
     HeadingElement titleText;
 
+    @UiField
+    NavBarWidget navbar;
+
     public MainContentWidget() {
         initWidget(uiBinder.createAndBindUi(this));
     }
@@ -37,5 +41,9 @@ public class MainContentWidget extends Composite {
 
     public void setText(String text) {
         titleText.setInnerText(text);
+    }
+
+    public void setFruktActivity(FruktActivity fruktActivity) {
+        navbar.setFruktActivity(fruktActivity);
     }
 }
