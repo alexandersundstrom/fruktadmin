@@ -23,6 +23,9 @@ public class FruktDialogBox extends DialogBox {
         okButton = fruktDialogBoxWidget.getOkButton();
         cancelButton = fruktDialogBoxWidget.getCancelButton();
 
+        okButtonRegistration = okButton.addClickHandler(event -> hide());
+        cancelButtonRegistration = cancelButton.addClickHandler(event -> hide());
+
         setPopupPosition(400, 100);
     }
 
