@@ -1,7 +1,10 @@
 package com.evry.client.widget;
 
 import com.evry.client.model.FruktDialogBox;
+import com.evry.client.util.Log;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -44,7 +47,7 @@ public class DownloadFeedbackFormWidget extends Composite {
     public void onSubmitForm(FormPanel.SubmitEvent event) {
         String emailString = email.getValue().trim();
 
-        FruktDialogBox dialogBox = new FruktDialogBox("fork", "knife");
+        FruktDialogBox dialogBox = new FruktDialogBox("Bekräfta", "Är du säker?");
         dialogBox.show();
         event.cancel();
         return;
