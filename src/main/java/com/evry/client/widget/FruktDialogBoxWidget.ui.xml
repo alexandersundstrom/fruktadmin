@@ -5,7 +5,7 @@
     <u:HTMLPanel>
         <div class="{style.fruktdialog}">
             <span ui:field="title" class="{style.fruktdialog-title}"></span>
-            <span ui:field="description"></span>
+            <span ui:field="description" class="{style.fruktdialog-description}"></span>
             <div class="{style.buttonContainer}">
                 <u:Button ui:field="okButton">Ok</u:Button>
                 <u:Button ui:field="cancelButton" addStyleNames="{style.cancel-button}">Avbryt</u:Button>

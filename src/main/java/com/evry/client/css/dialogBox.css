@@ -1,6 +1,5 @@
 .fruktdialog {
     width: 500px;
-    height: 200px;
     border: 1px solid black;
     border-radius: 10px;
     padding: 10px;
@@ -32,4 +31,9 @@
 
 .cancel-button:hover {
     background-color: #808080;
+}
+
+.fruktdialog-description {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
