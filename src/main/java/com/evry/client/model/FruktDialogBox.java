@@ -1,6 +1,5 @@
 package com.evry.client.model;
 
-import com.evry.client.util.Log;
 import com.evry.client.widget.FruktDialogBoxWidget;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
