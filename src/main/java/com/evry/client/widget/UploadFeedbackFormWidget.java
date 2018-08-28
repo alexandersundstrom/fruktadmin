@@ -73,17 +73,13 @@ public class UploadFeedbackFormWidget extends Composite implements Form {
         }
         FruktDialogBox dialogBox = new FruktDialogBox("Formulär skickat", "Tack för din feedback!", false);
         dialogBox.show();
+        resetValues();
     }
 
     public boolean hasUnsubmittedChanges() {
         String emailString = email.getValue().trim();
         String textAreaValue = textArea.getValue().trim();
-        return (emailString != null &&
-                emailString.length() > 0) ||
-                validateRadioButtons() ||
-                validateTermsAndConditions() ||
-                (textAreaValue != null &&
-                        textAreaValue.length() != 0);
+        return emailString.length() > 0 || validateRadioButtons() || validateTermsAndConditions() || textAreaValue.length() != 0;
     }
 
     private boolean validateEmail(String emailString) {
@@ -95,6 +91,15 @@ public class UploadFeedbackFormWidget extends Composite implements Form {
         return RegExp.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])").test(emailString);
     }
 
+    private void resetValues() {
+        email.setValue("");
+        textArea.setValue("");
+        termAndConditions.setValue(false);
+        rating1.setValue(false);
+        rating2.setValue(false);
+        rating3.setValue(false);
+        rating4.setValue(false);
+    }
     private boolean validateRadioButtons() {
         return rating1.isChecked() || rating2.isChecked() || rating3.isChecked() || rating4.isChecked();
     }
