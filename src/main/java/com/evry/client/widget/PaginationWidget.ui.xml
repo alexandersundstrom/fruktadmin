@@ -17,7 +17,7 @@
             <div class="{style.limit-div}">
                 <strong ui:field="title" />
                 <div class="{app.dr_val} {style.limit-container}">
-                    <g:ListBox ui:field="itemsPerPageSelector" styleName="{style.limit-select}">
+                    <g:ListBox ui:field="itemsPerPageSelector" styleName="{style.dropdown-select}">
                         <g:item value="10">10</g:item>
                         <g:item value="25">25</g:item>
                         <g:item value="50">50</g:item>

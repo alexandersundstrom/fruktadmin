@@ -16,21 +16,28 @@ public class FruktDialogBox extends DialogBox {
     private HandlerRegistration cancelButtonRegistration;
 
     public FruktDialogBox(String title, String description) {
+        init(title, description, true);
+    }
 
-        fruktDialogBoxWidget = new FruktDialogBoxWidget(title, description);
+    public FruktDialogBox(String title, String description, boolean showCancel) {
+        init(title, description, showCancel);
+    }
+
+    private void init(String title, String description, boolean showCancel) {
+        fruktDialogBoxWidget = new FruktDialogBoxWidget(title, description, showCancel);
         setWidget(fruktDialogBoxWidget);
 
         okButton = fruktDialogBoxWidget.getOkButton();
-        cancelButton = fruktDialogBoxWidget.getCancelButton();
-
         okButtonRegistration = okButton.addClickHandler(event -> hide());
+
+        cancelButton = fruktDialogBoxWidget.getCancelButton();
         cancelButtonRegistration = cancelButton.addClickHandler(event -> hide());
 
         setPopupPosition(400, 100);
     }
 
     public void setOkClickHandler(ClickHandler clickHandler) {
-        if(okButtonRegistration != null) {
+        if (okButtonRegistration != null) {
             okButtonRegistration.removeHandler();
             okButtonRegistration = null;
         }
@@ -42,7 +49,7 @@ public class FruktDialogBox extends DialogBox {
     }
 
     public void setCancelClickHandler(ClickHandler clickHandler) {
-        if(cancelButtonRegistration != null) {
+        if (cancelButtonRegistration != null) {
             cancelButtonRegistration.removeHandler();
             cancelButtonRegistration = null;
         }

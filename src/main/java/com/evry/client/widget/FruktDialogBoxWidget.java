@@ -23,10 +23,13 @@ public class FruktDialogBoxWidget extends Composite {
     @UiField
     Button cancelButton;
 
-    public FruktDialogBoxWidget(String title, String description) {
+    public FruktDialogBoxWidget(String title, String description, boolean showCancel) {
         initWidget(uiBinder.createAndBindUi(this));
         this.title.setInnerText(title);
         this.description.setInnerText(description);
+        if (!showCancel) {
+            cancelButton.setVisible(false);
+        }
     }
 
     public Button getOkButton() {

@@ -9,7 +9,9 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 
 public class DownloadFeedbackFormWidget extends Composite {
-    interface MyUiBinder extends UiBinder<Widget, DownloadFeedbackFormWidget> {}
+    interface MyUiBinder extends UiBinder<Widget, DownloadFeedbackFormWidget> {
+    }
+
     private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
     @UiField
@@ -37,41 +39,40 @@ public class DownloadFeedbackFormWidget extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         email.getElement().setAttribute("type", "email");
-        email.getElement().setAttribute("placeholder", "Email");
+        email.getElement().setAttribute("placeholder", "Ange email");
     }
 
     @UiHandler("form")
     public void onSubmitForm(FormPanel.SubmitEvent event) {
         String emailString = email.getValue().trim();
 
-        FruktDialogBox dialogBox = new FruktDialogBox("Bekräfta", "Är du säker?");
-        dialogBox.show();
-        event.cancel();
-        return;
+        if (!validateEmail(emailString)) {
+            FruktDialogBox dialogBox = new FruktDialogBox("Validering", "Du måste ange en korrekt email adress", false);
+            dialogBox.show();
+            event.cancel();
+            return;
+        }
 
-//        if (!validateEmail(emailString)) {
-//            Window.alert("Du måste ange en korrekt email adress");
-//            event.cancel();
-//            return;
-//        }
-//
-//        if(!validateRadioButtons()) {
-//            Window.alert("Du måste välja en ranking");
-//            event.cancel();
-//            return;
-//        }
-//
-//        if(!validateTermsAndConditions()) {
-//            Window.alert("Du måste acceptera terms and conditions");
-//            event.cancel();
-//            return;
-//        }
-//
-//        Log.info("validation done");
+        if(!validateRadioButtons()) {
+            FruktDialogBox dialogBox = new FruktDialogBox("Validering", "Du måste välja en ranking", false);
+            dialogBox.show();
+            event.cancel();
+            return;
+        }
+
+        if(!validateTermsAndConditions()) {
+            FruktDialogBox dialogBox = new FruktDialogBox("Validering", "Du måste acceptera villkoren", false);
+            dialogBox.show();
+
+            event.cancel();
+            return;
+        }
+        FruktDialogBox dialogBox = new FruktDialogBox("Formulär skickat", "Tack för din feedback!", false);
+        dialogBox.show();
     }
 
     private boolean validateEmail(String emailString) {
-        if(emailString == null || emailString.length() == 0) {
+        if (emailString == null || emailString.length() == 0) {
             return false;
         }
 
