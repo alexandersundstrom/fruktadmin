@@ -4,6 +4,7 @@
     <ui:style field="styling" src="../css/styling.css"/>
 
     <u:HTMLPanel>
+        <h1>Ladda ner rapport</h1>
         <u:FormPanel ui:field="form">
             <u:HTMLPanel>
 
@@ -26,7 +27,6 @@
                 </div>
 
                 <div class="{styling.margin-bottom}">
-                    <u:CheckBox formValue="newsletter">Nyhetsbrev</u:CheckBox>
                     <u:CheckBox formValue="termsAndConditions" ui:field="termAndConditions">Jag har läst villkoren
                     </u:CheckBox>
                 </div>
