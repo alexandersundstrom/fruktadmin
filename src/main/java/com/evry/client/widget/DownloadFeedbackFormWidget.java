@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 
-public class DownloadFeedbackFormWidget extends Composite {
+public class DownloadFeedbackFormWidget extends Composite implements Form {
     interface MyUiBinder extends UiBinder<Widget, DownloadFeedbackFormWidget> {
     }
 
@@ -35,6 +35,9 @@ public class DownloadFeedbackFormWidget extends Composite {
     @UiField
     CheckBox termAndConditions;
 
+    @UiField
+    TextArea textArea;
+
     public DownloadFeedbackFormWidget() {
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -53,14 +56,14 @@ public class DownloadFeedbackFormWidget extends Composite {
             return;
         }
 
-        if(!validateRadioButtons()) {
+        if (!validateRadioButtons()) {
             FruktDialogBox dialogBox = new FruktDialogBox("Validering", "Du måste välja en ranking", false);
             dialogBox.show();
             event.cancel();
             return;
         }
 
-        if(!validateTermsAndConditions()) {
+        if (!validateTermsAndConditions()) {
             FruktDialogBox dialogBox = new FruktDialogBox("Validering", "Du måste acceptera villkoren", false);
             dialogBox.show();
 
@@ -69,6 +72,18 @@ public class DownloadFeedbackFormWidget extends Composite {
         }
         FruktDialogBox dialogBox = new FruktDialogBox("Formulär skickat", "Tack för din feedback!", false);
         dialogBox.show();
+    }
+
+    public boolean hasUnsubmittedChanges() {
+        String emailString = email.getValue().trim();
+        String textAreaValue = textArea.getValue().trim();
+
+        return (emailString != null &&
+                emailString.length() > 0) ||
+                validateRadioButtons() ||
+                validateTermsAndConditions() ||
+                (textAreaValue != null &&
+                        textAreaValue.length() != 0);
     }
 
     private boolean validateEmail(String emailString) {
@@ -81,10 +96,10 @@ public class DownloadFeedbackFormWidget extends Composite {
     }
 
     private boolean validateRadioButtons() {
-        return rating1.getValue() || rating2.getValue() || rating3.getValue() || rating4.getValue();
+        return rating1.isChecked() || rating2.isChecked() || rating3.isChecked() || rating4.isChecked();
     }
 
     private boolean validateTermsAndConditions() {
-        return termAndConditions.getValue();
+        return termAndConditions.isChecked();
     }
 }

@@ -8,7 +8,7 @@
             <span ui:field="description"></span>
             <div class="{style.buttonContainer}">
                 <u:Button ui:field="okButton">Ok</u:Button>
-                <u:Button ui:field="cancelButton" addStyleNames="{style.cancel-button}">Cancel</u:Button>
+                <u:Button ui:field="cancelButton" addStyleNames="{style.cancel-button}">Avbryt</u:Button>
             </div>
         </div>
     </u:HTMLPanel>

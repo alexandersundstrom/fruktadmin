@@ -23,7 +23,7 @@
 
                 <div class="{styling.margin-bottom}">
                     <u:Label>Övrigt</u:Label>
-                    <u:TextArea visibleLines="10" characterWidth="40"/>
+                    <u:TextArea ui:field="textArea" visibleLines="10" characterWidth="40"/>
                 </div>
 
                 <div class="{styling.margin-bottom}">
