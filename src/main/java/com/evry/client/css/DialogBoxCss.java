@@ -9,4 +9,7 @@ public interface DialogBoxCss extends CssResource {
     String fruktdialogTitle();
 
     String buttonContainer();
+
+    @ClassName("cancel-button")
+    String cancelButton();
 }

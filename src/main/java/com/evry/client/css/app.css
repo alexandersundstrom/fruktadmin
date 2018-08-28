@@ -98,6 +98,7 @@ button {
     text-decoration: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+    transition: background-color .5s;
 }
 
 #loggaut_pc:hover,
