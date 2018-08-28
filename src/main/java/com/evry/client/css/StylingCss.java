@@ -81,8 +81,8 @@ public interface StylingCss extends CssResource {
 
     String brodtextxaqua0();
 
-    @ClassName("limit-select")
-    String limitSelect();
+    @ClassName("dropdown-select")
+    String dropdownSelect();
 
     String footer_style();
 
