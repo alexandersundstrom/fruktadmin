@@ -1,10 +1,7 @@
 package com.evry.client.widget;
 
 import com.evry.client.model.FruktDialogBox;
-import com.evry.client.util.Log;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -12,7 +9,9 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 
 public class DownloadFeedbackFormWidget extends Composite {
-    interface MyUiBinder extends UiBinder<Widget, DownloadFeedbackFormWidget> {}
+    interface MyUiBinder extends UiBinder<Widget, DownloadFeedbackFormWidget> {
+    }
+
     private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
     @UiField
@@ -40,7 +39,7 @@ public class DownloadFeedbackFormWidget extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         email.getElement().setAttribute("type", "email");
-        email.getElement().setAttribute("placeholder", "Email");
+        email.getElement().setAttribute("placeholder", "Ange email");
     }
 
     @UiHandler("form")
@@ -74,7 +73,7 @@ public class DownloadFeedbackFormWidget extends Composite {
     }
 
     private boolean validateEmail(String emailString) {
-        if(emailString == null || emailString.length() == 0) {
+        if (emailString == null || emailString.length() == 0) {
             return false;
         }
 

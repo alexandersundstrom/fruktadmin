@@ -30,7 +30,7 @@ public class FruktDialogBox extends DialogBox {
     }
 
     public void setOkClickHandler(ClickHandler clickHandler) {
-        if(okButtonRegistration != null) {
+        if (okButtonRegistration != null) {
             okButtonRegistration.removeHandler();
             okButtonRegistration = null;
         }
@@ -42,7 +42,7 @@ public class FruktDialogBox extends DialogBox {
     }
 
     public void setCancelClickHandler(ClickHandler clickHandler) {
-        if(cancelButtonRegistration != null) {
+        if (cancelButtonRegistration != null) {
             cancelButtonRegistration.removeHandler();
             cancelButtonRegistration = null;
         }
