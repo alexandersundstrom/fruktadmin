@@ -33,7 +33,7 @@ public class FruktDialogBox extends DialogBox {
         cancelButton = fruktDialogBoxWidget.getCancelButton();
         cancelButtonRegistration = cancelButton.addClickHandler(event -> hide());
 
-        setPopupPosition(400, 100);
+        center();
     }
 
     public void setOkClickHandler(ClickHandler clickHandler) {
