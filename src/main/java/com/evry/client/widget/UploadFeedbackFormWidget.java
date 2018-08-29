@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
 
-public class UploadFeedbackFormWidget extends Composite implements Form {
+public class UploadFeedbackFormWidget extends Composite implements FormWidget {
     interface MyUiBinder extends UiBinder<Widget, UploadFeedbackFormWidget> {
     }
 
@@ -79,7 +79,7 @@ public class UploadFeedbackFormWidget extends Composite implements Form {
     public boolean hasUnsubmittedChanges() {
         String emailString = email.getValue().trim();
         String textAreaValue = textArea.getValue().trim();
-        return emailString.length() > 0 || validateRadioButtons() || validateTermsAndConditions() || textAreaValue.length() != 0;
+        return emailString.length() > 0 || validateRadioButtons() || validateTermsAndConditions() || textAreaValue.length() > 0;
     }
 
     private boolean validateEmail(String emailString) {
@@ -101,11 +101,11 @@ public class UploadFeedbackFormWidget extends Composite implements Form {
         rating4.setValue(false);
     }
     private boolean validateRadioButtons() {
-        return rating1.isChecked() || rating2.isChecked() || rating3.isChecked() || rating4.isChecked();
+        return rating1.getValue() || rating2.getValue() || rating3.getValue() || rating4.getValue();
     }
 
     private boolean validateTermsAndConditions() {
-        return termAndConditions.isChecked();
+        return termAndConditions.getValue();
     }
 
 

@@ -54,6 +54,10 @@ public class ClientReportTableWidget extends Composite implements Pageable {
 
         initReportTable();
         refreshTable();
+        initPagination();
+    }
+
+    public void initPagination() {
         pagination.init(this);
     }
 
@@ -139,10 +143,16 @@ public class ClientReportTableWidget extends Composite implements Pageable {
     }
 
     private void refreshTable() {
+        if(clientReports == null) {
+            return;
+        }
         setRows(clientReports.subList((currentPage - 1) * reportsPerPage, Math.min(clientReports.size(), currentPage * reportsPerPage)));
     }
 
     private void sortReports() {
+        if(clientReports == null) {
+            return;
+        }
         if(sortAscending) {
             clientReports.sort(Comparator.naturalOrder());
         } else {
@@ -203,6 +213,9 @@ public class ClientReportTableWidget extends Composite implements Pageable {
 
     @Override
     public int getLastPage() {
+        if(clientReports == null) {
+            return 0;
+        }
         return clientReports.size() % reportsPerPage == 0 ? clientReports.size() / reportsPerPage : (clientReports.size() / reportsPerPage) + 1;
     }
 
@@ -213,7 +226,7 @@ public class ClientReportTableWidget extends Composite implements Pageable {
 
     @Override
     public int getItemCount() {
-        return clientReports.size();
+        return clientReports != null ? clientReports.size() : 0;
     }
 
     @Override

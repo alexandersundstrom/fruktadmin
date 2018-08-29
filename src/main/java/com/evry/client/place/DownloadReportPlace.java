@@ -7,6 +7,10 @@ public class DownloadReportPlace extends Place {
     private int page;
     private int reportsPerPage;
 
+    public DownloadReportPlace() {
+        this("1,10");
+    }
+
     public DownloadReportPlace(String token) {
         String[] split = token.split(",");
         page = Integer.parseInt(split[0]);

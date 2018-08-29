@@ -52,6 +52,12 @@ public class DownloadReportPage extends Composite {
         });
     }
 
+    public void setTableProps(int page, int reportsPerPage) {
+        reportTable.setItemsPerPage(reportsPerPage);
+        reportTable.goToPage(page);
+        reportTable.initPagination();
+    }
+
     public void setFruktActivity(FruktActivity fruktActivity) {
         mainContent.setFruktActivity(fruktActivity);
     }

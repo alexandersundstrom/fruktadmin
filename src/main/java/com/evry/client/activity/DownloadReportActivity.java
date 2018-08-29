@@ -24,6 +24,7 @@ public class DownloadReportActivity extends AbstractActivity implements FruktAct
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
         DownloadReportPage downloadReportPage = clientFactory.getDownloadReportPage();
         downloadReportPage.setFruktActivity(this);
+        downloadReportPage.setTableProps(page, reportsPerPage);
         containerWidget.setWidget(downloadReportPage);
     }
 

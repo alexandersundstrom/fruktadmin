@@ -19,7 +19,13 @@ public class FeedbackActivity extends AbstractActivity implements FruktActivity 
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
         FeedbackPage feedbackPage = clientFactory.getFeedbackPage();
         feedbackPage.setFruktActivity(this);
+        feedbackPage.reset();
         containerWidget.setWidget(feedbackPage);
+    }
+
+    @Override
+    public String mayStop() {
+        return clientFactory.getFeedbackPage().isDirty() ? "Du har osparade ändringar, är du säker på att du vill lämna sidan?" : null;
     }
 
     @Override

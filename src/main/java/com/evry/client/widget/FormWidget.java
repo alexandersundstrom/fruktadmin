@@ -1,6 +1,5 @@
 package com.evry.client.widget;
 
-public interface Form {
-
+public interface FormWidget {
     boolean hasUnsubmittedChanges();
 }

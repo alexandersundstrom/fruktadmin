@@ -54,26 +54,36 @@ public class PaginationWidget extends Composite {
     public void init(Pageable pageable) {
         this.pageable = pageable;
         title.setInnerText("Antal " + pageable.getItemName() + " per sida");
+        updateItemsPerPageSelector();
+        updateArrowButtons();
         updatePageInfo();
+    }
+
+    private void updateItemsPerPageSelector() {
+        switch(this.pageable.getItemsPerPage()) {
+            case 10:
+                itemsPerPageSelector.setItemSelected(0, true);
+                break;
+            case 25:
+                itemsPerPageSelector.setItemSelected(1, true);
+                break;
+            case 50:
+                itemsPerPageSelector.setItemSelected(2, true);
+                break;
+            case 100:
+                itemsPerPageSelector.setItemSelected(3, true);
+                break;
+            default:
+                itemsPerPageSelector.setItemSelected(4, true);
+                break;
+        }
     }
 
     private void updatePageInfo() {
         pageInfo.setInnerText(pageable.getItemName().substring(0, 1).toUpperCase() + pageable.getItemName().substring(1) + " " + (((pageable.getCurrentPage() - 1) * pageable.getItemsPerPage()) + 1) + "-" + (Math.min(pageable.getCurrentPage() * pageable.getItemsPerPage(), pageable.getItemCount()) + " av " + pageable.getItemCount()));
     }
 
-    @UiHandler("itemsPerPageSelector")
-    public void onChange(ChangeEvent event) {
-        int itemsPerPage = Integer.valueOf(itemsPerPageSelector.getSelectedValue());
-
-        pageable.setItemsPerPage(itemsPerPage == -1 ? pageable.getItemCount() : itemsPerPage);
-        if (pageable.getCurrentPage() > pageable.getLastPage()) {
-            pageable.goToPage(pageable.getLastPage());
-        } else {
-            pageable.refresh();
-        }
-
-        updatePageInfo();
-
+    private void updateArrowButtons() {
         if (pageable.getCurrentPage() == pageable.getFirstPage()) {
             firstPageButton.addStyleName(style.disabled());
             previousPageButton.addStyleName(style.disabled());
@@ -89,6 +99,21 @@ public class PaginationWidget extends Composite {
             lastPageButton.removeStyleName(style.disabled());
             nextPageButton.removeStyleName(style.disabled());
         }
+    }
+
+    @UiHandler("itemsPerPageSelector")
+    public void onChange(ChangeEvent event) {
+        int itemsPerPage = Integer.valueOf(itemsPerPageSelector.getSelectedValue());
+
+        pageable.setItemsPerPage(itemsPerPage == -1 ? pageable.getItemCount() : itemsPerPage);
+        if (pageable.getCurrentPage() > pageable.getLastPage()) {
+            pageable.goToPage(pageable.getLastPage());
+        } else {
+            pageable.refresh();
+        }
+
+        updatePageInfo();
+        updateArrowButtons();
     }
 
     @UiHandler("firstPageButton")
