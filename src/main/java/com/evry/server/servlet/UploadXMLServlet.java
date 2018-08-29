@@ -27,7 +27,21 @@ public class UploadXMLServlet extends HttpServlet {
                 }
 
                 InputStream stream = item.openStream();
-                fruktkorgService.updateFruktkorgar(stream);
+
+                String type = request.getParameter("type");
+                if (type == null) {
+                    throw new RuntimeException("Type parameter was missing, unable to send request.");
+                }
+
+                if (!type.equals("update") && !type.equals("restore")) {
+                    throw new RuntimeException("Type parameter has to be either update or restore");
+                }
+
+                if ("update".equals(type)) {
+                    fruktkorgService.updateFruktkorgar(stream);
+                } else if ("restore".equals(type)) {
+                    fruktkorgService.restoreFruktkorgar(stream);
+                }
                 stream.close();
             }
         } catch (FileUploadException e) {

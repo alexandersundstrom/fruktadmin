@@ -10,7 +10,7 @@
         <f:MainContentWidget ui:field="mainContent">
             <f:content>
                 <u:HTMLPanel>
-                    <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML" encoding="multipart/form-data" method="post">
+                    <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML?type=update" encoding="multipart/form-data" method="post">
                         <u:VerticalPanel>
                             <u:FileUpload ui:field="fileUploader" name="uploadFormElement" />
                             <u:SubmitButton>Submit</u:SubmitButton>

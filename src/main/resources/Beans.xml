@@ -17,9 +17,11 @@
 
     <bean id="fruktkorgService" class="com.evry.fruktkorgservice.service.FruktkorgServiceImpl">
         <constructor-arg ref="fruktkorgDAO" />
+        <constructor-arg ref="fruktDAO" />
     </bean>
 
     <bean id="fruktkorgDAO" class="com.evry.fruktkorgpersistence.dao.FruktkorgDAOImpl" />
+    <bean id="fruktDAO" class="com.evry.fruktkorgpersistence.dao.FruktDAOImpl" />
 
     <bean id="myEmf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="prodPU"/>
