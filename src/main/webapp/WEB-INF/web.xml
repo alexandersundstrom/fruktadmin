@@ -26,8 +26,18 @@
         <servlet-class>com.evry.server.servlet.UploadXMLServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>downloadSchemaDefinition</servlet-name>
+        <servlet-class>com.evry.server.servlet.DownloadXSDServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>uploadXML</servlet-name>
         <url-pattern>/fruktadmin/upploadXML</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>downloadSchemaDefinition</servlet-name>
+        <url-pattern>/fruktadmin/schema</url-pattern>
     </servlet-mapping>
 </web-app>

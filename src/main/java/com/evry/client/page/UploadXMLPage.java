@@ -28,7 +28,7 @@ public class UploadXMLPage extends Composite {
     public UploadXMLPage() {
         initWidget(uiBinder.createAndBindUi(this));
 
-        mainContent.setText("Här kan du ladda upp XML filer för att uppdatera fruktkorgar.");
+        mainContent.setText("Här kan du ladda upp XML filer för att uppdatera eller återställa dina fruktkorgar.");
         uploadOptions.getElement().getFirstChildElement().setAttribute("disabled", "disabled");
         currentForm = null;
     }

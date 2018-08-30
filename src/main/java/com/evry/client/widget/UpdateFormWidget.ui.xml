@@ -14,6 +14,7 @@
         <u:SubmitButton>Submit</u:SubmitButton>
         </u:VerticalPanel>
         </u:FormPanel>
+        <u:Anchor href="/fruktadmin/schema?schema=update">Schema Definition</u:Anchor>
     </u:HTMLPanel>
 
 </ui:UiBinder>
