@@ -3,7 +3,7 @@ package com.evry.client.util;
 import com.evry.client.page.DownloadReportPage;
 import com.evry.client.page.FeedbackPage;
 import com.evry.client.page.HomePage;
-import com.evry.client.page.UploadUpdatePage;
+import com.evry.client.page.UploadXMLPage;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -44,7 +44,7 @@ public class Navigator {
             case DOWNLOAD_REPORT_PAGE:
                 return new DownloadReportPage();
             case UPLOAD_UPDATE_PAGE:
-                return new UploadUpdatePage();
+                return new UploadXMLPage();
             case FEEDBACK_PAGE:
                 return new FeedbackPage();
         }

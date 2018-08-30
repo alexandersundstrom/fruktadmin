@@ -3,7 +3,7 @@ package com.evry.client.core;
 import com.evry.client.page.DownloadReportPage;
 import com.evry.client.page.FeedbackPage;
 import com.evry.client.page.HomePage;
-import com.evry.client.page.UploadUpdatePage;
+import com.evry.client.page.UploadXMLPage;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
@@ -13,7 +13,7 @@ public class ClientFactory {
     private final PlaceController placeController = new PlaceController(eventBus);
     private final DownloadReportPage downloadReportPage = new DownloadReportPage();
     private final HomePage homePage = new HomePage();
-    private final UploadUpdatePage uploadUpdatePage = new UploadUpdatePage();
+    private final UploadXMLPage uploadXMLPage = new UploadXMLPage();
     private final FeedbackPage feedbackPage = new FeedbackPage();
 
     public EventBus getEventBus() {
@@ -32,8 +32,8 @@ public class ClientFactory {
         return homePage;
     }
 
-    public UploadUpdatePage getUploadUpdatePage() {
-        return uploadUpdatePage;
+    public UploadXMLPage getUploadXMLPage() {
+        return uploadXMLPage;
     }
 
     public FeedbackPage getFeedbackPage() {

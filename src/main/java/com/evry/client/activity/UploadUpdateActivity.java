@@ -1,7 +1,7 @@
 package com.evry.client.activity;
 
 import com.evry.client.core.ClientFactory;
-import com.evry.client.page.UploadUpdatePage;
+import com.evry.client.page.UploadXMLPage;
 import com.evry.client.place.UploadUpdatePlace;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
@@ -17,9 +17,9 @@ public class UploadUpdateActivity extends AbstractActivity implements FruktActiv
 
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-        UploadUpdatePage uploadUpdatePage = clientFactory.getUploadUpdatePage();
-        uploadUpdatePage.setFruktActivity(this);
-        containerWidget.setWidget(uploadUpdatePage);
+        UploadXMLPage uploadXMLPage = clientFactory.getUploadXMLPage();
+        uploadXMLPage.setFruktActivity(this);
+        containerWidget.setWidget(uploadXMLPage);
     }
 
     @Override

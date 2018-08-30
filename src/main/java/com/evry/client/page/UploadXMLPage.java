@@ -8,11 +8,10 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 
-public class UploadUpdatePage extends Composite {
-    interface MyUiBinder extends UiBinder<Widget, UploadUpdatePage> {}
+public class UploadXMLPage extends Composite {
+    interface MyUiBinder extends UiBinder<Widget, UploadXMLPage> {}
     private static final MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
     @UiField
@@ -26,7 +25,7 @@ public class UploadUpdatePage extends Composite {
     @UiField
     SimplePanel formContent;
 
-    public UploadUpdatePage() {
+    public UploadXMLPage() {
         initWidget(uiBinder.createAndBindUi(this));
 
         mainContent.setText("Här kan du ladda upp XML filer för att uppdatera fruktkorgar.");
