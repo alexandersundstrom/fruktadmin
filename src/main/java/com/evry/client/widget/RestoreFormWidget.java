@@ -1,11 +1,12 @@
 package com.evry.client.widget;
 
-import com.evry.client.util.Log;
+import com.evry.client.json.XMLUploadResponseMessage;
+import com.evry.client.model.FruktDialogBox;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
@@ -36,7 +37,15 @@ public class RestoreFormWidget extends Composite implements FormWidget {
     @UiHandler("form")
     public void onSubmitCompleteFrom(FormPanel.SubmitCompleteEvent event) {
         glass.off();
-        Log.warn(event.getResults());
+        XMLUploadResponseMessage result = JsonUtils.safeEval(event.getResults());
+        if (result.getSuccess()) {
+            fileUploader.getElement().setPropertyString("value", "");
+            FruktDialogBox dialogBox = new FruktDialogBox("Information", result.getMessage(), false);
+            dialogBox.show();
+        } else {
+            FruktDialogBox dialogBox = new FruktDialogBox("Fel", result.getMessage(), false);
+            dialogBox.show();
+        }
     }
 
     @Override

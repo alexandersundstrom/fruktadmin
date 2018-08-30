@@ -1,5 +1,8 @@
 package com.evry.server.servlet;
 
+import com.evry.client.util.Log;
+import com.evry.fruktkorgservice.exception.FruktMissingException;
+import com.evry.fruktkorgservice.exception.FruktkorgMissingException;
 import com.evry.fruktkorgservice.service.FruktkorgService;
 import com.evry.server.util.Beans;
 import org.apache.commons.fileupload.FileItemIterator;
@@ -26,7 +29,6 @@ public class UploadXMLServlet extends HttpServlet {
                     throw new RuntimeException("File must be of typ XML, but was: " + item.getContentType());
                 }
 
-                InputStream stream = item.openStream();
 
                 String type = request.getParameter("type");
                 if (type == null) {
@@ -37,25 +39,42 @@ public class UploadXMLServlet extends HttpServlet {
                     throw new RuntimeException("Type parameter has to be either update or restore");
                 }
 
-                if ("update".equals(type)) {
-                    fruktkorgService.updateFruktkorgar(stream);
-                } else if ("restore".equals(type)) {
-                    fruktkorgService.restoreFruktkorgar(stream);
+                try (InputStream stream = item.openStream()) {
+                    if ("update".equals(type)) {
+                        fruktkorgService.updateFruktkorgar(stream);
+                        response.setStatus(200);
+                        response.setHeader("Content-Type", "text/html");
+                        response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar uppdaterades.\"}");
+
+                    } else if ("restore".equals(type)) {
+                        fruktkorgService.restoreFruktkorgar(stream);
+                        response.setStatus(200);
+                        response.setHeader("Content-Type", "text/html");
+                        response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar återställda.\"}");
+
+                    }
+                } catch (FruktMissingException e) {
+                    response.setStatus(400);
+                    response.setHeader("Content-Type", "text/html");
+                    response.getWriter().print("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+                } catch (FruktkorgMissingException e) {
+                    response.setStatus(400);
+                    response.setHeader("Content-Type", "text/html");
+                    response.getWriter().print("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+                } catch (IOException e) {
+                    Log.warn("Caught an IOException: " + e.getMessage());
                 }
-                stream.close();
             }
         } catch (FileUploadException e) {
-            // do something
-        } catch (IOException e) {
-            // do something else
-        }
-
-        response.setStatus(200);
-        try {
+            response.setStatus(400);
             response.setHeader("Content-Type", "text/html");
-            response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar uppdaterades.\"}");
+            try {
+                response.getWriter().print("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+            } catch (IOException e1) {
+
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.warn("Caught an IOException: " + e.getMessage());
         }
     }
 }
