@@ -41,6 +41,6 @@ public class RestoreFormWidget extends Composite implements FormWidget {
 
     @Override
     public boolean hasUnsubmittedChanges() {
-        return false;
+        return fileUploader.getFilename() != null && fileUploader.getFilename().length() > 0;
     }
 }

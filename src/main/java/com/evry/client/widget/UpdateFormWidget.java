@@ -1,5 +1,6 @@
 package com.evry.client.widget;
 
+import com.evry.client.util.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -39,6 +40,6 @@ public class UpdateFormWidget extends Composite implements  FormWidget {
 
     @Override
     public boolean hasUnsubmittedChanges() {
-        return false;
+        return fileUploader.getFilename() != null && fileUploader.getFilename().length() > 0;
     }
 }
