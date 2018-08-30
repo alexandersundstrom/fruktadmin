@@ -7,10 +7,10 @@
     <u:HTMLPanel>
         <f:GlassWidget ui:field="glass"/>
         <h1>Återställa Fruktkorgar</h1>
-        <p>Den fil du laddar upp kommer uppdatera de befintliga fruktkorgarna med respektive id. Det går även att skapa nya fruktkorgar. OBS, detta återställer all data baserad på filen.</p>
+        <p>Databasen kommer återställas enligt den XML fil som laddas upp. Fruktkorgar och frukter som som ej finns med i filen kommer att tas bort.</p>
         <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML?type=restore" encoding="multipart/form-data" method="post">
         <u:VerticalPanel>
-        <u:FileUpload ui:field="fileUploader" name="uploadFormElement" />
+        <u:FileUpload ui:field="fileUploader" addStyleNames="{styling.margin-bottom}" name="uploadFormElement" />
         <u:SubmitButton>Submit</u:SubmitButton>
         </u:VerticalPanel>
         </u:FormPanel>

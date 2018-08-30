@@ -7,10 +7,10 @@
     <u:HTMLPanel>
         <f:GlassWidget ui:field="glass"/>
         <h1>Uppdatera Fruktkorgar</h1>
-        <p>Den fil du laddar upp kommer uppdatera de befintliga fruktkorgarna med respektive id. Det går enbart att uppdatera befintliga fruktkorgar.</p>
+        <p>Den fil du laddar upp kommer uppdatera de befintliga fruktkorgarna utifrån deras id.</p>
         <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML?type=update" encoding="multipart/form-data" method="post">
         <u:VerticalPanel>
-        <u:FileUpload ui:field="fileUploader" name="uploadFormElement" />
+        <u:FileUpload ui:field="fileUploader" addStyleNames="{styling.margin-bottom}" name="uploadFormElement" />
         <u:SubmitButton>Submit</u:SubmitButton>
         </u:VerticalPanel>
         </u:FormPanel>

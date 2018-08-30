@@ -13,6 +13,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -63,6 +64,10 @@ public class UploadXMLServlet extends HttpServlet {
                     response.getWriter().print("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
                 } catch (IOException e) {
                     Log.warn("Caught an IOException: " + e.getMessage());
+                } catch (JAXBException e) {
+                    response.setStatus(400);
+                    response.setHeader("Content-Type", "text/html");
+                    response.getWriter().print("{\"success\": false, \"message\": \"" + "XML filen kunde inte konverteras till Fruktkorgar. Säkerställ att den följer schema definitionen." + "\"}");
                 }
             }
         } catch (FileUploadException e) {
