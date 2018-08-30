@@ -1,21 +1,27 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:f='urn:import:com.evry.client.widget'
-             xmlns:u='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:u='urn:import:com.google.gwt.user.client.ui'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <ui:style field="app" src="../css/app.css" />
     <ui:style field="grund" src="../css/grund.css" />
+    <ui:style field="styling" src="../css/styling.css"/>
 
     <u:HTMLPanel>
-        <f:GlassWidget ui:field="glass"/>
         <f:MainContentWidget ui:field="mainContent">
             <f:content>
                 <u:HTMLPanel>
-                    <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML?type=update" encoding="multipart/form-data" method="post">
+                    <u:HTMLPanel>
                         <u:VerticalPanel>
-                            <u:FileUpload ui:field="fileUploader" name="uploadFormElement" />
-                            <u:SubmitButton>Submit</u:SubmitButton>
+                            <u:ListBox addStyleNames="{styling.dropdown-select}" ui:field="uploadOptions"
+                                       name="feedbackOptions">
+                                <g:item value="">Välj...</g:item>
+                                <g:item value="update">Uppdatera Fruktkorgar</g:item>
+                                <g:item value="restore">Återställa fruktkorgar </g:item>
+                            </u:ListBox>
                         </u:VerticalPanel>
-                    </u:FormPanel>
+                        <u:SimplePanel ui:field="formContent"/>
+                    </u:HTMLPanel>
                 </u:HTMLPanel>
             </f:content>
         </f:MainContentWidget>
