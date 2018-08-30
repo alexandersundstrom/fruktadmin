@@ -52,8 +52,8 @@ public class UploadXMLServlet extends HttpServlet {
 
         response.setStatus(200);
         try {
-            response.setHeader("Content-Type", "application/json");
-            response.getWriter().print("{\"success\": true, \"message\": \"File uploaded\"}");
+            response.setHeader("Content-Type", "text/html");
+            response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar uppdaterades.\"}");
         } catch (IOException e) {
             e.printStackTrace();
         }

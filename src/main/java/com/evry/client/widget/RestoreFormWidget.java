@@ -1,5 +1,6 @@
 package com.evry.client.widget;
 
+import com.evry.client.util.Log;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -35,8 +36,7 @@ public class RestoreFormWidget extends Composite implements FormWidget {
     @UiHandler("form")
     public void onSubmitCompleteFrom(FormPanel.SubmitCompleteEvent event) {
         glass.off();
-
-        Window.alert(event.getResults());
+        Log.warn(event.getResults());
     }
 
     @Override
