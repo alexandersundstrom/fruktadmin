@@ -3,11 +3,11 @@ package com.evry.server.servlet;
 import com.evry.fruktkorgservice.exception.ReportMissingException;
 import com.evry.fruktkorgservice.model.ImmutableFrukt;
 import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
-import com.evry.fruktkorgservice.model.ImmutableReport;
 import com.evry.fruktkorgservice.service.ReportService;
 import com.evry.server.util.Beans;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -29,40 +29,36 @@ public class DownloadReportServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         long reportId = -1;
         FileType fileType = FileType.XML;
+        String name = "";
 
-        for(Cookie cookie : cookies) {
-            if(cookie.getName().equals("REPORT_ID") && isLong(cookie.getValue())) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("REPORT_ID") && isLong(cookie.getValue())) {
                 reportId = Long.parseLong(cookie.getValue());
-            } else if(cookie.getName().equals("REPORT_FILE_TYPE")) {
+            } else if (cookie.getName().equals("REPORT_FILE_TYPE")) {
                 fileType = FileType.valueOf(cookie.getValue());
             }
-
+         name = req.getParameter("name");
         }
 
-        if(reportId == -1) {
+        if (reportId == -1) {
             return;
         }
 
-        ImmutableReport immutableReport;
+        byte[] bytes;
         try {
-            immutableReport = reportService.getAndMarkReport(reportId);
+            bytes = IOUtils.toByteArray(reportService.getAndMarkReport(reportId));
         } catch (ReportMissingException e) {
             // do something
             return;
         }
 
-        String[] split = immutableReport.getLocation().split("/");
-        String name = split[split.length - 1].split("\\.")[0];
-
-        File reportFile = null;
         try {
             switch(fileType) {
                 case XML:
-                    reportFile = new File(immutableReport.getLocation());
                     name += ".xml";
                     break;
                 case PDF:
-                    reportFile = getPdfFile(immutableReport);
+                    bytes = getPdfFile(reportId);
                     name += ".pdf";
                     break;
             }
@@ -72,31 +68,30 @@ public class DownloadReportServlet extends HttpServlet {
             // do something else
         }
 
-        if(reportFile == null) {
+        if (bytes == null) {
             return;
         }
 
-        byte[] bytes = getBytesFromFile(reportFile);
         sendReport(resp, bytes, name, fileType.getContentType());
     }
 
-    private File getPdfFile(ImmutableReport immutableReport) throws IOException, DocumentException, ReportMissingException {
+    private byte[] getPdfFile(long reportId) throws IOException, DocumentException, ReportMissingException {
         File pdfReport = File.createTempFile("pdfReport-", ".tmp");
         pdfReport.deleteOnExit();
 
         ReportService reportService = Beans.getBean("reportService");
-        List<ImmutableFruktkorg> fruktkorgList = reportService.getFruktkorgarFromReport(immutableReport.getId());
+        List<ImmutableFruktkorg> fruktkorgList = reportService.getFruktkorgarFromReport(reportId);
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(pdfReport));
 
         document.open();
         document.addTitle("Fruktkorg Report");
-        for(ImmutableFruktkorg fruktkorg : fruktkorgList) {
+        for (ImmutableFruktkorg fruktkorg : fruktkorgList) {
             document.add(new Paragraph(fruktkorg.getName() + " - " + fruktkorg.getLastChanged()));
             com.itextpdf.text.List list = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
 
-            for(ImmutableFrukt frukt : fruktkorg.getFruktList()) {
+            for (ImmutableFrukt frukt : fruktkorg.getFruktList()) {
                 ListItem item = new ListItem(frukt.getType() + ": " + frukt.getAmount());
                 item.setAlignment(Element.ALIGN_JUSTIFIED);
                 list.add(item);
@@ -107,7 +102,7 @@ public class DownloadReportServlet extends HttpServlet {
 
         document.close();
 
-        return pdfReport;
+        return getBytesFromFile(pdfReport);
     }
 
     private byte[] getBytesFromFile(File reportFile) {
@@ -117,7 +112,7 @@ public class DownloadReportServlet extends HttpServlet {
             FileInputStream fileInputStream = new FileInputStream(reportFile);
             bytes = new byte[(int) reportFile.length()];
             fileInputStream.read(bytes);
-        } catch(IOException e) {
+        } catch (IOException e) {
             // do nothing
         }
 

@@ -20,6 +20,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Comparator;
 import java.util.List;
@@ -65,8 +66,7 @@ public class ClientReportTableWidget extends Composite implements Pageable {
         TextColumn<ClientReport> nameColumn = new TextColumn<ClientReport>() {
             @Override
             public String getValue(ClientReport clientReport) {
-                String location = clientReport.getLocation();
-                return location.substring(location.lastIndexOf("t") + 2);
+                return getLocationSubstringed(clientReport);
             }
         };
 
@@ -107,7 +107,7 @@ public class ClientReportTableWidget extends Composite implements Pageable {
                 event.preventDefault();
                 Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
                 Cookies.setCookie("REPORT_FILE_TYPE", "PDF");
-                Window.open(GWT.getModuleBaseURL() + "downloadReport", "_self", "enabled");
+                Window.open(GWT.getModuleBaseURL() + "downloadReport?name=" + getLocationSubstringed(clientReport), "_self", "enabled");
             }
         };
 
@@ -124,11 +124,20 @@ public class ClientReportTableWidget extends Composite implements Pageable {
                 event.preventDefault();
                 Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
                 Cookies.setCookie("REPORT_FILE_TYPE", "XML");
-                Window.open(GWT.getModuleBaseURL() + "downloadReport", "_self", "enabled");
+                String name = getLocationSubstringed(clientReport);
+                Window.open(GWT.getModuleBaseURL() + "downloadReport?name=" + name, "_self", "enabled");
             }
         };
 
         reportTable.addColumn(downloadReportXML, "XML");
+    }
+
+    private String getLocationSubstringed(ClientReport clientReport) {
+        String location = clientReport.getLocation();
+        location = location.substring(location.lastIndexOf("t") + 2);
+        location = location.substring(0, location.lastIndexOf("."));
+
+        return location;
     }
 
     private void setRows(List<ClientReport> clientReports) {
