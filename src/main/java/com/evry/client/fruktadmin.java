@@ -40,14 +40,5 @@ public class fruktadmin implements EntryPoint {
         RootPanel.get().add(appWidget);
 
         historyHandler.handleCurrentHistory();
-
-//        History.addValueChangeHandler(new ValueChangeHandler<String>() {
-//            @Override
-//            public void onValueChange(ValueChangeEvent<String> event) {
-//                Navigator.onHashChange(event.getValue());
-//            }
-//        });
-//
-//        Navigator.onHashChange(Window.Location.getHash().replace("#", ""));
     }
 }
