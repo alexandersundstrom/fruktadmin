@@ -8,13 +8,13 @@
         <f:GlassWidget ui:field="glass"/>
         <h1>Uppdatera Fruktkorgar</h1>
         <p>Den fil du laddar upp kommer uppdatera de befintliga fruktkorgarna utifrån deras id.</p>
+        <p>Filen behöver följa detta <u:Anchor href="/fruktadmin/schema?schema=update">schema</u:Anchor>.</p>
         <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML?type=update" encoding="multipart/form-data" method="post">
         <u:VerticalPanel>
         <u:FileUpload ui:field="fileUploader" addStyleNames="{styling.margin-bottom}" name="uploadFormElement" />
         <u:SubmitButton>Submit</u:SubmitButton>
         </u:VerticalPanel>
         </u:FormPanel>
-        <u:Anchor href="/fruktadmin/schema?schema=update">Schema Definition</u:Anchor>
     </u:HTMLPanel>
 
 </ui:UiBinder>
