@@ -1,9 +1,9 @@
 package com.evry.server.servlet;
 
+import com.evry.fruktkorgservice.domain.model.ImmutableFrukt;
+import com.evry.fruktkorgservice.domain.model.ImmutableFruktkorg;
+import com.evry.fruktkorgservice.domain.service.ReportService;
 import com.evry.fruktkorgservice.exception.ReportMissingException;
-import com.evry.fruktkorgservice.model.ImmutableFrukt;
-import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
-import com.evry.fruktkorgservice.service.ReportService;
 import com.evry.server.util.Beans;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -37,7 +37,7 @@ public class DownloadReportServlet extends HttpServlet {
             } else if (cookie.getName().equals("REPORT_FILE_TYPE")) {
                 fileType = FileType.valueOf(cookie.getValue());
             }
-         name = req.getParameter("name");
+            name = req.getParameter("name");
         }
 
         if (reportId == -1) {
@@ -53,7 +53,7 @@ public class DownloadReportServlet extends HttpServlet {
         }
 
         try {
-            switch(fileType) {
+            switch (fileType) {
                 case XML:
                     name += ".xml";
                     break;

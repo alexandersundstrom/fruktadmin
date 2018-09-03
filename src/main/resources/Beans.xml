@@ -8,20 +8,20 @@
 
     <context:annotation-config/>
 
-    <bean id = "reportService" class = "com.evry.fruktkorgservice.service.ReportService">
-        <constructor-arg ref="reportDAO"/>
+    <bean id = "reportService" class = "com.evry.fruktkorgservice.domain.service.ReportService">
+        <constructor-arg ref="reportRepositoryHibernate"/>
         <constructor-arg ref="fruktkorgService" />
     </bean>
 
-    <bean id = "reportDAO" class="com.evry.fruktkorgpersistence.dao.ReportDAO" />
+    <bean id = "reportRepositoryHibernate" class="com.evry.fruktkorgpersistence.hibernate.ReportRepositoryHibernate" />
 
-    <bean id="fruktkorgService" class="com.evry.fruktkorgservice.service.FruktkorgService">
-        <constructor-arg ref="fruktkorgDAO" />
-        <constructor-arg ref="fruktDAO" />
+    <bean id="fruktkorgService" class="com.evry.fruktkorgservice.domain.service.FruktkorgService">
+        <constructor-arg ref="fruktKorgHibernate" />
+        <constructor-arg ref="fruktHibernate" />
     </bean>
 
-    <bean id="fruktkorgDAO" class="com.evry.fruktkorgpersistence.dao.FruktkorgDAO" />
-    <bean id="fruktDAO" class="com.evry.fruktkorgpersistence.dao.FruktDAO" />
+    <bean id="fruktKorgHibernate" class="com.evry.fruktkorgpersistence.hibernate.FruktkorgRepositoryHibernate" />
+    <bean id="fruktHibernate" class="com.evry.fruktkorgpersistence.hibernate.FruktRepositoryHibernate" />
 
     <bean id="myEmf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="prodPU"/>

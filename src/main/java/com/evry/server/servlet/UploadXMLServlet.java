@@ -1,9 +1,9 @@
 package com.evry.server.servlet;
 
 import com.evry.client.util.Log;
+import com.evry.fruktkorgservice.domain.service.FruktkorgService;
 import com.evry.fruktkorgservice.exception.FruktMissingException;
 import com.evry.fruktkorgservice.exception.FruktkorgMissingException;
-import com.evry.fruktkorgservice.service.FruktkorgService;
 import com.evry.server.util.Beans;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
