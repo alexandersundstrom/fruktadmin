@@ -37,7 +37,7 @@
 
     <dependency>
       <groupId>com.evry</groupId>
-      <artifactId>service</artifactId>
+      <artifactId>application</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
