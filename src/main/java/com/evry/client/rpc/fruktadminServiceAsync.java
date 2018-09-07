@@ -1,6 +1,6 @@
 package com.evry.client.rpc;
 
-import com.evry.client.model.ClientReport;
+import com.evry.client.activites.activity.downloadreport.widget.model.ClientReport;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.List;

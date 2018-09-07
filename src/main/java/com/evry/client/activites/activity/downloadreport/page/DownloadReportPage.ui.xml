@@ -1,0 +1,19 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:f='urn:import:com.evry.client.activites.dependencies.widgets.maincontent'
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:maincontent="urn:import:com.evry.client.activites.dependencies.widgets.maincontent"
+             xmlns:glass="urn:import:com.evry.client.activites.dependencies.widgets.glass"
+             xmlns:table2="urn:import:com.evry.client.activites.activity.downloadreport.widget.table">
+
+    <ui:style field="app" src="../../../dependencies/css/app.css" />
+    <ui:style field="style" src="../../../dependencies/css/styling.css" />
+
+    <g:HTMLPanel>
+        <glass:GlassWidget ui:field="glass" />
+        <maincontent:MainContentWidget ui:field="mainContent">
+            <f:content>
+                <table2:ClientReportTableWidget ui:field="reportTable" />
+            </f:content>
+        </maincontent:MainContentWidget>
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -1,6 +1,6 @@
 package com.evry.server.rpc;
 
-import com.evry.client.model.ClientReport;
+import com.evry.client.activites.activity.downloadreport.widget.model.ClientReport;
 import com.evry.client.rpc.fruktadminService;
 import com.evry.fruktkorgservice.ReportService;
 import com.evry.fruktkorgservice.model.ImmutableReport;

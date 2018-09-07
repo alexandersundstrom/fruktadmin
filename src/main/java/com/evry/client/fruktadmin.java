@@ -1,9 +1,9 @@
 package com.evry.client;
 
-import com.evry.client.activity.FruktActivityMapper;
-import com.evry.client.core.ClientFactory;
-import com.evry.client.place.FruktPlaceHistoryMapper;
-import com.evry.client.place.HomePlace;
+import com.evry.client.activites.activity.FruktActivityMapper;
+import com.evry.client.activites.activity.ClientFactory;
+import com.evry.client.activites.activity.FruktPlaceHistoryMapper;
+import com.evry.client.activites.activity.home.HomePlace;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.EntryPoint;

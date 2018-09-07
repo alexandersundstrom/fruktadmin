@@ -1,0 +1,16 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g="urn:import:com.google.gwt.user.cellview.client"
+             xmlns:u="urn:import:com.google.gwt.user.client.ui"
+             xmlns:f="urn:import:com.evry.client.activites.dependencies.widgets"
+             xmlns:widget="urn:import:com.evry.client.activites.activity.downloadreport.widget"
+             xmlns:pagination="urn:import:com.evry.client.activites.activity.downloadreport.widget.reporttable.table.pagination"
+             xmlns:pagination2="urn:import:com.evry.client.activites.activity.downloadreport.widget.table.pagination">
+
+    <ui:style field="style" src="../../../../dependencies/css/styling.css" type="com.evry.client.activites.dependencies.css.StylingCss"/>
+
+    <u:HTMLPanel>
+        <pagination2:PaginationWidget ui:field="pagination" />
+        <g:CellTable ui:field="reportTable" />
+    </u:HTMLPanel>
+
+</ui:UiBinder>

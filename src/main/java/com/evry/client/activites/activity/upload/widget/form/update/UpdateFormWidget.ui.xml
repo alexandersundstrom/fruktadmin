@@ -1,0 +1,20 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:u="urn:import:com.google.gwt.user.client.ui"
+             xmlns:glass="urn:import:com.evry.client.activites.dependencies.widgets.glass">
+    <ui:style field="app" src="../../../../../dependencies/css/app.css"/>
+    <ui:style field="styling" src="../../../../../dependencies/css/styling.css"/>
+
+    <u:HTMLPanel>
+        <glass:GlassWidget ui:field="glass"/>
+        <h1>Uppdatera Fruktkorgar</h1>
+        <p>Den fil du laddar upp kommer uppdatera de befintliga fruktkorgarna utifrån deras id.</p>
+        <p>Filen behöver följa detta <u:Anchor addStyleNames="{styling.brodtextxaqua}" href="/fruktadmin/schema/update">schema</u:Anchor>.</p>
+        <u:FormPanel ui:field="form" action="/fruktadmin/fruktkorg/update" encoding="multipart/form-data" method="post">
+        <u:VerticalPanel>
+        <u:FileUpload ui:field="fileUploader" addStyleNames="{styling.margin-bottom}" name="uploadFormElement" />
+        <u:SubmitButton>Submit</u:SubmitButton>
+        </u:VerticalPanel>
+        </u:FormPanel>
+    </u:HTMLPanel>
+
+</ui:UiBinder>

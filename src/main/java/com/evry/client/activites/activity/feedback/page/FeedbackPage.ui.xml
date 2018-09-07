@@ -1,0 +1,25 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:f='urn:import:com.evry.client.activites.dependencies.widgets.maincontent'
+             xmlns:u='urn:import:com.google.gwt.user.client.ui' xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:maincontent="urn:import:com.evry.client.activites.dependencies.widgets.maincontent">
+
+    <ui:style field="app" src="../../../dependencies/css/app.css"/>
+    <ui:style field="grund" src="../../../dependencies/css/grund.css"/>
+    <ui:style field="styling" src="../../../dependencies/css/styling.css"/>
+
+    <maincontent:MainContentWidget ui:field="mainContent">
+        <f:content>
+            <u:HTMLPanel>
+                <u:VerticalPanel>
+                    <u:ListBox addStyleNames="{styling.dropdown-select}" ui:field="feedbackOptions"
+                               name="feedbackOptions">
+                        <g:item value="">Välj...</g:item>
+                        <g:item value="download">Ladda ner rapport</g:item>
+                        <g:item value="upload">Uppdatera Fruktkorgar</g:item>
+                    </u:ListBox>
+                </u:VerticalPanel>
+                <u:SimplePanel ui:field="formContent"/>
+            </u:HTMLPanel>
+        </f:content>
+    </maincontent:MainContentWidget>
+</ui:UiBinder>
