@@ -8,8 +8,8 @@
         <f:GlassWidget ui:field="glass"/>
         <h1>Återställa Fruktkorgar</h1>
         <p>Databasen kommer återställas enligt den XML fil som laddas upp. Fruktkorgar och frukter som som ej finns med i filen kommer att tas bort.</p>
-        <p>Filen behöver följa detta <u:Anchor addStyleNames="{styling.brodtextxaqua}" href="/fruktadmin/schema?schema=restore">schema</u:Anchor>.</p>
-        <u:FormPanel ui:field="form" action="/fruktadmin/upploadXML?type=restore" encoding="multipart/form-data" method="post">
+        <p>Filen behöver följa detta <u:Anchor addStyleNames="{styling.brodtextxaqua}" href="/fruktadmin/schema/restore">schema</u:Anchor>.</p>
+        <u:FormPanel ui:field="form" action="/fruktadmin/fruktkorg/restore" encoding="multipart/form-data" method="post">
         <u:VerticalPanel>
         <u:FileUpload ui:field="fileUploader" addStyleNames="{styling.margin-bottom}" name="uploadFormElement" />
         <u:SubmitButton>Submit</u:SubmitButton>

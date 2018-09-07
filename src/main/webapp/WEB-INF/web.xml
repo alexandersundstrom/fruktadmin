@@ -14,7 +14,7 @@
     
     <servlet>
         <servlet-name>downloadReport</servlet-name>
-        <servlet-class>com.evry.server.servlet.DownloadReportServlet</servlet-class>
+        <servlet-class>com.evry.server.servlet.DownloadReport</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>downloadReport</servlet-name>
@@ -22,22 +22,42 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>uploadXML</servlet-name>
-        <servlet-class>com.evry.server.servlet.UploadXMLServlet</servlet-class>
+        <servlet-name>updateFruktkorgar</servlet-name>
+        <servlet-class>com.evry.server.servlet.UpdateFruktkorgar</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>downloadSchemaDefinition</servlet-name>
-        <servlet-class>com.evry.server.servlet.DownloadXSDServlet</servlet-class>
+        <servlet-name>restoreFruktkorgar</servlet-name>
+        <servlet-class>com.evry.server.servlet.RestoreFruktkorgar</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>updateSchemaDefinition</servlet-name>
+        <servlet-class>com.evry.server.servlet.schema.GetUpdateSchemaDefinition</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>restoreSchemaDefinition</servlet-name>
+        <servlet-class>com.evry.server.servlet.schema.GetRestoreSchemaDefinition</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>uploadXML</servlet-name>
-        <url-pattern>/fruktadmin/upploadXML</url-pattern>
+        <servlet-name>updateFruktkorgar</servlet-name>
+        <url-pattern>/fruktadmin/fruktkorg/update</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>downloadSchemaDefinition</servlet-name>
-        <url-pattern>/fruktadmin/schema</url-pattern>
+        <servlet-name>restoreFruktkorgar</servlet-name>
+        <url-pattern>/fruktadmin/fruktkorg/restore</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>restoreSchemaDefinition</servlet-name>
+        <url-pattern>/fruktadmin/schema/restore</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>updateSchemaDefinition</servlet-name>
+        <url-pattern>/fruktadmin/schema/update</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -17,7 +17,7 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class UploadXMLServlet extends HttpServlet {
+public class RestoreFruktkorgar extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         ServletFileUpload upload = new ServletFileUpload();
         FruktkorgService fruktkorgService = Beans.getBean("fruktkorgService");
@@ -30,30 +30,13 @@ public class UploadXMLServlet extends HttpServlet {
                     throw new RuntimeException("File must be of typ XML, but was: " + item.getContentType());
                 }
 
-
-                String type = request.getParameter("type");
-                if (type == null) {
-                    throw new RuntimeException("Type parameter was missing, unable to send request.");
-                }
-
-                if (!type.equals("update") && !type.equals("restore")) {
-                    throw new RuntimeException("Type parameter has to be either update or restore");
-                }
-
                 try (InputStream stream = item.openStream()) {
-                    if ("update".equals(type)) {
-                        fruktkorgService.updateFruktkorgar(stream);
-                        response.setStatus(200);
-                        response.setHeader("Content-Type", "text/html");
-                        response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar uppdaterades.\"}");
 
-                    } else if ("restore".equals(type)) {
-                        fruktkorgService.restoreFruktkorgar(stream);
-                        response.setStatus(200);
-                        response.setHeader("Content-Type", "text/html");
-                        response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar återställda.\"}");
+                    fruktkorgService.restoreFruktkorgar(stream);
+                    response.setStatus(200);
+                    response.setHeader("Content-Type", "text/html");
+                    response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar återställda.\"}");
 
-                    }
                 } catch (FruktMissingException e) {
                     response.setStatus(400);
                     response.setHeader("Content-Type", "text/html");

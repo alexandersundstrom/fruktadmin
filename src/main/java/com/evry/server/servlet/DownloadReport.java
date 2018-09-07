@@ -5,13 +5,13 @@ import com.evry.fruktkorgservice.ReportService;
 import com.evry.fruktkorgservice.exception.ReportMissingException;
 import com.evry.fruktkorgservice.model.ImmutableFrukt;
 import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
+import com.evry.server.servlet.util.ResponseUtil;
 import com.evry.server.util.Beans;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class DownloadReportServlet extends HttpServlet {
+public class DownloadReport extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ReportService reportService = Beans.getBean("reportService");
@@ -73,7 +73,7 @@ public class DownloadReportServlet extends HttpServlet {
             return;
         }
 
-        sendReport(resp, bytes, name, fileType.getContentType());
+        ResponseUtil.sendFile(resp, bytes, name, fileType.getContentType());
     }
 
     private byte[] getPdfFile(long reportId) throws IOException, DocumentException, ReportMissingException {
@@ -120,18 +120,6 @@ public class DownloadReportServlet extends HttpServlet {
         }
 
         return bytes;
-    }
-
-    private void sendReport(HttpServletResponse resp, byte[] bytes, String name, String content) throws IOException {
-        ServletOutputStream servletOutputStream = null;
-
-        servletOutputStream = resp.getOutputStream();
-        resp.setContentType(content);
-        resp.setHeader("Content-Type", content);
-        resp.setHeader("Content-Disposition", "attachment; filename=" + name);
-        resp.setContentLength(bytes.length);
-        servletOutputStream.write(bytes);
-        servletOutputStream.close();
     }
 
     private boolean isLong(String string) {
