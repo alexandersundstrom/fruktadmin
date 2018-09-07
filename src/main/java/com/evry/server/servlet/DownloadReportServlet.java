@@ -1,9 +1,10 @@
 package com.evry.server.servlet;
 
-import com.evry.fruktkorgservice.domain.model.ImmutableFrukt;
-import com.evry.fruktkorgservice.domain.model.ImmutableFruktkorg;
-import com.evry.fruktkorgservice.domain.service.ReportService;
-import com.evry.fruktkorgservice.exception.ReportMissingException;
+
+import com.evry.fruktkorg.domain.model.handling.ReportMissingException;
+import com.evry.fruktkorgservice.ReportService;
+import com.evry.fruktkorgservice.model.ImmutableFrukt;
+import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
 import com.evry.server.util.Beans;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -81,6 +82,8 @@ public class DownloadReportServlet extends HttpServlet {
 
         ReportService reportService = Beans.getBean("reportService");
         List<ImmutableFruktkorg> fruktkorgList = reportService.getFruktkorgarFromReport(reportId);
+
+        //null check on fruktkorgar
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(pdfReport));

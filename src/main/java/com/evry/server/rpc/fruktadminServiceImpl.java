@@ -2,8 +2,8 @@ package com.evry.server.rpc;
 
 import com.evry.client.model.ClientReport;
 import com.evry.client.rpc.fruktadminService;
-import com.evry.fruktkorgservice.domain.model.ImmutableReport;
-import com.evry.fruktkorgservice.domain.service.ReportService;
+import com.evry.fruktkorgservice.ReportService;
+import com.evry.fruktkorgservice.model.ImmutableReport;
 import com.evry.server.util.Beans;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

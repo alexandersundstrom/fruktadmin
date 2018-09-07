@@ -1,6 +1,6 @@
 package com.evry.server.servlet;
 
-import com.evry.fruktkorgservice.domain.service.ReportService;
+import com.evry.fruktkorgservice.ReportService;
 import com.evry.server.util.Beans;
 import org.apache.commons.io.IOUtils;
 
