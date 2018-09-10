@@ -39,16 +39,16 @@ public class DownloadReport extends HttpServlet {
         String reportName = req.getParameter("name");
         String filename = FileUtil.createReportFilename(reportName, fileType);
 
-        byte[] report = null;
+        byte[] reportAsBytes = null;
         try {
-            report = FileUtil.getBytesfromReport(reportId, fileType);
+            reportAsBytes = FileUtil.getBytesfromReport(reportId, fileType);
         } catch (ReportMissingException e) {
             ResponseUtil.send400("Ingen rapport med id " + reportId + "kunde hittas", resp);
         } catch (DocumentException e) {
             ResponseUtil.send400("Följande fel inträffade: " + e.getMessage(), resp);
         }
 
-        FileInformationHolder fileHolder = new FileInformationHolder(report, filename, fileType.getContentType());
+        FileInformationHolder fileHolder = new FileInformationHolder(reportAsBytes, filename, fileType.getContentType());
         ResponseUtil.sendFile(fileHolder, resp);
     }
 }
