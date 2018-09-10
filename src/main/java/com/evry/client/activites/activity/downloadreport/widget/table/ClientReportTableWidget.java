@@ -104,9 +104,9 @@ public class ClientReportTableWidget extends Composite implements Pageable {
             @Override
             public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
                 event.preventDefault();
-                Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
-                Cookies.setCookie("REPORT_FILE_TYPE", "PDF");
-                Window.open(GWT.getModuleBaseURL() + "downloadReport?name=" + getLocationSubstringed(clientReport), "_self", "enabled");
+                String reportName = getLocationSubstringed(clientReport);
+                String url = getUrl(clientReport.getId(), reportName, "PDF");
+                Window.open(url, "_self", "enabled");
             }
         };
 
@@ -121,14 +121,17 @@ public class ClientReportTableWidget extends Composite implements Pageable {
             @Override
             public void onBrowserEvent(Cell.Context context, Element elem, ClientReport clientReport, NativeEvent event) {
                 event.preventDefault();
-                Cookies.setCookie("REPORT_ID", clientReport.getId() + "");
-                Cookies.setCookie("REPORT_FILE_TYPE", "XML");
-                String name = getLocationSubstringed(clientReport);
-                Window.open(GWT.getModuleBaseURL() + "downloadReport?name=" + name, "_self", "enabled");
+                String reportName = getLocationSubstringed(clientReport);
+                String url = getUrl(clientReport.getId(), reportName, "XML");
+                Window.open(url, "_self", "enabled");
             }
         };
 
         reportTable.addColumn(downloadReportXML, "XML");
+    }
+
+    private String getUrl(long id, String name, String fileType) {
+        return GWT.getModuleBaseURL() + "downloadReport?name=" + name + "&id=" + id + "&type=" + fileType;
     }
 
     private String getLocationSubstringed(ClientReport clientReport) {
