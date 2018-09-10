@@ -1,20 +1,20 @@
 package com.evry.server.servlet.util;
 
+import com.evry.server.servlet.download.model.FileInformationHolder;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ResponseUtil {
 
-    public static void sendFile(HttpServletResponse resp, byte[] bytes, String name, String content) throws IOException {
-        ServletOutputStream servletOutputStream = null;
-
-        servletOutputStream = resp.getOutputStream();
-        resp.setContentType(content);
-        resp.setHeader("Content-Type", content);
-        resp.setHeader("Content-Disposition", "attachment; filename=" + name);
-        resp.setContentLength(bytes.length);
-        servletOutputStream.write(bytes);
+    public static void sendFile(FileInformationHolder fileHolder, HttpServletResponse resp) throws IOException {
+        ServletOutputStream servletOutputStream = resp.getOutputStream();
+        resp.setContentType(fileHolder.getContentType());
+        resp.setHeader("Content-Type", fileHolder.getContentType());
+        resp.setHeader("Content-Disposition", "attachment; filename=" + fileHolder.getFilename());
+        resp.setContentLength(fileHolder.getFileAsBytes().length);
+        servletOutputStream.write(fileHolder.getFileAsBytes());
         servletOutputStream.close();
     }
 

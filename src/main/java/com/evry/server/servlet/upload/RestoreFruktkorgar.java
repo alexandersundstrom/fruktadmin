@@ -1,7 +1,8 @@
-package com.evry.server.servlet;
+package com.evry.server.servlet.upload;
 
 import com.evry.client.util.Log;
 import com.evry.fruktkorgservice.FruktkorgService;
+import com.evry.fruktkorgservice.exception.FruktMissingException;
 import com.evry.fruktkorgservice.exception.FruktkorgMissingException;
 import com.evry.server.servlet.util.ResponseUtil;
 import com.evry.server.util.Beans;
@@ -17,7 +18,7 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class UpdateFruktkorgar extends HttpServlet {
+public class RestoreFruktkorgar extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         FruktkorgService fruktkorgService = Beans.getBean("fruktkorgService");
         ServletFileUpload upload = new ServletFileUpload();
@@ -31,12 +32,12 @@ public class UpdateFruktkorgar extends HttpServlet {
                 }
 
                 try (InputStream stream = item.openStream()) {
-                    fruktkorgService.updateFruktkorgar(stream);
-                    ResponseUtil.send200("Fruktkorgar uppdaterades.", response);
+                    fruktkorgService.restoreFruktkorgar(stream);
+                    ResponseUtil.send200("Fruktkorgar återställda.", response);
 
-                } catch (FruktkorgMissingException e) {
+                } catch (FruktMissingException e) {
                     ResponseUtil.send400(e.getMessage(), response);
-                } catch (IOException e) {
+                } catch (FruktkorgMissingException e) {
                     ResponseUtil.send400(e.getMessage(), response);
                 } catch (JAXBException e) {
                     ResponseUtil.send400("XML filen kunde inte konverteras till Fruktkorgar. Säkerställ att den följer schema definitionen.", response);

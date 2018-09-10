@@ -28,7 +28,7 @@ public class FileUtil {
         PdfWriter.getInstance(document, new FileOutputStream(pdfReport));
 
         document.open();
-        document.addTitle("Fruktkorg Report");
+        document.addTitle("Fruktkorg FileInformationHolder");
         for (ImmutableFruktkorg fruktkorg : fruktkorgList) {
             document.add(new Paragraph(fruktkorg.getName() + " - " + fruktkorg.getLastChanged()));
             com.itextpdf.text.List list = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);

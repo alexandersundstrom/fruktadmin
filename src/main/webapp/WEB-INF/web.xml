@@ -14,7 +14,7 @@
     
     <servlet>
         <servlet-name>downloadReport</servlet-name>
-        <servlet-class>com.evry.server.servlet.DownloadReport</servlet-class>
+        <servlet-class>com.evry.server.servlet.download.DownloadReport</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>downloadReport</servlet-name>
@@ -23,12 +23,12 @@
 
     <servlet>
         <servlet-name>updateFruktkorgar</servlet-name>
-        <servlet-class>com.evry.server.servlet.UpdateFruktkorgar</servlet-class>
+        <servlet-class>com.evry.server.servlet.upload.UpdateFruktkorgar</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>restoreFruktkorgar</servlet-name>
-        <servlet-class>com.evry.server.servlet.RestoreFruktkorgar</servlet-class>
+        <servlet-class>com.evry.server.servlet.upload.RestoreFruktkorgar</servlet-class>
     </servlet>
 
     <servlet>
