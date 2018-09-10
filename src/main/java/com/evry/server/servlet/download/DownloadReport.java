@@ -4,7 +4,7 @@ package com.evry.server.servlet.download;
 import com.evry.fruktkorgservice.exception.ReportMissingException;
 import com.evry.server.servlet.download.model.FileInformationHolder;
 import com.evry.server.servlet.util.FileUtil;
-import com.evry.server.servlet.util.FileUtil.FileType;
+import com.evry.server.servlet.util.FileUtil.ContentType;
 import com.evry.server.servlet.util.ResponseUtil;
 import com.itextpdf.text.DocumentException;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -21,13 +21,13 @@ public class DownloadReport extends HttpServlet {
 
         long reportId = -1;
         //defaultType is XML
-        FileType fileType = FileType.XML;
+        ContentType contentType = ContentType.XML;
 
         for (Cookie cookie : req.getCookies()) {
             if (cookie.getName().equals("REPORT_ID") && NumberUtils.isNumber(cookie.getValue())) {
                 reportId = Long.parseLong(cookie.getValue());
             } else if (cookie.getName().equals("REPORT_FILE_TYPE")) {
-                fileType = FileType.valueOf(cookie.getValue());
+                contentType = ContentType.valueOf(cookie.getValue());
             }
         }
 
@@ -37,18 +37,18 @@ public class DownloadReport extends HttpServlet {
         }
 
         String reportName = req.getParameter("name");
-        String filename = FileUtil.createReportFilename(reportName, fileType);
+        String filename = FileUtil.createReportFilename(reportName, contentType);
 
         byte[] reportAsBytes = null;
         try {
-            reportAsBytes = FileUtil.getBytesfromReport(reportId, fileType);
+            reportAsBytes = FileUtil.getBytesfromReport(reportId, contentType);
         } catch (ReportMissingException e) {
             ResponseUtil.send400("Ingen rapport med id " + reportId + "kunde hittas", resp);
         } catch (DocumentException e) {
             ResponseUtil.send400("Följande fel inträffade: " + e.getMessage(), resp);
         }
 
-        FileInformationHolder fileHolder = new FileInformationHolder(reportAsBytes, filename, fileType.getContentType());
+        FileInformationHolder fileHolder = new FileInformationHolder(reportAsBytes, filename, contentType.getContentType());
         ResponseUtil.sendFile(fileHolder, resp);
     }
 }

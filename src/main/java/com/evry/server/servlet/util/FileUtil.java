@@ -61,10 +61,10 @@ public class FileUtil {
         return bytes;
     }
 
-    public static byte[] getBytesfromReport(long reportId, FileType wantedFileType) throws IOException, ReportMissingException, DocumentException {
+    public static byte[] getBytesfromReport(long reportId, ContentType wantedContentType) throws IOException, ReportMissingException, DocumentException {
         byte[] reportAsBytes = null;
 
-        switch (wantedFileType) {
+        switch (wantedContentType) {
             case XML:
                 reportAsBytes = IOUtils.toByteArray(reportService.getAndMarkReport(reportId));
                 break;
@@ -75,9 +75,9 @@ public class FileUtil {
         return reportAsBytes;
     }
 
-    public static String createReportFilename(String reportName, FileType fileType) {
+    public static String createReportFilename(String reportName, ContentType contentType) {
         String filename = "";
-        switch (fileType) {
+        switch (contentType) {
             case XML:
                 filename = reportName + ".xml";
                 break;
@@ -88,13 +88,14 @@ public class FileUtil {
         return filename;
     }
 
-    public enum FileType {
+    public enum ContentType {
         XML("application/xml"),
-        PDF("application/pdf");
+        PDF("application/pdf"),
+        XSD("application/xsd");
 
         private String contentType;
 
-        FileType(String contentType) {
+        ContentType(String contentType) {
             this.contentType = contentType;
         }
 
