@@ -8,18 +8,18 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import java.util.List;
 
 @RemoteServiceRelativePath("fruktadminService")
-public interface fruktadminService extends RemoteService {
+public interface FruktadminService extends RemoteService {
     // Sample interface method of remote interface
     List<ClientReport> getReports();
 
     /**
      * Utility/Convenience class.
-     * Use fruktadminService.App.getInstance() to access static instance of fruktadminServiceAsync
+     * Use FruktadminService.App.getInstance() to access static instance of fruktadminServiceAsync
      */
     public static class App {
-        private static fruktadminServiceAsync ourInstance = GWT.create(fruktadminService.class);
+        private static FruktadminServiceAsync ourInstance = GWT.create(FruktadminService.class);
 
-        public static synchronized fruktadminServiceAsync getInstance() {
+        public static synchronized FruktadminServiceAsync getInstance() {
             return ourInstance;
         }
     }

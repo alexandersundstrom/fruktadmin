@@ -1,7 +1,7 @@
 package com.evry.server.rpc;
 
 import com.evry.client.activites.activity.downloadreport.widget.model.ClientReport;
-import com.evry.client.rpc.fruktadminService;
+import com.evry.client.rpc.FruktadminService;
 import com.evry.fruktkorgservice.ReportService;
 import com.evry.fruktkorgservice.model.ImmutableReport;
 import com.evry.server.util.Beans;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class fruktadminServiceImpl extends RemoteServiceServlet implements fruktadminService {
+public class FruktadminServiceImpl extends RemoteServiceServlet implements FruktadminService {
 
     @Override
     public List<ClientReport> getReports() {

@@ -2,8 +2,8 @@ package com.evry.client.activites.activity.downloadreport.page;
 
 import com.evry.client.activites.activity.FruktActivity;
 import com.evry.client.activites.activity.downloadreport.widget.model.ClientReport;
-import com.evry.client.rpc.fruktadminService;
-import com.evry.client.rpc.fruktadminServiceAsync;
+import com.evry.client.rpc.FruktadminService;
+import com.evry.client.rpc.FruktadminServiceAsync;
 import com.evry.client.util.Log;
 import com.evry.client.activites.activity.downloadreport.widget.table.ClientReportTableWidget;
 import com.evry.client.activites.dependencies.widgets.glass.GlassWidget;
@@ -36,7 +36,7 @@ public class DownloadReportPage extends Composite {
         mainContent.setText("Här kan du ladda ner alla fruktkorgar. När en rapport har laddats ner tas den bort följande natt.");
 
         glass.on("Laddar...");
-        fruktadminServiceAsync fruktkorgServiceRPC = GWT.create(fruktadminService.class);
+        FruktadminServiceAsync fruktkorgServiceRPC = GWT.create(FruktadminService.class);
         fruktkorgServiceRPC.getReports(new AsyncCallback<List<ClientReport>>() {
             @Override
             public void onFailure(Throwable caught) {
