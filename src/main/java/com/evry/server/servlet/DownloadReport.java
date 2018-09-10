@@ -1,125 +1,51 @@
 package com.evry.server.servlet;
 
 
-import com.evry.fruktkorgservice.ReportService;
 import com.evry.fruktkorgservice.exception.ReportMissingException;
-import com.evry.fruktkorgservice.model.ImmutableFrukt;
-import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
+import com.evry.server.servlet.util.FileUtil;
+import com.evry.server.servlet.util.FileUtil.FileType;
 import com.evry.server.servlet.util.ResponseUtil;
-import com.evry.server.util.Beans;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfWriter;
-import org.apache.commons.io.IOUtils;
+import com.itextpdf.text.DocumentException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class DownloadReport extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ReportService reportService = Beans.getBean("reportService");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        Cookie[] cookies = req.getCookies();
         long reportId = -1;
         FileType fileType = FileType.XML;
-        String name = "";
 
-        for (Cookie cookie : cookies) {
+        for (Cookie cookie : req.getCookies()) {
             if (cookie.getName().equals("REPORT_ID") && isLong(cookie.getValue())) {
                 reportId = Long.parseLong(cookie.getValue());
             } else if (cookie.getName().equals("REPORT_FILE_TYPE")) {
                 fileType = FileType.valueOf(cookie.getValue());
             }
-            name = req.getParameter("name");
         }
 
-        if (reportId == -1) {
-            return;
+        String reportName = req.getParameter("name");
+        String filename = FileUtil.createReportFilename(reportName, fileType);
+
+        boolean reportIdIsNotSet = reportId == -1;
+        if (reportIdIsNotSet) {
+          //return error status
         }
 
-        byte[] bytes;
+        byte[] report = null;
         try {
-            bytes = IOUtils.toByteArray(reportService.getAndMarkReport(reportId));
+            report = FileUtil.getBytesfromReport(reportId, fileType);
         } catch (ReportMissingException e) {
-            // do something
-            return;
-        }
-
-        try {
-            switch (fileType) {
-                case XML:
-                    name += ".xml";
-                    break;
-                case PDF:
-                    bytes = getPdfFile(reportId);
-                    name += ".pdf";
-                    break;
-            }
+            //return error status
         } catch (DocumentException e) {
-            // do something
-        } catch (ReportMissingException e) {
-            // do something else
+            //return error status
         }
 
-        if (bytes == null) {
-            return;
-        }
-
-        ResponseUtil.sendFile(resp, bytes, name, fileType.getContentType());
-    }
-
-    private byte[] getPdfFile(long reportId) throws IOException, DocumentException, ReportMissingException {
-        File pdfReport = File.createTempFile("pdfReport-", ".tmp");
-        pdfReport.deleteOnExit();
-
-        ReportService reportService = Beans.getBean("reportService");
-        List<ImmutableFruktkorg> fruktkorgList = reportService.getFruktkorgarFromReport(reportId);
-
-        //null check on fruktkorgar
-
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(pdfReport));
-
-        document.open();
-        document.addTitle("Fruktkorg Report");
-        for (ImmutableFruktkorg fruktkorg : fruktkorgList) {
-            document.add(new Paragraph(fruktkorg.getName() + " - " + fruktkorg.getLastChanged()));
-            com.itextpdf.text.List list = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
-
-            for (ImmutableFrukt frukt : fruktkorg.getFruktList()) {
-                ListItem item = new ListItem(frukt.getType() + ": " + frukt.getAmount());
-                item.setAlignment(Element.ALIGN_JUSTIFIED);
-                list.add(item);
-            }
-
-            document.add(list);
-        }
-
-        document.close();
-
-        return getBytesFromFile(pdfReport);
-    }
-
-    private byte[] getBytesFromFile(File reportFile) {
-        byte[] bytes = null;
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream(reportFile);
-            bytes = new byte[(int) reportFile.length()];
-            fileInputStream.read(bytes);
-        } catch (IOException e) {
-            // do nothing
-        }
-
-        return bytes;
+        ResponseUtil.sendFile(resp, report, filename, fileType.getContentType());
     }
 
     private boolean isLong(String string) {
@@ -131,18 +57,5 @@ public class DownloadReport extends HttpServlet {
         }
     }
 
-    public enum FileType {
-        XML("application/xml"),
-        PDF("application/pdf");
 
-        private String contentType;
-
-        FileType(String contentType) {
-            this.contentType = contentType;
-        }
-
-        public String getContentType() {
-            return contentType;
-        }
-    }
 }
