@@ -2,8 +2,8 @@ package com.evry.server.servlet;
 
 import com.evry.client.util.Log;
 import com.evry.fruktkorgservice.FruktkorgService;
-import com.evry.fruktkorgservice.exception.FruktMissingException;
 import com.evry.fruktkorgservice.exception.FruktkorgMissingException;
+import com.evry.server.servlet.util.ResponseUtil;
 import com.evry.server.util.Beans;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
@@ -19,8 +19,8 @@ import java.io.InputStream;
 
 public class UpdateFruktkorgar extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        ServletFileUpload upload = new ServletFileUpload();
         FruktkorgService fruktkorgService = Beans.getBean("fruktkorgService");
+        ServletFileUpload upload = new ServletFileUpload();
         try {
             FileItemIterator itr = upload.getItemIterator(request);
             while (itr.hasNext()) {
@@ -32,29 +32,21 @@ public class UpdateFruktkorgar extends HttpServlet {
 
                 try (InputStream stream = item.openStream()) {
                     fruktkorgService.updateFruktkorgar(stream);
-                    response.setStatus(200);
-                    response.setHeader("Content-Type", "text/html");
-                    response.getWriter().print("{\"success\": true, \"message\": \"Fruktkorgar uppdaterades.\"}");
+                    ResponseUtil.send200("Fruktkorgar uppdaterades.", response);
 
                 } catch (FruktkorgMissingException e) {
-                    response.setStatus(400);
-                    response.setHeader("Content-Type", "text/html");
-                    response.getWriter().print("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+                    ResponseUtil.send400(e.getMessage(), response);
                 } catch (IOException e) {
-                    Log.warn("Caught an IOException: " + e.getMessage());
+                    ResponseUtil.send400(e.getMessage(), response);
                 } catch (JAXBException e) {
-                    response.setStatus(400);
-                    response.setHeader("Content-Type", "text/html");
-                    response.getWriter().print("{\"success\": false, \"message\": \"" + "XML filen kunde inte konverteras till Fruktkorgar. Säkerställ att den följer schema definitionen." + "\"}");
+                    ResponseUtil.send400("XML filen kunde inte konverteras till Fruktkorgar. Säkerställ att den följer schema definitionen.", response);
                 }
             }
         } catch (FileUploadException e) {
-            response.setStatus(400);
-            response.setHeader("Content-Type", "text/html");
             try {
-                response.getWriter().print("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
+                ResponseUtil.send400(e.getMessage(), response);
             } catch (IOException e1) {
-
+                Log.warn("Caught an IOException " + e.getMessage());
             }
         } catch (IOException e) {
             Log.warn("Caught an IOException: " + e.getMessage());

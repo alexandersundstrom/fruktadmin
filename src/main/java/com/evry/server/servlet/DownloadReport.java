@@ -6,6 +6,7 @@ import com.evry.server.servlet.util.FileUtil;
 import com.evry.server.servlet.util.FileUtil.FileType;
 import com.evry.server.servlet.util.ResponseUtil;
 import com.itextpdf.text.DocumentException;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -18,44 +19,34 @@ public class DownloadReport extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         long reportId = -1;
+        //defaultType is XML
         FileType fileType = FileType.XML;
 
         for (Cookie cookie : req.getCookies()) {
-            if (cookie.getName().equals("REPORT_ID") && isLong(cookie.getValue())) {
+            if (cookie.getName().equals("REPORT_ID") && NumberUtils.isNumber(cookie.getValue())) {
                 reportId = Long.parseLong(cookie.getValue());
             } else if (cookie.getName().equals("REPORT_FILE_TYPE")) {
                 fileType = FileType.valueOf(cookie.getValue());
             }
         }
 
-        String reportName = req.getParameter("name");
-        String filename = FileUtil.createReportFilename(reportName, fileType);
-
         boolean reportIdIsNotSet = reportId == -1;
         if (reportIdIsNotSet) {
-          //return error status
+            ResponseUtil.send400("Inget id satt för rapport, kontakta administratören", resp);
         }
+
+        String reportName = req.getParameter("name");
+        String filename = FileUtil.createReportFilename(reportName, fileType);
 
         byte[] report = null;
         try {
             report = FileUtil.getBytesfromReport(reportId, fileType);
         } catch (ReportMissingException e) {
-            //return error status
+            ResponseUtil.send400("Ingen rapport med id " + reportId + "kunde hittas", resp);
         } catch (DocumentException e) {
-            //return error status
+            ResponseUtil.send400("Följande fel inträffade: " + e.getMessage(), resp);
         }
 
         ResponseUtil.sendFile(resp, report, filename, fileType.getContentType());
     }
-
-    private boolean isLong(String string) {
-        try {
-            Long.parseLong(string);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-
 }
