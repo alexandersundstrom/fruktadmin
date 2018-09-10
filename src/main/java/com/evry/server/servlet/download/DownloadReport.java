@@ -13,9 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 public class DownloadReport extends HttpServlet {
     @Override
@@ -49,10 +47,6 @@ public class DownloadReport extends HttpServlet {
         } catch (DocumentException e) {
             ResponseUtil.send400("Följande fel inträffade: " + e.getMessage(), resp);
         }
-
-        File tempFile = File.createTempFile(reportName, fileType.name());
-        Files.write(tempFile.toPath(), report);
-        tempFile.deleteOnExit();
 
         FileInformationHolder fileHolder = new FileInformationHolder(report, filename, fileType.getContentType());
         ResponseUtil.sendFile(fileHolder, resp);
