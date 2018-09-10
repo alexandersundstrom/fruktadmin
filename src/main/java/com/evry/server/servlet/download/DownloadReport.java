@@ -31,24 +31,24 @@ public class DownloadReport extends HttpServlet {
             }
         }
 
-        boolean reportIdIsNotSet = reportId == -1;
-        if (reportIdIsNotSet) {
+        boolean idIsSetFromCookie = reportId != -1;
+        if (idIsSetFromCookie) {
+            String reportName = req.getParameter("name");
+            String filename = FileUtil.createReportFilename(reportName, contentType);
+
+            try {
+                byte[] reportAsBytes = FileUtil.getBytesfromReport(reportId, contentType);
+                FileInformationHolder fileHolder = new FileInformationHolder(reportAsBytes, filename, contentType.getContentType());
+                ResponseUtil.sendFile(fileHolder, resp);
+            } catch (ReportMissingException e) {
+                ResponseUtil.send400("Ingen rapport med id " + reportId + "kunde hittas", resp);
+                return;
+            } catch (DocumentException e) {
+                ResponseUtil.send400("Följande fel inträffade: " + e.getMessage(), resp);
+                return;
+            }
+        } else {
             ResponseUtil.send400("Inget id satt för rapport, kontakta administratören", resp);
         }
-
-        String reportName = req.getParameter("name");
-        String filename = FileUtil.createReportFilename(reportName, contentType);
-
-        byte[] reportAsBytes = null;
-        try {
-            reportAsBytes = FileUtil.getBytesfromReport(reportId, contentType);
-        } catch (ReportMissingException e) {
-            ResponseUtil.send400("Ingen rapport med id " + reportId + "kunde hittas", resp);
-        } catch (DocumentException e) {
-            ResponseUtil.send400("Följande fel inträffade: " + e.getMessage(), resp);
-        }
-
-        FileInformationHolder fileHolder = new FileInformationHolder(reportAsBytes, filename, contentType.getContentType());
-        ResponseUtil.sendFile(fileHolder, resp);
     }
 }
