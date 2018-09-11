@@ -2,10 +2,10 @@ package com.evry.server.servlet.download;
 
 
 import com.evry.fruktkorgservice.exception.ReportMissingException;
+import com.evry.server.servlet.common.ContentType;
+import com.evry.server.servlet.common.util.FileUtil;
+import com.evry.server.servlet.common.util.ResponseUtil;
 import com.evry.server.servlet.download.model.FileInformationHolder;
-import com.evry.server.servlet.util.FileUtil;
-import com.evry.server.servlet.util.FileUtil.ContentType;
-import com.evry.server.servlet.util.ResponseUtil;
 import com.itextpdf.text.DocumentException;
 import org.apache.commons.lang3.math.NumberUtils;
 

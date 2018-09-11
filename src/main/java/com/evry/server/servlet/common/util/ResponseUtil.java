@@ -1,4 +1,4 @@
-package com.evry.server.servlet.util;
+package com.evry.server.servlet.common.util;
 
 import com.evry.server.servlet.download.model.FileInformationHolder;
 

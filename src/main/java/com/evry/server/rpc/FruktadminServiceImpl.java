@@ -4,7 +4,7 @@ import com.evry.client.activites.activity.downloadreport.widget.model.ClientRepo
 import com.evry.client.rpc.FruktadminService;
 import com.evry.fruktkorgservice.ReportService;
 import com.evry.fruktkorgservice.model.ImmutableReport;
-import com.evry.server.util.Beans;
+import com.evry.server.Beans;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import java.time.ZoneId;

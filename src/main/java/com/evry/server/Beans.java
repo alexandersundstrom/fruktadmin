@@ -1,4 +1,4 @@
-package com.evry.server.util;
+package com.evry.server;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

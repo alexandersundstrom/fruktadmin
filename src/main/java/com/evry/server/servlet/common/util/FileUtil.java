@@ -1,10 +1,11 @@
-package com.evry.server.servlet.util;
+package com.evry.server.servlet.common.util;
 
 import com.evry.fruktkorgservice.ReportService;
 import com.evry.fruktkorgservice.exception.ReportMissingException;
 import com.evry.fruktkorgservice.model.ImmutableFrukt;
 import com.evry.fruktkorgservice.model.ImmutableFruktkorg;
-import com.evry.server.util.Beans;
+import com.evry.server.Beans;
+import com.evry.server.servlet.common.ContentType;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.commons.io.IOUtils;
@@ -86,21 +87,5 @@ public class FileUtil {
                 break;
         }
         return filename;
-    }
-
-    public enum ContentType {
-        XML("application/xml"),
-        PDF("application/pdf"),
-        XSD("application/xsd");
-
-        private String contentType;
-
-        ContentType(String contentType) {
-            this.contentType = contentType;
-        }
-
-        public String getContentType() {
-            return contentType;
-        }
     }
 }
