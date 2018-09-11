@@ -1,7 +1,7 @@
-package com.evry.client.activites.dependencies.widgets.maincontent;
+package com.evry.client.activites.common.widgets.maincontent;
 
-import com.evry.client.activites.activity.FruktActivity;
-import com.evry.client.activites.dependencies.widgets.maincontent.navbar.NavBarWidget;
+import com.evry.client.activites.common.FruktActivity;
+import com.evry.client.activites.common.widgets.maincontent.navbar.NavBarWidget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.uibinder.client.UiBinder;

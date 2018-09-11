@@ -1,4 +1,4 @@
-package com.evry.client.activites.dependencies.widgets.dialogbox;
+package com.evry.client.activites.common.widgets.dialogbox;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.SpanElement;

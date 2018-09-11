@@ -1,4 +1,4 @@
-package com.evry.client.activites.activity;
+package com.evry.client.activites.common;
 
 import com.evry.client.activites.activity.downloadreport.page.DownloadReportPage;
 import com.evry.client.activites.activity.feedback.page.FeedbackPage;

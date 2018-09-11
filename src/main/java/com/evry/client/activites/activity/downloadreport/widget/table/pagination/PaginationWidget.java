@@ -1,6 +1,6 @@
 package com.evry.client.activites.activity.downloadreport.widget.table.pagination;
 
-import com.evry.client.activites.dependencies.css.StylingCss;
+import com.evry.client.activites.common.css.StylingCss;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;

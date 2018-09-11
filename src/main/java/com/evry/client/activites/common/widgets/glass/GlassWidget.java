@@ -1,4 +1,4 @@
-package com.evry.client.activites.dependencies.widgets.glass;
+package com.evry.client.activites.common.widgets.glass;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;

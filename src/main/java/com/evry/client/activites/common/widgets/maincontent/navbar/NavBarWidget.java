@@ -1,7 +1,7 @@
-package com.evry.client.activites.dependencies.widgets.maincontent.navbar;
+package com.evry.client.activites.common.widgets.maincontent.navbar;
 
-import com.evry.client.activites.activity.FruktActivity;
-import com.evry.client.activites.dependencies.css.GrundCss;
+import com.evry.client.activites.common.FruktActivity;
+import com.evry.client.activites.common.css.GrundCss;
 import com.evry.client.activites.activity.downloadreport.DownloadReportPlace;
 import com.evry.client.activites.activity.feedback.FeedbackPlace;
 import com.evry.client.activites.activity.upload.UploadXMLPlace;

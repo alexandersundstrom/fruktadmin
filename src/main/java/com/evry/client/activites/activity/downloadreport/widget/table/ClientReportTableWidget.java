@@ -2,7 +2,7 @@ package com.evry.client.activites.activity.downloadreport.widget.table;
 
 import com.evry.client.activites.activity.downloadreport.widget.model.ClientReport;
 import com.evry.client.activites.activity.downloadreport.widget.table.pagination.PaginationWidget;
-import com.evry.client.activites.dependencies.css.StylingCss;
+import com.evry.client.activites.common.css.StylingCss;
 import com.evry.client.activites.activity.downloadreport.widget.table.pagination.Pageable;
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.Cell;
@@ -15,7 +15,6 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.Header;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;

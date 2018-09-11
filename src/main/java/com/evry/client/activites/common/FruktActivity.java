@@ -1,4 +1,4 @@
-package com.evry.client.activites.activity;
+package com.evry.client.activites.common;
 
 import com.google.gwt.place.shared.Place;
 

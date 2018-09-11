@@ -1,4 +1,4 @@
-package com.evry.client.activites.dependencies.css;
+package com.evry.client.activites.common.css;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;

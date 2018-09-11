@@ -1,9 +1,9 @@
 package com.evry.client.activites.activity.upload.widget.form.update;
 
-import com.evry.client.activites.activity.FormWidget;
+import com.evry.client.activites.common.FormWidget;
 import com.evry.client.activites.activity.upload.widget.form.json.XMLUploadDTO;
-import com.evry.client.activites.dependencies.widgets.dialogbox.FruktDialogBox;
-import com.evry.client.activites.dependencies.widgets.glass.GlassWidget;
+import com.evry.client.activites.common.widgets.dialogbox.FruktDialogBox;
+import com.evry.client.activites.common.widgets.glass.GlassWidget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.uibinder.client.UiBinder;

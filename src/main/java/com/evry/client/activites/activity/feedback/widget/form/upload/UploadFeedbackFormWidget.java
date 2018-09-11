@@ -1,7 +1,7 @@
 package com.evry.client.activites.activity.feedback.widget.form.upload;
 
-import com.evry.client.activites.activity.FormWidget;
-import com.evry.client.activites.dependencies.widgets.dialogbox.FruktDialogBox;
+import com.evry.client.activites.common.FormWidget;
+import com.evry.client.activites.common.widgets.dialogbox.FruktDialogBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.uibinder.client.UiBinder;

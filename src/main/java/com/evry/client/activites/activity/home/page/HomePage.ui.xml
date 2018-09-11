@@ -1,10 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:f='urn:import:com.evry.client.activites.dependencies.widgets.maincontent'
+             xmlns:f='urn:import:com.evry.client.activites.common.widgets.maincontent'
              xmlns:u='urn:import:com.google.gwt.user.client.ui'
-             xmlns:maincontent="urn:import:com.evry.client.activites.dependencies.widgets.maincontent">
+             xmlns:maincontent="urn:import:com.evry.client.activites.common.widgets.maincontent">
 
-    <ui:style field="app" src="../../../dependencies/css/app.css" />
-    <ui:style field="grund" src="../../../dependencies/css/grund.css" />
+    <ui:style field="app" src="../../../common/css/app.css" />
+    <ui:style field="grund" src="../../../common/css/grund.css" />
 
     <maincontent:MainContentWidget ui:field="mainContent">
         <f:content>

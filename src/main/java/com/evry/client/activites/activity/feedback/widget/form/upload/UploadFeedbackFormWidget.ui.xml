@@ -1,7 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:u="urn:import:com.google.gwt.user.client.ui">
-    <ui:style field="app" src="../../../../../dependencies/css/app.css"/>
-    <ui:style field="styling" src="../../../../../dependencies/css/styling.css"/>
+    <ui:style field="app" src="../../../../../common/css/app.css"/>
+    <ui:style field="styling" src="../../../../../common/css/styling.css"/>
 
     <u:HTMLPanel>
         <h1>Uppdatera Fruktkorgar</h1>

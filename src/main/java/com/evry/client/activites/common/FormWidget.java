@@ -1,4 +1,4 @@
-package com.evry.client.activites.activity;
+package com.evry.client.activites.common;
 
 public interface FormWidget {
     boolean hasUnsubmittedChanges();

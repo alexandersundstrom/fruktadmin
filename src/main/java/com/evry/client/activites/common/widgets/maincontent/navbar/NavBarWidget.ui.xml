@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <ui:style field="grund" src="../../../css/grund.css" type="com.evry.client.activites.dependencies.css.GrundCss" />
+    <ui:style field="grund" src="../../../css/grund.css" type="com.evry.client.activites.common.css.GrundCss" />
     <ui:style field="resp" src="../../../css/responsive-grids.css" />
     <ui:style field="style" src="../../../css/styling.css" />
 

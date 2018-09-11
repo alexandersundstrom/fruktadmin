@@ -1,10 +1,10 @@
 package com.evry.client.activites.activity.feedback.page;
 
-import com.evry.client.activites.activity.FruktActivity;
-import com.evry.client.activites.dependencies.widgets.dialogbox.FruktDialogBox;
+import com.evry.client.activites.common.FruktActivity;
+import com.evry.client.activites.common.widgets.dialogbox.FruktDialogBox;
 import com.evry.client.activites.activity.feedback.widget.form.download.DownloadFeedbackFormWidget;
-import com.evry.client.activites.activity.FormWidget;
-import com.evry.client.activites.dependencies.widgets.maincontent.MainContentWidget;
+import com.evry.client.activites.common.FormWidget;
+import com.evry.client.activites.common.widgets.maincontent.MainContentWidget;
 import com.evry.client.activites.activity.feedback.widget.form.upload.UploadFeedbackFormWidget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;

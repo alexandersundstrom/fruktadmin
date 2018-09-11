@@ -1,12 +1,12 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:f='urn:import:com.evry.client.activites.dependencies.widgets.maincontent'
+             xmlns:f='urn:import:com.evry.client.activites.common.widgets.maincontent'
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
-             xmlns:maincontent="urn:import:com.evry.client.activites.dependencies.widgets.maincontent"
-             xmlns:glass="urn:import:com.evry.client.activites.dependencies.widgets.glass"
+             xmlns:maincontent="urn:import:com.evry.client.activites.common.widgets.maincontent"
+             xmlns:glass="urn:import:com.evry.client.activites.common.widgets.glass"
              xmlns:table2="urn:import:com.evry.client.activites.activity.downloadreport.widget.table">
 
-    <ui:style field="app" src="../../../dependencies/css/app.css" />
-    <ui:style field="style" src="../../../dependencies/css/styling.css" />
+    <ui:style field="app" src="../../../common/css/app.css" />
+    <ui:style field="style" src="../../../common/css/styling.css" />
 
     <g:HTMLPanel>
         <glass:GlassWidget ui:field="glass" />

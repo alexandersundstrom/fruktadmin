@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Log {
-    private static final Logger logger = Logger.getLogger("Fruktadmin");
+    private static final Logger logger = Logger.getLogger("FruktAdminEntryPoint");
 
     public static void info(String text) {
         logger.log(Level.INFO, text);

@@ -1,13 +1,13 @@
 package com.evry.client.activites.activity.downloadreport.page;
 
-import com.evry.client.activites.activity.FruktActivity;
+import com.evry.client.activites.common.FruktActivity;
 import com.evry.client.activites.activity.downloadreport.widget.model.ClientReport;
 import com.evry.client.rpc.FruktadminService;
 import com.evry.client.rpc.FruktadminServiceAsync;
 import com.evry.client.util.Log;
 import com.evry.client.activites.activity.downloadreport.widget.table.ClientReportTableWidget;
-import com.evry.client.activites.dependencies.widgets.glass.GlassWidget;
-import com.evry.client.activites.dependencies.widgets.maincontent.MainContentWidget;
+import com.evry.client.activites.common.widgets.glass.GlassWidget;
+import com.evry.client.activites.common.widgets.maincontent.MainContentWidget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

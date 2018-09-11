@@ -1,8 +1,8 @@
 package com.evry.client;
 
-import com.evry.client.activites.activity.FruktActivityMapper;
-import com.evry.client.activites.activity.ClientFactory;
-import com.evry.client.activites.activity.FruktPlaceHistoryMapper;
+import com.evry.client.activites.common.FruktActivityMapper;
+import com.evry.client.activites.common.ClientFactory;
+import com.evry.client.activites.common.FruktPlaceHistoryMapper;
 import com.evry.client.activites.activity.home.HomePlace;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -18,7 +18,7 @@ import com.google.web.bindery.event.shared.EventBus;
 /**
  * Entry point classes define <code>onModuleLoad()</code>
  */
-public class fruktadmin implements EntryPoint {
+public class FruktAdminEntryPoint implements EntryPoint {
     private Place defaultPlace = new HomePlace();
     private SimplePanel appWidget = new SimplePanel();
     /**

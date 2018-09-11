@@ -1,7 +1,7 @@
 package com.evry.client.activites.activity.feedback;
 
-import com.evry.client.activites.activity.FruktActivity;
-import com.evry.client.activites.activity.ClientFactory;
+import com.evry.client.activites.common.FruktActivity;
+import com.evry.client.activites.common.ClientFactory;
 import com.evry.client.activites.activity.feedback.page.FeedbackPage;
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;

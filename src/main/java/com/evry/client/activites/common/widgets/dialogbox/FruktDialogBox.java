@@ -1,4 +1,4 @@
-package com.evry.client.activites.dependencies.widgets.dialogbox;
+package com.evry.client.activites.common.widgets.dialogbox;
 
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;

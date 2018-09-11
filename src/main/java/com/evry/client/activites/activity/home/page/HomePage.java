@@ -1,10 +1,10 @@
 package com.evry.client.activites.activity.home.page;
 
-import com.evry.client.activites.activity.FruktActivity;
+import com.evry.client.activites.common.FruktActivity;
 import com.evry.client.activites.activity.downloadreport.DownloadReportPlace;
 import com.evry.client.activites.activity.feedback.FeedbackPlace;
 import com.evry.client.activites.activity.upload.UploadXMLPlace;
-import com.evry.client.activites.dependencies.widgets.maincontent.MainContentWidget;
+import com.evry.client.activites.common.widgets.maincontent.MainContentWidget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;

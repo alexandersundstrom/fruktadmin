@@ -1,11 +1,11 @@
 package com.evry.client.activites.activity.upload.page;
 
-import com.evry.client.activites.activity.FormWidget;
-import com.evry.client.activites.activity.FruktActivity;
+import com.evry.client.activites.common.FormWidget;
+import com.evry.client.activites.common.FruktActivity;
 import com.evry.client.activites.activity.upload.widget.form.restore.RestoreFormWidget;
 import com.evry.client.activites.activity.upload.widget.form.update.UpdateFormWidget;
-import com.evry.client.activites.dependencies.widgets.dialogbox.FruktDialogBox;
-import com.evry.client.activites.dependencies.widgets.maincontent.MainContentWidget;
+import com.evry.client.activites.common.widgets.dialogbox.FruktDialogBox;
+import com.evry.client.activites.common.widgets.maincontent.MainContentWidget;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;

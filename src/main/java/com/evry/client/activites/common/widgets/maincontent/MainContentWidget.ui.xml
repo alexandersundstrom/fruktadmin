@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:u='urn:import:com.google.gwt.user.client.ui' xmlns:g="urn:import:com.google.gwt.user.client.ui"
-             xmlns:navbar="urn:import:com.evry.client.activites.dependencies.widgets.maincontent.navbar">
+             xmlns:navbar="urn:import:com.evry.client.activites.common.widgets.maincontent.navbar">
 
     <ui:style field="app" src="../../css/app.css"/>
     <ui:style field="resp" src="../../css/responsive-grids.css"/>

@@ -7,7 +7,7 @@
   <inherits name="com.google.gwt.place.Place" />
   <inherits name="com.google.gwt.activity.Activity" />
 
-  <entry-point class='com.evry.client.fruktadmin' />
+  <entry-point class='com.evry.client.FruktAdminEntryPoint' />
   <source path='client' />
   <resource path='resources'/>
 
